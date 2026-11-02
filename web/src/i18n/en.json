@@ -18,9 +18,8 @@
   "footerUpdated": "Data last pulled",
   "columns": {
     "country": "Country",
-    "year": "Latest year",
-    "value": "Latest value",
-    "rank": "Rank among EU27"
+    "value": "Value",
+    "rank": "EU27 rank"
   },
   "presetNames": {
     "default": "Finland and peers",

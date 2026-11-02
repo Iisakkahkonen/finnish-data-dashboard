@@ -18,8 +18,7 @@
   "footerUpdated": "Data haettu viimeksi",
   "columns": {
     "country": "Maa",
-    "year": "Viimeisin vuosi",
-    "value": "Viimeisin arvo",
+    "value": "Arvo",
     "rank": "Sijoitus EU27:ssä"
   },
   "presetNames": {

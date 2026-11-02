@@ -85,16 +85,6 @@ function valueAt(indicator: string, geo: string, year: number): number | null {
   return seriesFor(indicator, geo).get(year) ?? null;
 }
 
-function latestPoint(indicator: string, geo: string): { year: number; value: number } | null {
-  let latest: { year: number; value: number } | null = null;
-  for (const row of rowsFor(indicator)) {
-    if (row.geo === geo && (!latest || row.year > latest.year)) {
-      latest = { year: row.year, value: row.value };
-    }
-  }
-  return latest;
-}
-
 // Latest year in which at least one selected country has a value.
 function defaultYear(indicator: string, geos: string[], years: number[]): number {
   for (let i = years.length - 1; i >= 0; i--) {
@@ -281,20 +271,24 @@ function renderAll(): void {
     return;
   }
 
+  // Table and ranked bars both show one year at a time, so they get the year scrubber.
+  // Lines are used for up to CHART_MAX countries; above that, ranked bars.
+  const yearMode = view === "table" || geos.length > CHART_MAX;
+  const year = yearMode ? selectYear(indicator, geos) : null;
+
   if (view === "table") {
     destroyChart();
     el("chart-wrap").hidden = true;
     el("table-wrap").hidden = false;
-    renderTable(indicator, geos);
+    renderTable(indicator, geos, year);
     return;
   }
 
   el("table-wrap").hidden = true;
   el("chart-wrap").hidden = false;
 
-  // Too many lines for a readable line chart: switch to ranked bars for one year.
-  if (geos.length > CHART_MAX) {
-    renderBars(indicator, geos);
+  if (yearMode) {
+    renderBars(indicator, geos, year);
   } else {
     renderChart(indicator, geos);
   }
@@ -347,24 +341,29 @@ function renderChart(indicator: string, geos: string[]): void {
   });
 }
 
-// Ranked horizontal bars for one year. Countries without a value that year are
-// left out of the chart and named in the status line instead.
-function renderBars(indicator: string, geos: string[]): void {
+// Year shown by ranked bars and the table. Also sets up the year scrubber for this indicator.
+function selectYear(indicator: string, geos: string[]): number | null {
   const years = yearsFor(indicator);
   currentYears = years;
-  destroyChart();
-
   if (years.length === 0) {
-    el("status").textContent = t("noData");
     updateYearControls([], 0, false);
-    return;
+    return null;
   }
-
   if (barYear === null || !years.includes(barYear)) {
     barYear = defaultYear(indicator, geos, years);
   }
-  const year = barYear;
-  updateYearControls(years, year, true);
+  updateYearControls(years, barYear, true);
+  return barYear;
+}
+
+// Ranked horizontal bars for one year. Countries without a value that year are
+// left out of the chart and named in the status line instead.
+function renderBars(indicator: string, geos: string[], year: number | null): void {
+  destroyChart();
+  if (year === null) {
+    el("status").textContent = t("noData");
+    return;
+  }
 
   const entries = geos.map((geo) => ({ geo, value: valueAt(indicator, geo, year) }));
   const bars = entries
@@ -430,32 +429,47 @@ function renderBars(indicator: string, geos: string[]): void {
   });
 }
 
-function renderTable(indicator: string, geos: string[]): void {
+// One row per selected country for the chosen year. Countries without a value
+// that year show a dash and are named in the status line.
+function renderTable(indicator: string, geos: string[], year: number | null): void {
   const wrap = el("table-wrap");
   wrap.innerHTML = "";
+  if (year === null) {
+    el("status").textContent = t("noData");
+    return;
+  }
 
   const table = document.createElement("table");
+  table.createCaption().textContent = `${t(`indicators.${indicator}`)} · ${year}`;
   const headRow = table.createTHead().insertRow();
-  for (const key of ["country", "year", "value", "rank"]) {
+  for (const key of ["country", "value", "rank"]) {
     const th = document.createElement("th");
     th.textContent = t(`columns.${key}`);
     headRow.append(th);
   }
 
+  const missing: string[] = [];
   const body = table.createTBody();
   for (const geo of geos) {
-    const latest = latestPoint(indicator, geo);
-    const rank = latest ? dataset?.ranks[indicator]?.[geo]?.[String(latest.year)] : undefined;
+    const value = valueAt(indicator, geo, year);
+    const rank = value !== null ? dataset?.ranks[indicator]?.[geo]?.[String(year)] : undefined;
+    if (value === null) missing.push(t(`countries.${geo}`));
+
     const row = body.insertRow();
     const cells = [
       t(`countries.${geo}`),
-      latest ? String(latest.year) : "—",
-      latest ? formatValue(latest.value, indicator) : "—",
+      value !== null ? formatValue(value, indicator) : "—",
       rank ? String(rank) : "—",
     ];
     for (const text of cells) {
       row.insertCell().textContent = text;
     }
+  }
+
+  if (missing.length > 0) {
+    el("status").textContent = t("missingYear")
+      .replace("{year}", String(year))
+      .replace("{names}", missing.join(", "));
   }
   wrap.append(table);
 }
