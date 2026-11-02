@@ -51,6 +51,20 @@
     "ES": "Spain",
     "NL": "Netherlands",
     "PL": "Poland",
+    "BE": "Belgium",
+    "BG": "Bulgaria",
+    "HR": "Croatia",
+    "CY": "Cyprus",
+    "CZ": "Czechia",
+    "EL": "Greece",
+    "HU": "Hungary",
+    "IE": "Ireland",
+    "LU": "Luxembourg",
+    "MT": "Malta",
+    "PT": "Portugal",
+    "RO": "Romania",
+    "SI": "Slovenia",
+    "SK": "Slovakia",
     "EU27_2020": "EU27 average"
   }
 }

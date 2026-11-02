@@ -51,6 +51,20 @@
     "ES": "Espanja",
     "NL": "Alankomaat",
     "PL": "Puola",
+    "BE": "Belgia",
+    "BG": "Bulgaria",
+    "HR": "Kroatia",
+    "CY": "Kypros",
+    "CZ": "Tšekki",
+    "EL": "Kreikka",
+    "HU": "Unkari",
+    "IE": "Irlanti",
+    "LU": "Luxemburg",
+    "MT": "Malta",
+    "PT": "Portugali",
+    "RO": "Romania",
+    "SI": "Slovenia",
+    "SK": "Slovakia",
     "EU27_2020": "EU27-keskiarvo"
   }
 }

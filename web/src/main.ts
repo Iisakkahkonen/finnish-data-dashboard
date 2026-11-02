@@ -24,13 +24,12 @@ const PRESETS: Record<string, string[]> = {
 
 const INDICATOR_KEYS = ["unemployment", "inflation", "gdp_per_capita", "at_risk_of_poverty"];
 
-const FOCUS_COLOR = "#1f4e9c";
-const AGGREGATE_COLOR = "#555555";
-const PALETTE = [
-  "#c0504d", "#9bbb59", "#8064a2", "#f79646", "#4bacc6", "#7f7f7f",
-  "#b5651d", "#2e8b57", "#d4a017", "#6a5acd", "#008b8b", "#cd5c5c",
-  "#556b2f", "#4682b4", "#8b4513", "#7a9cc6",
-];
+// Okabe-Ito colorblind-safe palette. Finland is always blue; the EU average is grey and dashed.
+const FOCUS_COLOR = "#0072B2";
+const AGGREGATE_COLOR = "#888888";
+const PALETTE = ["#E69F00", "#56B4E9", "#009E73", "#D55E00", "#CC79A7", "#B8860B", "#8C564B"];
+// Dash patterns so lines stay distinguishable in grayscale, too.
+const DASHES: number[][] = [[], [8, 4], [2, 3], [10, 4, 2, 4], [14, 4], [6, 3, 2, 3], [4, 4]];
 
 let lang: Lang = "en";
 let dataset: Dataset | null = null;
@@ -53,12 +52,23 @@ function t(path: string): string {
   return typeof node === "string" ? node : path;
 }
 
+// Each non-focus country gets a fixed slot based on the full country list,
+// so its color and dash pattern do not change when other countries are toggled.
+function slotFor(geo: string): number {
+  const others = allGeos().filter((g) => g !== FOCUS && g !== AGGREGATE);
+  return Math.max(0, others.indexOf(geo));
+}
+
 function colorFor(geo: string): string {
   if (geo === FOCUS) return FOCUS_COLOR;
   if (geo === AGGREGATE) return AGGREGATE_COLOR;
-  let hash = 0;
-  for (const ch of geo) hash = (hash * 31 + ch.charCodeAt(0)) >>> 0;
-  return PALETTE[hash % PALETTE.length];
+  return PALETTE[slotFor(geo) % PALETTE.length];
+}
+
+function dashFor(geo: string): number[] {
+  if (geo === FOCUS) return [];
+  if (geo === AGGREGATE) return [6, 4];
+  return DASHES[slotFor(geo) % DASHES.length];
 }
 
 // All countries in the data, Finland first, EU average last, the rest by name.
@@ -240,7 +250,7 @@ function renderChart(indicator: string, geos: string[]): void {
       borderColor: colorFor(geo),
       backgroundColor: colorFor(geo),
       borderWidth: isFocus ? 3.5 : 1.5,
-      borderDash: geo === AGGREGATE ? [6, 4] : [],
+      borderDash: dashFor(geo),
       pointRadius: isFocus ? 3 : 0,
       spanGaps: true,
       tension: 0.2,
