@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import math
+
 import requests
 
 BASE_URL = "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data"
@@ -52,8 +54,11 @@ def parse_jsonstat(payload: dict) -> list[dict]:
         items = enumerate(values)
 
     rows = []
+    skipped = 0
     for flat_index, value in items:
-        if value is None:
+        number = _to_finite_float(value)
+        if number is None:
+            skipped += 1  # missing, ':' placeholder, NaN or infinity
             continue
         row = {}
         remainder = flat_index
@@ -61,9 +66,22 @@ def parse_jsonstat(payload: dict) -> list[dict]:
             position = remainder % size
             remainder //= size
             row[dim] = code_at[dim][position]
-        row["value"] = float(value)
+        row["value"] = number
         rows.append(row)
+    if skipped:
+        print(f"  skipped {skipped} missing or non-numeric values")
     return rows
+
+
+def _to_finite_float(value) -> float | None:
+    """Return the value as a finite float, or None if it is missing or not a number."""
+    if value is None or isinstance(value, bool):
+        return None
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return None
+    return number if math.isfinite(number) else None
 
 
 def fetch_indicator_rows(dataset: str, filters: dict, geos: list[str]) -> list[dict]:

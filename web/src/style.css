@@ -149,6 +149,40 @@ footer p {
   color: #fff;
 }
 
+.year-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.year-controls button {
+  font: inherit;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--fg);
+  cursor: pointer;
+}
+
+.year-controls button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.year-controls input[type="range"] {
+  flex: 1 1 200px;
+  min-width: 120px;
+}
+
+.year-value {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  min-width: 3.5em;
+  text-align: right;
+}
+
 .table-wrap {
   overflow-x: auto;
 }

@@ -43,6 +43,13 @@
 
       <p id="note" class="note" hidden></p>
 
+      <div id="year-controls" class="year-controls" hidden>
+        <button type="button" id="year-prev" data-i18n="prevYear">Previous year</button>
+        <input type="range" id="year-slider" min="0" max="0" step="1" value="0" aria-label="Year" />
+        <button type="button" id="year-next" data-i18n="nextYear">Next year</button>
+        <span id="year-value" class="year-value" aria-live="polite"></span>
+      </div>
+
       <div id="chart-wrap" class="chart-wrap">
         <canvas id="chart" aria-label="Line chart"></canvas>
       </div>

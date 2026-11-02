@@ -24,6 +24,13 @@ def test_parse_jsonstat_decodes_positions_and_skips_nulls():
     assert got == {("FI", "2022", 7.0), ("FI", "2023", 7.5), ("SE", "2022", 6.5)}
 
 
+def test_parse_jsonstat_drops_nan_inf_and_text_values():
+    payload = dict(SAMPLE)
+    payload["value"] = {"0": float("nan"), "1": float("inf"), "2": ":", "3": 6.1}
+    rows = parse_jsonstat(payload)
+    assert rows == [{"geo": "SE", "time": "2023", "value": 6.1}]
+
+
 def test_parse_jsonstat_accepts_list_index():
     payload = dict(SAMPLE)
     payload["dimension"] = {

@@ -9,7 +9,7 @@ type Lang = "en" | "fi";
 type View = "chart" | "table";
 const dictionaries = { en, fi } as const;
 
-// Above this many countries the chart gets unreadable, so the table is shown instead.
+// Above this many countries the line chart gets unreadable, so ranked bars are shown.
 const CHART_MAX = 8;
 const FOCUS = "FI";
 const AGGREGATE = "EU27_2020";
@@ -27,6 +27,7 @@ const INDICATOR_KEYS = ["unemployment", "inflation", "gdp_per_capita", "at_risk_
 // Okabe-Ito colorblind-safe palette. Finland is always blue; the EU average is grey and dashed.
 const FOCUS_COLOR = "#0072B2";
 const AGGREGATE_COLOR = "#888888";
+const BAR_COLOR = "#9aa5b1";
 const PALETTE = ["#E69F00", "#56B4E9", "#009E73", "#D55E00", "#CC79A7", "#B8860B", "#8C564B"];
 // Dash patterns so lines stay distinguishable in grayscale, too.
 const DASHES: number[][] = [[], [12, 5], [4, 4], [16, 5, 4, 5], [6, 6, 2, 6], [20, 6]];
@@ -36,6 +37,10 @@ let dataset: Dataset | null = null;
 let chart: Chart | null = null;
 let selected: string[] = [...PRESETS.default];
 let view: View = "chart";
+// Year shown in ranked-bar mode. null means "pick the latest year with data".
+let barYear: number | null = null;
+// Years available for the current indicator, used by the year controls.
+let currentYears: number[] = [];
 
 const el = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 
@@ -51,6 +56,57 @@ function t(path: string): string {
   }
   return typeof node === "string" ? node : path;
 }
+
+// ---- Data helpers (missing and non-numeric values are skipped everywhere) --
+
+// Rows for one indicator, keeping only finite numeric values.
+function rowsFor(indicator: string): DataRow[] {
+  if (!dataset) return [];
+  return dataset.records.filter(
+    (r) => r.indicator === indicator && typeof r.value === "number" && Number.isFinite(r.value),
+  );
+}
+
+function yearsFor(indicator: string): number[] {
+  return [...new Set(rowsFor(indicator).map((r) => r.year))].sort((a, b) => a - b);
+}
+
+function seriesFor(indicator: string, geo: string): Map<number, number> {
+  const points = new Map<number, number>();
+  for (const row of rowsFor(indicator)) {
+    if (row.geo === geo) points.set(row.year, row.value);
+  }
+  return points;
+}
+
+function valueAt(indicator: string, geo: string, year: number): number | null {
+  return seriesFor(indicator, geo).get(year) ?? null;
+}
+
+function latestPoint(indicator: string, geo: string): { year: number; value: number } | null {
+  let latest: { year: number; value: number } | null = null;
+  for (const row of rowsFor(indicator)) {
+    if (row.geo === geo && (!latest || row.year > latest.year)) {
+      latest = { year: row.year, value: row.value };
+    }
+  }
+  return latest;
+}
+
+// Latest year in which at least one selected country has a value.
+function defaultYear(indicator: string, geos: string[], years: number[]): number {
+  for (let i = years.length - 1; i >= 0; i--) {
+    if (geos.some((g) => valueAt(indicator, g, years[i]) !== null)) return years[i];
+  }
+  return years[years.length - 1];
+}
+
+function formatValue(value: number): string {
+  if (!Number.isFinite(value)) return "—";
+  return value.toLocaleString(lang === "fi" ? "fi-FI" : "en-GB", { maximumFractionDigits: 1 });
+}
+
+// ---- Colors and dashes ------------------------------------------------------
 
 // Non-focus countries are numbered within the current selection, so every
 // selected line gets its own color. Colors can shift when other countries are toggled.
@@ -70,6 +126,8 @@ function dashFor(geo: string): number[] {
   if (geo === AGGREGATE) return [6, 4];
   return DASHES[slotFor(geo) % DASHES.length];
 }
+
+// ---- Country lists ----------------------------------------------------------
 
 // All countries in the data, Finland first, EU average last, the rest by name.
 function allGeos(): string[] {
@@ -91,32 +149,6 @@ function effectiveSelection(): string[] {
 
 function currentIndicator(): string {
   return el<HTMLSelectElement>("indicator-select").value;
-}
-
-function rowsFor(indicator: string): DataRow[] {
-  return dataset ? dataset.records.filter((r) => r.indicator === indicator) : [];
-}
-
-function seriesFor(indicator: string, geo: string): Map<number, number> {
-  const points = new Map<number, number>();
-  for (const row of rowsFor(indicator)) {
-    if (row.geo === geo) points.set(row.year, row.value);
-  }
-  return points;
-}
-
-function latestPoint(indicator: string, geo: string): { year: number; value: number } | null {
-  let latest: { year: number; value: number } | null = null;
-  for (const row of rowsFor(indicator)) {
-    if (row.geo === geo && (!latest || row.year > latest.year)) {
-      latest = { year: row.year, value: row.value };
-    }
-  }
-  return latest;
-}
-
-function formatValue(value: number): string {
-  return value.toLocaleString(lang === "fi" ? "fi-FI" : "en-GB", { maximumFractionDigits: 1 });
 }
 
 // ---- Controls -------------------------------------------------------------
@@ -185,6 +217,32 @@ function renderChips(): void {
   }
 }
 
+// Year scrubber for ranked-bar mode: slider, previous and next buttons.
+function updateYearControls(years: number[], year: number, visible: boolean): void {
+  const controls = el("year-controls");
+  controls.hidden = !visible;
+  if (!visible) return;
+
+  const index = years.indexOf(year);
+  const slider = el<HTMLInputElement>("year-slider");
+  slider.min = "0";
+  slider.max = String(Math.max(0, years.length - 1));
+  slider.value = String(index);
+  el<HTMLButtonElement>("year-prev").disabled = index <= 0;
+  el<HTMLButtonElement>("year-next").disabled = index >= years.length - 1;
+  el("year-value").textContent = String(year);
+}
+
+function stepYear(delta: number): void {
+  if (currentYears.length === 0 || barYear === null) return;
+  const index = Math.min(
+    currentYears.length - 1,
+    Math.max(0, currentYears.indexOf(barYear) + delta),
+  );
+  barYear = currentYears[index];
+  renderAll();
+}
+
 // ---- Rendering ------------------------------------------------------------
 
 function renderAll(): void {
@@ -204,6 +262,9 @@ function renderAll(): void {
   noteEl.hidden = note.startsWith("notes.");
   noteEl.textContent = noteEl.hidden ? "" : note;
 
+  statusEl.textContent = "";
+  updateYearControls([], 0, false);
+
   if (geos.length === 0) {
     statusEl.textContent = t("noCountries");
     destroyChart();
@@ -217,16 +278,14 @@ function renderAll(): void {
     el("chart-wrap").hidden = true;
     el("table-wrap").hidden = false;
     renderTable(indicator, geos);
-    statusEl.textContent = "";
     return;
   }
 
-  // Too many lines for a readable line chart: switch to ranked bars.
-  const useBars = geos.length > CHART_MAX;
-  statusEl.textContent = useBars ? t("barNotice") : "";
   el("table-wrap").hidden = true;
   el("chart-wrap").hidden = false;
-  if (useBars) {
+
+  // Too many lines for a readable line chart: switch to ranked bars for one year.
+  if (geos.length > CHART_MAX) {
     renderBars(indicator, geos);
   } else {
     renderChart(indicator, geos);
@@ -240,7 +299,7 @@ function destroyChart(): void {
 
 function renderChart(indicator: string, geos: string[]): void {
   el("chart-wrap").style.height = "420px";
-  const years = [...new Set(rowsFor(indicator).map((r) => r.year))].sort((a, b) => a - b);
+  const years = yearsFor(indicator);
   if (years.length === 0) {
     el("status").textContent = t("noData");
     destroyChart();
@@ -252,6 +311,7 @@ function renderChart(indicator: string, geos: string[]): void {
     const isFocus = geo === FOCUS;
     return {
       label: t(`countries.${geo}`),
+      // Missing years become gaps; spanGaps draws a line across short ones.
       data: years.map((y) => points.get(y) ?? null),
       borderColor: colorFor(geo),
       backgroundColor: colorFor(geo),
@@ -279,31 +339,52 @@ function renderChart(indicator: string, geos: string[]): void {
   });
 }
 
-// Ranked horizontal bars of the latest value per country. Used when there are
-// too many countries for readable lines. Each bar shows the year it refers to.
+// Ranked horizontal bars for one year. Countries without a value that year are
+// left out of the chart and named in the status line instead.
 function renderBars(indicator: string, geos: string[]): void {
-  const bars = geos
-    .map((geo) => ({ geo, point: latestPoint(indicator, geo) }))
-    .filter((bar): bar is { geo: string; point: { year: number; value: number } } => bar.point !== null)
-    .sort((a, b) => b.point.value - a.point.value);
-
+  const years = yearsFor(indicator);
+  currentYears = years;
   destroyChart();
-  if (bars.length === 0) {
+
+  if (years.length === 0) {
     el("status").textContent = t("noData");
+    updateYearControls([], 0, false);
     return;
   }
+
+  if (barYear === null || !years.includes(barYear)) {
+    barYear = defaultYear(indicator, geos, years);
+  }
+  const year = barYear;
+  updateYearControls(years, year, true);
+
+  const entries = geos.map((geo) => ({ geo, value: valueAt(indicator, geo, year) }));
+  const bars = entries
+    .filter((e): e is { geo: string; value: number } => e.value !== null)
+    .sort((a, b) => b.value - a.value);
+  const missing = entries.filter((e) => e.value === null).map((e) => t(`countries.${e.geo}`));
+
+  const messages = [t("barNotice")];
+  if (missing.length > 0) {
+    messages.push(
+      t("missingYear").replace("{year}", String(year)).replace("{names}", missing.join(", ")),
+    );
+  }
+  el("status").textContent = messages.join(" ");
+
+  if (bars.length === 0) return;
 
   el("chart-wrap").style.height = `${Math.max(420, bars.length * 26 + 80)}px`;
   chart = new Chart(el<HTMLCanvasElement>("chart"), {
     type: "bar",
     data: {
-      labels: bars.map((bar) => `${t(`countries.${bar.geo}`)} (${bar.point.year})`),
+      labels: bars.map((bar) => t(`countries.${bar.geo}`)),
       datasets: [
         {
           label: t(`indicators.${indicator}`),
-          data: bars.map((bar) => bar.point.value),
+          data: bars.map((bar) => bar.value),
           backgroundColor: bars.map((bar) =>
-            bar.geo === FOCUS ? FOCUS_COLOR : bar.geo === AGGREGATE ? AGGREGATE_COLOR : "#9aa5b1",
+            bar.geo === FOCUS ? FOCUS_COLOR : bar.geo === AGGREGATE ? AGGREGATE_COLOR : BAR_COLOR,
           ),
         },
       ],
@@ -314,7 +395,7 @@ function renderBars(indicator: string, geos: string[]): void {
       maintainAspectRatio: false,
       plugins: {
         legend: { display: false },
-        title: { display: true, text: t(`indicators.${indicator}`) },
+        title: { display: true, text: `${t(`indicators.${indicator}`)} · ${year}` },
       },
     },
   });
@@ -365,7 +446,11 @@ async function init(): Promise<void> {
         ? "fi"
         : "en";
 
-  select.addEventListener("change", renderAll);
+  // Changing indicator resets the year so the new indicator starts at its latest year.
+  select.addEventListener("change", () => {
+    barYear = null;
+    renderAll();
+  });
   document.querySelectorAll<HTMLButtonElement>("[data-lang]").forEach((button) => {
     button.addEventListener("click", () => {
       lang = button.dataset.lang as Lang;
@@ -379,6 +464,14 @@ async function init(): Promise<void> {
       renderAll();
     });
   });
+
+  el<HTMLInputElement>("year-slider").addEventListener("input", (event) => {
+    const index = Number((event.target as HTMLInputElement).value);
+    barYear = currentYears[index] ?? barYear;
+    renderAll();
+  });
+  el<HTMLButtonElement>("year-prev").addEventListener("click", () => stepYear(-1));
+  el<HTMLButtonElement>("year-next").addEventListener("click", () => stepYear(1));
 
   statusEl.textContent = t("loading");
   applyLanguage();
