@@ -98,3 +98,16 @@ def test_to_records_shape():
             "updated": "2026-11-02",
         }
     ]
+
+
+def test_pisa_subjects_load_separately():
+    from pisa import load_pisa_rows
+
+    reading = load_pisa_rows("reading")
+    science = load_pisa_rows("science")
+    fi_2022_reading = [r["value"] for r in reading if r["geo"] == "FI" and r["time"] == "2022"]
+    fi_2022_science = [r["value"] for r in science if r["geo"] == "FI" and r["time"] == "2022"]
+    assert fi_2022_reading == [490.0]
+    assert fi_2022_science == [511.0]
+    assert {r["geo"] for r in reading} == {r["geo"] for r in load_pisa_rows("mathematics")}
+

@@ -1,84 +1,249 @@
 country_name,country_code,year,subject,mean_score
-Austria,AUT,2022,mathematics,487.0
-Belgium,BEL,2022,mathematics,489.0
-Bulgaria,BGR,2022,mathematics,417.0
-Croatia,HRV,2022,mathematics,463.0
-Cyprus,CYP,2022,mathematics,418.0
-Czech Republic,CZE,2022,mathematics,487.0
-Denmark,DNK,2022,mathematics,489.0
-Estonia,EST,2022,mathematics,510.0
-Finland,FIN,2022,mathematics,484.0
-France,FRA,2022,mathematics,474.0
-Germany,DEU,2022,mathematics,475.0
-Greece,GRC,2022,mathematics,430.0
-Hungary,HUN,2022,mathematics,473.0
-Iceland,ISL,2022,mathematics,459.0
-Ireland,IRL,2022,mathematics,492.0
-Italy,ITA,2022,mathematics,471.0
-Latvia,LVA,2022,mathematics,483.0
-Lithuania,LTU,2022,mathematics,475.0
-Malta,MLT,2022,mathematics,466.0
-Netherlands,NLD,2022,mathematics,493.0
-Norway,NOR,2022,mathematics,468.0
-Poland,POL,2022,mathematics,489.0
-Portugal,PRT,2022,mathematics,472.0
-Romania,ROU,2022,mathematics,428.0
-Slovak Republic,SVK,2022,mathematics,464.0
-Slovenia,SVN,2022,mathematics,485.0
-Spain,ESP,2022,mathematics,473.0
-Sweden,SWE,2022,mathematics,482.0
 OECD average,OED,2003,mathematics,500.0
 OECD average,OED,2006,mathematics,498.0
 OECD average,OED,2009,mathematics,496.0
 OECD average,OED,2012,mathematics,494.0
 OECD average,OED,2015,mathematics,490.0
 OECD average,OED,2022,mathematics,472.0
+OECD average,OED,2022,reading,476.0
+OECD average,OED,2022,science,485.0
 Singapore,SGP,2022,mathematics,575.0
+Singapore,SGP,2022,reading,543.0
+Singapore,SGP,2022,science,561.0
 Japan,JPN,2022,mathematics,536.0
+Japan,JPN,2022,reading,516.0
+Japan,JPN,2022,science,547.0
 Korea,KOR,2022,mathematics,527.0
+Korea,KOR,2022,reading,515.0
+Korea,KOR,2022,science,528.0
+Estonia,EST,2022,mathematics,510.0
+Estonia,EST,2022,reading,511.0
+Estonia,EST,2022,science,526.0
 Switzerland,CHE,2022,mathematics,508.0
+Switzerland,CHE,2022,reading,483.0
+Switzerland,CHE,2022,science,503.0
 Canada,CAN,2022,mathematics,497.0
+Canada,CAN,2022,reading,507.0
+Canada,CAN,2022,science,515.0
+Netherlands,NLD,2022,mathematics,493.0
+Netherlands,NLD,2022,reading,459.0
+Netherlands,NLD,2022,science,488.0
+Ireland,IRL,2022,mathematics,492.0
+Ireland,IRL,2022,reading,516.0
+Ireland,IRL,2022,science,504.0
+Belgium,BEL,2022,mathematics,489.0
+Belgium,BEL,2022,reading,479.0
+Belgium,BEL,2022,science,491.0
+Denmark,DNK,2022,mathematics,489.0
+Denmark,DNK,2022,reading,489.0
+Denmark,DNK,2022,science,494.0
 United Kingdom,GBR,2022,mathematics,489.0
+United Kingdom,GBR,2022,reading,494.0
+United Kingdom,GBR,2022,science,500.0
+Poland,POL,2022,mathematics,489.0
+Poland,POL,2022,reading,489.0
+Poland,POL,2022,science,499.0
+Austria,AUT,2022,mathematics,487.0
+Austria,AUT,2022,reading,480.0
+Austria,AUT,2022,science,491.0
 Australia,AUS,2022,mathematics,487.0
+Australia,AUS,2022,reading,498.0
+Australia,AUS,2022,science,507.0
+Czech Republic,CZE,2022,mathematics,487.0
+Czech Republic,CZE,2022,reading,489.0
+Czech Republic,CZE,2022,science,498.0
+Slovenia,SVN,2022,mathematics,485.0
+Slovenia,SVN,2022,reading,469.0
+Slovenia,SVN,2022,science,500.0
+Finland,FIN,2022,mathematics,484.0
+Finland,FIN,2022,reading,490.0
+Finland,FIN,2022,science,511.0
+Latvia,LVA,2022,mathematics,483.0
+Latvia,LVA,2022,reading,475.0
+Latvia,LVA,2022,science,494.0
+Sweden,SWE,2022,mathematics,482.0
+Sweden,SWE,2022,reading,487.0
+Sweden,SWE,2022,science,494.0
 New Zealand,NZL,2022,mathematics,479.0
+New Zealand,NZL,2022,reading,501.0
+New Zealand,NZL,2022,science,504.0
+Lithuania,LTU,2022,mathematics,475.0
+Lithuania,LTU,2022,reading,472.0
+Lithuania,LTU,2022,science,484.0
+Germany,DEU,2022,mathematics,475.0
+Germany,DEU,2022,reading,480.0
+Germany,DEU,2022,science,492.0
+France,FRA,2022,mathematics,474.0
+France,FRA,2022,reading,474.0
+France,FRA,2022,science,487.0
+Spain,ESP,2022,mathematics,473.0
+Spain,ESP,2022,reading,474.0
+Spain,ESP,2022,science,485.0
+Hungary,HUN,2022,mathematics,473.0
+Hungary,HUN,2022,reading,473.0
+Hungary,HUN,2022,science,486.0
+Portugal,PRT,2022,mathematics,472.0
+Portugal,PRT,2022,reading,477.0
+Portugal,PRT,2022,science,484.0
+Italy,ITA,2022,mathematics,471.0
+Italy,ITA,2022,reading,482.0
+Italy,ITA,2022,science,477.0
+Viet Nam,VNM,2022,mathematics,469.0
+Viet Nam,VNM,2022,reading,462.0
+Viet Nam,VNM,2022,science,472.0
+Norway,NOR,2022,mathematics,468.0
+Norway,NOR,2022,reading,477.0
+Norway,NOR,2022,science,478.0
+Malta,MLT,2022,mathematics,466.0
+Malta,MLT,2022,reading,445.0
+Malta,MLT,2022,science,466.0
 United States,USA,2022,mathematics,465.0
+United States,USA,2022,reading,504.0
+United States,USA,2022,science,499.0
+Slovak Republic,SVK,2022,mathematics,464.0
+Slovak Republic,SVK,2022,reading,447.0
+Slovak Republic,SVK,2022,science,462.0
+Croatia,HRV,2022,mathematics,463.0
+Croatia,HRV,2022,reading,475.0
+Croatia,HRV,2022,science,483.0
+Iceland,ISL,2022,mathematics,459.0
+Iceland,ISL,2022,reading,436.0
+Iceland,ISL,2022,science,447.0
 Israel,ISR,2022,mathematics,458.0
+Israel,ISR,2022,reading,474.0
+Israel,ISR,2022,science,465.0
 Türkiye,TUR,2022,mathematics,453.0
+Türkiye,TUR,2022,reading,456.0
+Türkiye,TUR,2022,science,476.0
 Brunei Darussalam,BRN,2022,mathematics,442.0
+Brunei Darussalam,BRN,2022,reading,429.0
+Brunei Darussalam,BRN,2022,science,446.0
 Serbia,SRB,2022,mathematics,440.0
-United Arab Emirates,ARE,2022,mathematics,431.0
+Serbia,SRB,2022,reading,440.0
+Serbia,SRB,2022,science,447.0
+UnitedArab Emirates,ARE,2022,mathematics,431.0
+UnitedArab Emirates,ARE,2022,reading,417.0
+UnitedArab Emirates,ARE,2022,science,432.0
+Greece,GRC,2022,mathematics,430.0
+Greece,GRC,2022,reading,438.0
+Greece,GRC,2022,science,441.0
+Romania,ROU,2022,mathematics,428.0
+Romania,ROU,2022,reading,428.0
+Romania,ROU,2022,science,428.0
 Kazakhstan,KAZ,2022,mathematics,425.0
+Kazakhstan,KAZ,2022,reading,386.0
+Kazakhstan,KAZ,2022,science,423.0
 Mongolia,MNG,2022,mathematics,425.0
+Mongolia,MNG,2022,reading,378.0
+Mongolia,MNG,2022,science,412.0
+Bulgaria,BGR,2022,mathematics,417.0
+Bulgaria,BGR,2022,reading,404.0
+Bulgaria,BGR,2022,science,421.0
 Moldova,MDA,2022,mathematics,414.0
+Moldova,MDA,2022,reading,411.0
+Moldova,MDA,2022,science,417.0
 Qatar,QAT,2022,mathematics,414.0
+Qatar,QAT,2022,reading,419.0
+Qatar,QAT,2022,science,432.0
 Chile,CHL,2022,mathematics,412.0
+Chile,CHL,2022,reading,448.0
+Chile,CHL,2022,science,444.0
 Uruguay,URY,2022,mathematics,409.0
+Uruguay,URY,2022,reading,430.0
+Uruguay,URY,2022,science,435.0
 Malaysia,MYS,2022,mathematics,409.0
+Malaysia,MYS,2022,reading,388.0
+Malaysia,MYS,2022,science,416.0
 Montenegro,MNE,2022,mathematics,406.0
+Montenegro,MNE,2022,reading,405.0
+Montenegro,MNE,2022,science,403.0
 Mexico,MEX,2022,mathematics,395.0
+Mexico,MEX,2022,reading,415.0
+Mexico,MEX,2022,science,410.0
 Thailand,THA,2022,mathematics,394.0
+Thailand,THA,2022,reading,379.0
+Thailand,THA,2022,science,409.0
 Peru,PER,2022,mathematics,391.0
+Peru,PER,2022,reading,408.0
+Peru,PER,2022,science,408.0
 Georgia,GEO,2022,mathematics,390.0
+Georgia,GEO,2022,reading,374.0
+Georgia,GEO,2022,science,384.0
 Saudi Arabia,SAU,2022,mathematics,389.0
+Saudi Arabia,SAU,2022,reading,383.0
+Saudi Arabia,SAU,2022,science,390.0
 North Macedonia,MKD,2022,mathematics,389.0
+North Macedonia,MKD,2022,reading,359.0
+North Macedonia,MKD,2022,science,380.0
 Costa Rica,CRI,2022,mathematics,385.0
+Costa Rica,CRI,2022,reading,415.0
+Costa Rica,CRI,2022,science,411.0
 Colombia,COL,2022,mathematics,383.0
+Colombia,COL,2022,reading,409.0
+Colombia,COL,2022,science,411.0
 Brazil,BRA,2022,mathematics,379.0
+Brazil,BRA,2022,reading,410.0
+Brazil,BRA,2022,science,403.0
 Argentina,ARG,2022,mathematics,378.0
+Argentina,ARG,2022,reading,401.0
+Argentina,ARG,2022,science,406.0
+Jamaica,JAM,2022,mathematics,377.0
+Jamaica,JAM,2022,reading,410.0
+Jamaica,JAM,2022,science,403.0
 Albania,ALB,2022,mathematics,368.0
+Albania,ALB,2022,reading,358.0
+Albania,ALB,2022,science,376.0
 Indonesia,IDN,2022,mathematics,366.0
+Indonesia,IDN,2022,reading,359.0
+Indonesia,IDN,2022,science,383.0
 Morocco,MAR,2022,mathematics,365.0
+Morocco,MAR,2022,reading,339.0
+Morocco,MAR,2022,science,365.0
 Uzbekistan,UZB,2022,mathematics,364.0
+Uzbekistan,UZB,2022,reading,336.0
+Uzbekistan,UZB,2022,science,355.0
 Jordan,JOR,2022,mathematics,361.0
+Jordan,JOR,2022,reading,342.0
+Jordan,JOR,2022,science,375.0
+Panama,PAN,2022,mathematics,357.0
+Panama,PAN,2022,reading,392.0
+Panama,PAN,2022,science,388.0
 Philippines,PHL,2022,mathematics,355.0
+Philippines,PHL,2022,reading,347.0
+Philippines,PHL,2022,science,356.0
 Guatemala,GTM,2022,mathematics,344.0
+Guatemala,GTM,2022,reading,374.0
+Guatemala,GTM,2022,science,373.0
 El Salvador,SLV,2022,mathematics,343.0
+El Salvador,SLV,2022,reading,365.0
+El Salvador,SLV,2022,science,373.0
 Dominican Republic,DOM,2022,mathematics,339.0
+Dominican Republic,DOM,2022,reading,351.0
+Dominican Republic,DOM,2022,science,360.0
 Paraguay,PRY,2022,mathematics,338.0
+Paraguay,PRY,2022,reading,373.0
+Paraguay,PRY,2022,science,368.0
 Cambodia,KHM,2022,mathematics,336.0
+Cambodia,KHM,2022,reading,329.0
+Cambodia,KHM,2022,science,347.0
 Macao (China),MAC,2022,mathematics,552.0
+Macao (China),MAC,2022,reading,510.0
+Macao (China),MAC,2022,science,543.0
 Chinese Taipei,TWN,2022,mathematics,547.0
+Chinese Taipei,TWN,2022,reading,515.0
+Chinese Taipei,TWN,2022,science,537.0
 Hong Kong (China),HKG,2022,mathematics,540.0
-Azerbaijan,AZE,2022,mathematics,397.0
+Hong Kong (China),HKG,2022,reading,500.0
+Hong Kong (China),HKG,2022,science,520.0
+Cyprus,CYP,2022,mathematics,418.0
+Cyprus,CYP,2022,reading,381.0
+Cyprus,CYP,2022,science,411.0
+Baku (Azerbaijan),AZE,2022,mathematics,397.0
+Baku (Azerbaijan),AZE,2022,reading,365.0
+Baku (Azerbaijan),AZE,2022,science,380.0
 Palestinian Authority,PSE,2022,mathematics,366.0
+Palestinian Authority,PSE,2022,reading,349.0
+Palestinian Authority,PSE,2022,science,369.0
 Kosovo,XKX,2022,mathematics,355.0
+Kosovo,XKX,2022,reading,342.0
+Kosovo,XKX,2022,science,357.0

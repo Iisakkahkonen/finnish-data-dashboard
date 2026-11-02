@@ -38,7 +38,7 @@ ISO3_TO_GEO = {
     "PAN": "PA", "PER": "PE", "PHL": "PH", "QAT": "QA", "RUS": "RU", "SAU": "SA",
     "SRB": "RS", "SGP": "SG", "CHE": "CH", "THA": "TH", "TTO": "TT", "TUN": "TN",
     "TUR": "TR", "UKR": "UA", "ARE": "AE", "GBR": "GB", "USA": "US", "URY": "UY",
-    "VNM": "VN", "MNG": "MN", "UZB": "UZ", "GTM": "GT", "SLV": "SV", "PRY": "PY",
+    "VNM": "VN", "MNG": "MN", "JAM": "JM", "UZB": "UZ", "GTM": "GT", "SLV": "SV", "PRY": "PY",
     "KHM": "KH", "TWN": "TW", "PSE": "PS",
 }
 

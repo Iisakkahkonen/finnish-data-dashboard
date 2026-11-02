@@ -95,7 +95,8 @@
     "PY": "Paraguay",
     "KH": "Kambodža",
     "TW": "Taiwan (Chinese Taipei)",
-    "PS": "Palestiinalaisalue"
+    "PS": "Palestiinalaisalue",
+    "JM": "Jamaika"
   },
   "presets": "Valmiit valinnat",
   "view": "Näkymä",
@@ -130,11 +131,15 @@
     "inflation": "Kuluttajahintojen inflaatio (HICP), vuosimuutos",
     "gdp_per_capita": "BKT asukasta kohden PPS (EU27 = 100)",
     "at_risk_of_poverty": "Köyhyysriski (60 % mediaanitulosta)",
-    "pisa_math": "PISA-matematiikan keskiarvo (15-vuotiaat)"
+    "pisa_math": "PISA-matematiikan keskiarvo (15-vuotiaat)",
+    "pisa_reading": "PISA-lukutaidon keskiarvo (15-vuotiaat)",
+    "pisa_science": "PISA-luonnontieteiden keskiarvo (15-vuotiaat)"
   },
   "notes": {
     "gdp_per_capita": "Eurostat kertoo, että tämä sarja on pääasiassa tarkoitettu maiden vertailuun keskenään, ei maan omaan menneisyyteen verrattuna.",
-    "pisa_math": "PISA järjestetään kolmen vuoden välein. Tässä näkyvät vuodet 2003–2022. Luxemburgilla ei ole arvoa vuodelta 2022. Vertailuun on OECD-keskiarvo; EU27-keskiarvoa PISA ei tarjoa. Eurooppaa ulkopuoliset maat näkyvät vain, kun PISA on valittuna."
+    "pisa_math": "PISA järjestetään kolmen vuoden välein. Tässä näkyvät vuodet 2003–2022. Luxemburgilla ei ole arvoa vuodelta 2022. Vertailuun on OECD-keskiarvo; EU27-keskiarvoa PISA ei tarjoa. Eurooppaa ulkopuoliset maat näkyvät vain, kun PISA on valittuna.",
+    "pisa_reading": "PISA järjestetään kolmen vuoden välein. Tässä näkyvät vuodet 2003–2022. Luxemburgilla ei ole arvoa vuodelta 2022. Vertailuun on OECD-keskiarvo; EU27-keskiarvoa PISA ei tarjoa. Eurooppaa ulkopuoliset maat näkyvät vain, kun PISA on valittuna.",
+    "pisa_science": "PISA järjestetään kolmen vuoden välein. Tässä näkyvät vuodet 2003–2022. Luxemburgilla ei ole arvoa vuodelta 2022. Vertailuun on OECD-keskiarvo; EU27-keskiarvoa PISA ei tarjoa. Eurooppaa ulkopuoliset maat näkyvät vain, kun PISA on valittuna."
   },
   "sourcesTitle": "Lähteet ja menetelmä",
   "sources": {

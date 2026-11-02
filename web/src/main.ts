@@ -28,6 +28,8 @@ const INDICATOR_KEYS = [
   "gdp_per_capita",
   "at_risk_of_poverty",
   "pisa_math",
+  "pisa_reading",
+  "pisa_science",
 ];
 // Indicators whose values are percentages, so they get a % sign when shown.
 const PERCENT_INDICATORS = ["unemployment", "inflation", "at_risk_of_poverty"];
@@ -137,14 +139,15 @@ function dashFor(geo: string): number[] {
 // ---- Country lists ----------------------------------------------------------
 
 // All countries in the data, Finland first, EU average last, the rest by name.
-const PISA_INDICATOR = "pisa_math";
+// Any indicator whose key starts with "pisa_" uses the PISA data only.
+const isPisa = (indicator: string) => indicator.startsWith("pisa_");
 
 function allGeos(): string[] {
   if (!dataset) return [];
   // Countries that only appear in PISA are listed only while PISA is selected.
-  const onlyPisa = currentIndicator() === PISA_INDICATOR;
+  const onlyPisa = isPisa(currentIndicator());
   const eurostatGeos = new Set(
-    dataset.records.filter((r) => r.indicator !== PISA_INDICATOR).map((r) => r.geo),
+    dataset.records.filter((r) => !isPisa(r.indicator)).map((r) => r.geo),
   );
   const geos = [...new Set(dataset.records.map((r) => r.geo))].filter(
     (g) => onlyPisa || eurostatGeos.has(g),

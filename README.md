@@ -7,7 +7,7 @@ A small dashboard comparing Finland with its Nordic and Baltic neighbours, Austr
 
 ## What it shows
 
-- **Indicators:** unemployment rate (15–74), HICP inflation, GDP per capita in purchasing power standard (EU27 = 100), the at-risk-of-poverty rate (60% of the national median), and PISA mathematics scores for 15-year-olds (2003 to 2022).
+- **Indicators:** unemployment rate (15–74), HICP inflation, GDP per capita in purchasing power standard (EU27 = 100), the at-risk-of-poverty rate (60% of the national median), and PISA mathematics, reading and science scores for 15-year-olds (2003 to 2022).
 - **Countries:** Finland, Sweden, Denmark, Norway, Austria, Iceland, the other EU27 members, and the EU27 average. Pick any combination, or use a preset such as "Nordics" or "Baltics".
 - **Three views:**
   - A line chart over time for up to 8 countries, with a start and end year you can set.

@@ -7,7 +7,7 @@ Pieni kojelauta, joka vertaa Suomea Pohjoismaihin, Baltiaan, Itävaltaan ja EU27
 
 ## Mitä sivu näyttää
 
-- **Indikaattorit:** työttömyysaste (15–74-vuotiaat), kuluttajahintojen inflaatio (HICP, vuosimuutos), BKT asukasta kohden ostovoimakorjattuna (PPS, EU27 = 100) köyhyysriski (60 % kansallisesta mediaanitulosta) ja PISA-matematiikan keskiarvot 15-vuotiaille (2003–2022).
+- **Indikaattorit:** työttömyysaste (15–74-vuotiaat), kuluttajahintojen inflaatio (HICP, vuosimuutos), BKT asukasta kohden ostovoimakorjattuna (PPS, EU27 = 100) köyhyysriski (60 % kansallisesta mediaanitulosta) ja PISA-matematiikan, -lukutaidon ja -luonnontieteiden keskiarvot 15-vuotiaille (2003–2022).
 - **Maat:** Suomi, Ruotsi, Tanska, Norja, Itävalta, Islanti, muut EU27-maat ja EU27-keskiarvo. Voit valita mitä tahansa yhdistelmää tai käyttää valmista valintaa, kuten "Pohjoismaat" tai "Baltia".
 - **Kolme näkymää:**
   - Viivakuvio ajan yli enintään 8 maalle, jossa voit asettaa alku- ja loppuvuoden.

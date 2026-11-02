@@ -95,7 +95,8 @@
     "PY": "Paraguay",
     "KH": "Cambodia",
     "TW": "Chinese Taipei",
-    "PS": "Palestinian Authority"
+    "PS": "Palestinian Authority",
+    "JM": "Jamaica"
   },
   "presets": "Presets",
   "view": "View",
@@ -130,11 +131,15 @@
     "inflation": "HICP inflation, annual rate",
     "gdp_per_capita": "GDP per capita in PPS (EU27 = 100)",
     "at_risk_of_poverty": "At-risk-of-poverty rate (60% of median)",
-    "pisa_math": "PISA mathematics mean score (age 15)"
+    "pisa_math": "PISA mathematics mean score (age 15)",
+    "pisa_reading": "PISA reading mean score (age 15)",
+    "pisa_science": "PISA science mean score (age 15)"
   },
   "notes": {
     "gdp_per_capita": "Eurostat says this series is mainly for comparing countries with each other, not for comparing a country with its own past.",
-    "pisa_math": "PISA is held every three years. This data covers 2003 to 2022. Luxembourg has no 2022 value. The OECD average is shown for comparison; the EU27 average is not available for PISA. Countries outside Europe appear only when PISA is selected."
+    "pisa_math": "PISA is held every three years. This data covers 2003 to 2022. Luxembourg has no 2022 value. The OECD average is shown for comparison; the EU27 average is not available for PISA. Countries outside Europe appear only when PISA is selected.",
+    "pisa_reading": "PISA is held every three years. This data covers 2003 to 2022. Luxembourg has no 2022 value. The OECD average is shown for comparison; the EU27 average is not available for PISA. Countries outside Europe appear only when PISA is selected.",
+    "pisa_science": "PISA is held every three years. This data covers 2003 to 2022. Luxembourg has no 2022 value. The OECD average is shown for comparison; the EU27 average is not available for PISA. Countries outside Europe appear only when PISA is selected."
   },
   "sourcesTitle": "Sources and method",
   "sources": {

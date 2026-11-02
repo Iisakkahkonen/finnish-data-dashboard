@@ -35,7 +35,7 @@ def build() -> dict:
     for indicator in INDICATORS:
         if indicator.source == "pisa":
             print(f"Reading {indicator.key} from bundled CSV...", flush=True)
-            rows = load_pisa_rows()
+            rows = load_pisa_rows(indicator.filters.get("subject", "mathematics"))
         else:
             print(f"Fetching {indicator.key} ({indicator.dataset})...", flush=True)
             rows = fetch_indicator_rows(indicator.dataset, indicator.filters, GEOS)
