@@ -134,14 +134,18 @@
     "pisa_math": "PISA-matematiikan keskiarvo (15-vuotiaat)",
     "pisa_reading": "PISA-lukutaidon keskiarvo (15-vuotiaat)",
     "pisa_science": "PISA-luonnontieteiden keskiarvo (15-vuotiaat)",
-    "life_expectancy": "Elinajanodote syntyessä (vuotta)"
+    "life_expectancy": "Elinajanodote syntyessä (vuotta)",
+    "gini": "Gini-kerroin, ekvivalentti tulo (0–100)",
+    "median_income": "Mediaanitulo, ekvivalentti (PPS)"
   },
   "notes": {
     "gdp_per_capita": "Eurostat kertoo, että tämä sarja on pääasiassa tarkoitettu maiden vertailuun keskenään, ei maan omaan menneisyyteen verrattuna.",
     "pisa_math": "PISA järjestetään kolmen vuoden välein. Tässä näkyvät vuodet 2003–2022. Luxemburgilla ei ole arvoa vuodelta 2022. Vertailuun on OECD-keskiarvo; EU27-keskiarvoa PISA ei tarjoa. Eurooppaa ulkopuoliset maat näkyvät vain, kun PISA on valittuna.",
     "pisa_reading": "PISA järjestetään kolmen vuoden välein. Tässä näkyvät vuodet 2003–2022. Luxemburgilla ei ole arvoa vuodelta 2022. Vertailuun on OECD-keskiarvo; EU27-keskiarvoa PISA ei tarjoa. Eurooppaa ulkopuoliset maat näkyvät vain, kun PISA on valittuna.",
     "pisa_science": "PISA järjestetään kolmen vuoden välein. Tässä näkyvät vuodet 2003–2022. Luxemburgilla ei ole arvoa vuodelta 2022. Vertailuun on OECD-keskiarvo; EU27-keskiarvoa PISA ei tarjoa. Eurooppaa ulkopuoliset maat näkyvät vain, kun PISA on valittuna.",
-    "life_expectancy": "Elinajanodote syntyessä Eurostatin kuolleisuus- ja elinajanodote-tilastojen mukaan, koko väestö. Lähdetaulukossa on vain kuusi vuotta: 1980, 1990, 2000, 2010, 2023 ja 2024."
+    "life_expectancy": "Elinajanodote syntyessä, vuosittain, koko väestö, Eurostat.",
+    "gini": "Gini-kerroin asteikolla 0–100. Pienempi tarkoittaa tasaisempaa tulojakaumaa. Sijoitus 1 on tasaisin maa.",
+    "median_income": "Ekvivalentti mediaanitulo ostovoimastandardeina (PPS), jotta maat ovat vertailukelpoisia."
   },
   "sourcesTitle": "Lähteet ja menetelmä",
   "sources": {
@@ -151,6 +155,8 @@
     "at_risk_of_poverty": "Alle 60 % kansallisesta mediaanitulosta tienaavien osuus, kaikki ikäryhmät Tietokanta:",
     "pisa": "Matematiikan keskiarvot 15-vuotiaille. Vuodet 2000–2018 DataHub-peilistä, joka perustuu World Bank EdStatsiin. Vuodet 2003–2022 ja OECD-keskiarvot kirjattu käsin OECD:n PISA-raporteista.",
     "licence": "Eurostat-data © Euroopan unioni, CC BY 4.0. PISA-data DataHubin ja World Bank EdStatsin kautta, CC BY 4.0. Koodi Apache 2.0 -lisenssillä.",
-    "lifeexp": "Eurostat, 'Mortality and life expectancy statistics', taulukko 1, koko väestö. Taulukossa ovat vain vuodet 1980, 1990, 2000, 2010, 2023 ja 2024."
+    "lifeexp": "Eurostat, elinajanodote iän ja sukupuolen mukaan, koko väestö, alle yhden vuoden ikä, vuosittain (tietokanta demo_mlexpec).",
+    "gini": "Eurostat, ekvivalentin käytettävissä olevan tulon Gini-kerroin, koko väestö (tietokanta ilc_di12).",
+    "median_income": "Eurostat, ekvivalentti mediaanitulo PPS-yksiköissä, koko väestö (tietokanta ilc_di03)."
   }
 }

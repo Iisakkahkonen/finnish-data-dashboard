@@ -1,13 +1,13 @@
 # Suomi vs. EU: keskeiset indikaattorit
 
-Pieni kojelauta, joka vertaa Suomea Pohjoismaihin, Baltiaan, Itävaltaan ja EU27-keskiarvoon viidellä keskeisellä talous- ja yhteiskunnallisella indikaattorilla.
+Pieni kojelauta, joka vertaa Suomea Pohjoismaihin, Baltiaan, Itävaltaan ja EU27-keskiarvoon keskeisillä talous-, yhteiskunta- ja koulutusindikaattoreilla.
 
 **Julkinen sivu:** https://iisakkahkonen.github.io/finnish-data-dashboard/
 **In English:** [README.md](README.md)
 
 ## Mitä sivu näyttää
 
-- **Indikaattorit:** työttömyysaste (15–74-vuotiaat), kuluttajahintojen inflaatio (HICP, vuosimuutos), BKT asukasta kohden ostovoimakorjattuna (PPS, EU27 = 100) köyhyysriski (60 % kansallisesta mediaanitulosta) ja PISA-matematiikan, -lukutaidon ja -luonnontieteiden keskiarvot 15-vuotiaille (2003–2022).
+- **Indikaattorit:** työttömyysaste (15–74-vuotiaat), kuluttajahintojen inflaatio (HICP, vuosimuutos), BKT asukasta kohden PPS-yksiköissä (EU27 = 100), köyhyysriski (60 % kansallisesta mediaanitulosta), ekvivalentti mediaanitulo (PPS), elinajanodote syntyessä, tulojen Gini-kerroin sekä PISA-pistemäärät matematiikassa, lukutaidossa ja luonnontieteissä 15-vuotiaille (2003–2022).
 - **Maat:** Suomi, Ruotsi, Tanska, Norja, Itävalta, Islanti, muut EU27-maat ja EU27-keskiarvo. Voit valita mitä tahansa yhdistelmää tai käyttää valmista valintaa, kuten "Pohjoismaat" tai "Baltia".
 - **Kolme näkymää:**
   - Viivakuvio ajan yli enintään 8 maalle, jossa voit asettaa alku- ja loppuvuoden.
@@ -25,6 +25,9 @@ Useimmat luvut ovat [Eurostatilta](https://ec.europa.eu/eurostat), ja ne tulevat
 | HICP-inflaatio, vuosimuutos | `prc_hicp_aind` |
 | BKT asukasta kohden PPS | `tec00114` |
 | Köyhyysriski | `ilc_li02` |
+| Ekvivalentti mediaanitulo (PPS) | `ilc_di03` |
+| Gini-kerroin | `ilc_di12` |
+| Elinajanodote syntyessä | `demo_mlexpec` |
 
 PISA-tulokset tulevat OECD:n PISA-tuloksista, joita World Bank EdStats peilaa (CC BY 4.0). Ne ovat CSV-tiedostoissa kansiossa `data-pipeline/raw/`: `pisa-scores.csv` (DataHub-peili, 2000–2018) ja `pisa-2022-and-oecd-averages.csv` (vuoden 2022 keskiarvot ja OECD-keskiarvot vuosilta 2003–2022 OECD:n raporteista). Luxemburgilla ei ole arvoa vuodelle 2022, koska sitä ei ole puretuissa 2022-taulukoissa.
 

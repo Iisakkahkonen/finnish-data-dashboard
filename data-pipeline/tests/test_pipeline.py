@@ -112,12 +112,16 @@ def test_pisa_subjects_load_separately():
     assert {r["geo"] for r in reading} == {r["geo"] for r in load_pisa_rows("mathematics")}
 
 
-def test_life_expectancy_snapshot_years():
-    from lifeexp import load_life_expectancy_rows
+def test_bundled_eurostat_csvs_load():
+    from rawcsv import load_raw_csv
 
-    rows = load_life_expectancy_rows()
-    years = sorted({int(r["time"]) for r in rows})
-    assert years == [1980, 1990, 2000, 2010, 2023, 2024]
-    fi_2024 = [r["value"] for r in rows if r["geo"] == "FI" and r["time"] == "2024"]
-    assert fi_2024 == [82.21]
+    life = load_raw_csv("life-expectancy.csv")
+    fi_2024 = [r["value"] for r in life if r["geo"] == "FI" and r["time"] == "2024"]
+    assert len(fi_2024) == 1 and 80 < fi_2024[0] < 85
+    assert min(int(r["time"]) for r in life) == 1960
 
+    gini = load_raw_csv("gini.csv")
+    assert all(0 <= r["value"] <= 100 for r in gini)
+
+    income = load_raw_csv("median-income-pps.csv")
+    assert all(r["value"] > 0 for r in income)

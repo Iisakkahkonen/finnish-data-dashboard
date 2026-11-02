@@ -18,7 +18,7 @@ if __package__ in (None, ""):
 
 from analysis import rank_by_year, to_records  # noqa: E402
 from eurostat import fetch_indicator_rows  # noqa: E402
-from lifeexp import load_life_expectancy_rows  # noqa: E402
+from rawcsv import load_raw_csv  # noqa: E402
 from pisa import load_pisa_rows  # noqa: E402
 from indicators import EU27, GEOS, INDICATORS  # noqa: E402
 
@@ -37,9 +37,9 @@ def build() -> dict:
         if indicator.source == "pisa":
             print(f"Reading {indicator.key} from bundled CSV...", flush=True)
             rows = load_pisa_rows(indicator.filters.get("subject", "mathematics"))
-        elif indicator.source == "lifeexp":
+        elif indicator.source == "csv":
             print(f"Reading {indicator.key} from bundled CSV...", flush=True)
-            rows = load_life_expectancy_rows()
+            rows = load_raw_csv(indicator.filters["file"])
         else:
             print(f"Fetching {indicator.key} ({indicator.dataset})...", flush=True)
             rows = fetch_indicator_rows(indicator.dataset, indicator.filters, GEOS)

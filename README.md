@@ -1,13 +1,13 @@
 # Finland vs. EU: key indicators
 
-A small dashboard comparing Finland with its Nordic and Baltic neighbours, Austria, and the EU27 average on five key economic and social indicators.
+A small dashboard comparing Finland with its Nordic and Baltic neighbours, Austria, and the EU27 average on key economic, social and education indicators.
 
 **Live site:** https://iisakkahkonen.github.io/finnish-data-dashboard/
 **Suomeksi:** [README.fi.md](README.fi.md)
 
 ## What it shows
 
-- **Indicators:** unemployment rate (15–74), HICP inflation, GDP per capita in purchasing power standard (EU27 = 100), the at-risk-of-poverty rate (60% of the national median), and PISA mathematics, reading and science scores for 15-year-olds (2003 to 2022).
+- **Indicators:** unemployment rate (15–74), HICP inflation, GDP per capita in PPS (EU27 = 100), the at-risk-of-poverty rate (60% of the national median), median equivalised net income (PPS), life expectancy at birth, the Gini coefficient of equivalised income, and PISA scores in mathematics, reading and science for 15-year-olds (2003 to 2022).
 - **Countries:** Finland, Sweden, Denmark, Norway, Austria, Iceland, the other EU27 members, and the EU27 average. Pick any combination, or use a preset such as "Nordics" or "Baltics".
 - **Three views:**
   - A line chart over time for up to 8 countries, with a start and end year you can set.
@@ -25,6 +25,9 @@ Most figures come from [Eurostat](https://ec.europa.eu/eurostat), using these da
 | HICP inflation, annual rate | `prc_hicp_aind` |
 | GDP per capita in PPS | `tec00114` |
 | At-risk-of-poverty rate | `ilc_li02` |
+| Median equivalised net income (PPS) | `ilc_di03` |
+| Gini coefficient | `ilc_di12` |
+| Life expectancy at birth | `demo_mlexpec` |
 
 PISA scores come from the OECD PISA results, as mirrored by World Bank EdStats (CC BY 4.0). They are stored as CSV files in `data-pipeline/raw/`: `pisa-scores.csv` (a DataHub mirror, 2000 to 2018) and `pisa-2022-and-oecd-averages.csv` (the 2022 means and OECD averages for 2003 to 2022, taken from the OECD reports). Luxembourg has no 2022 value because it is not in the extracted 2022 tables.
 

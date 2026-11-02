@@ -1,8 +1,8 @@
-"""Load life expectancy at birth from the bundled CSV.
+"""Load tidy Eurostat CSV files bundled in data-pipeline/raw/.
 
-Source: Eurostat, "Mortality and life expectancy statistics", table 1, total
-population (exported to data-pipeline/raw/life-expectancy-total.csv). The table
-only has the years 1980, 1990, 2000, 2010, 2023 and 2024.
+Each file has the columns geo, year, value. They were exported from the
+Eurostat Data Browser (or its publications) and committed so the build does
+not depend on the API for these series.
 """
 
 from __future__ import annotations
@@ -12,13 +12,13 @@ from pathlib import Path
 
 from eurostat import _to_finite_float
 
-RAW_FILE = Path(__file__).resolve().parent / "raw" / "life-expectancy-total.csv"
+RAW_DIR = Path(__file__).resolve().parent / "raw"
 
 
-def load_life_expectancy_rows() -> list[dict]:
+def load_raw_csv(filename: str) -> list[dict]:
     """Return rows of {'geo', 'time', 'value'} in the same shape as parse_jsonstat output."""
     rows = []
-    with RAW_FILE.open(encoding="utf-8", newline="") as handle:
+    with (RAW_DIR / filename).open(encoding="utf-8", newline="") as handle:
         for record in csv.DictReader(handle):
             value = _to_finite_float(record["value"])
             if value is None:
