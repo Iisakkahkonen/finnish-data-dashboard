@@ -312,6 +312,7 @@ function renderAll(): void {
   const geos = effectiveSelection();
   const indicator = currentIndicator();
 
+  el("explain-text").textContent = t(`explain.${indicator}`);
   const note = t(`notes.${indicator}`);
   noteEl.hidden = note.startsWith("notes.");
   noteEl.textContent = noteEl.hidden ? "" : note;

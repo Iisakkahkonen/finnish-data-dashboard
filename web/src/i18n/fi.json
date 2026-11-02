@@ -141,9 +141,9 @@
   },
   "notes": {
     "gdp_per_capita": "Eurostat kertoo, että tämä sarja on pääasiassa tarkoitettu maiden vertailuun keskenään, ei maan omaan menneisyyteen verrattuna.",
-    "pisa_math": "PISA järjestetään kolmen vuoden välein. Tässä näkyvät vuodet 2003–2022. Luxemburgilla ei ole arvoa vuodelta 2022. Vertailuun on OECD-keskiarvo; EU27-keskiarvoa PISA ei tarjoa. Eurooppaa ulkopuoliset maat näkyvät vain, kun PISA on valittuna.",
-    "pisa_reading": "PISA järjestetään kolmen vuoden välein. Tässä näkyvät vuodet 2003–2022. Luxemburgilla ei ole arvoa vuodelta 2022. Vertailuun on OECD-keskiarvo; EU27-keskiarvoa PISA ei tarjoa. Eurooppaa ulkopuoliset maat näkyvät vain, kun PISA on valittuna.",
-    "pisa_science": "PISA järjestetään kolmen vuoden välein. Tässä näkyvät vuodet 2003–2022. Luxemburgilla ei ole arvoa vuodelta 2022. Vertailuun on OECD-keskiarvo; EU27-keskiarvoa PISA ei tarjoa. Eurooppaa ulkopuoliset maat näkyvät vain, kun PISA on valittuna.",
+    "pisa_math": "PISA järjestetään kolmen vuoden välein. Tässä näkyvät vuodet 2003–2022. Luxemburgilla ei ole arvoa vuodelta 2022. Vertailuun on OECD-keskiarvo; EU27-keskiarvoa PISA ei tarjoa. Lukutaidon ja luonnontieteiden OECD-keskiarvo vuosilta 2003–2009 on laskettu OECD-maista, jotka ovat aineistossa; se on noin 3 pisteen tarkkuudella virallisen keskiarvon kanssa, kun sitä voidaan tarkistaa. Eurooppaa ulkopuoliset maat näkyvät vain, kun PISA on valittuna.",
+    "pisa_reading": "PISA järjestetään kolmen vuoden välein. Tässä näkyvät vuodet 2003–2022. Luxemburgilla ei ole arvoa vuodelta 2022. Vertailuun on OECD-keskiarvo; EU27-keskiarvoa PISA ei tarjoa. Lukutaidon ja luonnontieteiden OECD-keskiarvo vuosilta 2003–2009 on laskettu OECD-maista, jotka ovat aineistossa; se on noin 3 pisteen tarkkuudella virallisen keskiarvon kanssa, kun sitä voidaan tarkistaa. Eurooppaa ulkopuoliset maat näkyvät vain, kun PISA on valittuna.",
+    "pisa_science": "PISA järjestetään kolmen vuoden välein. Tässä näkyvät vuodet 2003–2022. Luxemburgilla ei ole arvoa vuodelta 2022. Vertailuun on OECD-keskiarvo; EU27-keskiarvoa PISA ei tarjoa. Lukutaidon ja luonnontieteiden OECD-keskiarvo vuosilta 2003–2009 on laskettu OECD-maista, jotka ovat aineistossa; se on noin 3 pisteen tarkkuudella virallisen keskiarvon kanssa, kun sitä voidaan tarkistaa. Eurooppaa ulkopuoliset maat näkyvät vain, kun PISA on valittuna.",
     "life_expectancy": "Elinajanodote syntyessä, vuosittain, koko väestö, Eurostat.",
     "gini": "Gini-kerroin asteikolla 0–100. Pienempi tarkoittaa tasaisempaa tulojakaumaa. Sijoitus 1 on tasaisin maa.",
     "median_income_pps": "Ekvivalentti mediaanitulo ostovoimastandardeina (PPS), jotta maat ovat vertailukelpoisia.",
@@ -161,5 +161,19 @@
     "gini": "Eurostat, ekvivalentin käytettävissä olevan tulon Gini-kerroin, koko väestö (tietokanta ilc_di12).",
     "median_income_pps": "Eurostat, ekvivalentti mediaanitulo PPS-yksiköissä, koko väestö (tietokanta ilc_di03).",
     "median_income_eur": "Eurostat, ekvivalentti mediaanitulo euroina, koko väestö (tietokanta ilc_di03)."
+  },
+  "explainTitle": "Mitä tämä luku tarkoittaa?",
+  "explain": {
+    "unemployment": "Niistä, joilla on työ tai jotka etsivät työtä, tämä on osuus, jotka etsivät työtä mutta eivät ole töissä. Mukana ovat 15–74-vuotiaat. Pienempi on parempi. Ihmiset, jotka eivät etsi työtä, eivät ole työttömiä, vaikka heillä ei olisi työtä.",
+    "inflation": "Kuinka paljon hinnat nousivat vuodessa, prosentteina. Jos luku on 2 %, sata euroa maksava asia maksaa vuoden päästä noin 102 euroa. Eurostat kutsuu tätä mittaria HICP:ksi. Negatiivinen luku tarkoittaa, että hinnat laskivat.",
+    "gdp_per_capita": "Kaikki, mitä maa tuottaa vuodessa, jaettuna asukasmäärällä. Luku on korjattu hintaerojen mukaan (PPS), joten se kertoo, mitä ihmiset oikeasti voivat ostaa. EU:n keskiarvo on 100. Yli 100 tarkoittaa, että maa on rikkaampi kuin EU keskimäärin. Eurostat varoittaa, että luku on pääasiassa maiden vertailuun, ei yhden maan kehityksen seuraamiseen vuosien ajalta.",
+    "at_risk_of_poverty": "Niiden ihmisten osuus, joiden tulot ovat alle 60 % oman maan keskituloista. Keskitulo on tulo, joka jakaa väestön kahtia. Pienempi on parempi. Mittari kertoo ihmisistä, joilla on paljon vähemmän kuin ympärillä olevilla, ei siitä, pystyykö joku maksamaan perustarpeensa.",
+    "median_income_pps": "Keskitulo: puolet ihmisistä ansaitsee enemmän ja puolet vähemmän. Luku on veroilla ja tuilla oikaistu ja se on korjattu talouden koon mukaan, joten yksin asuvaa ja perhettä verrataan oikeudenmukaisesti. Lisäksi se on korjattu hintaerojen mukaan (PPS), joten maat ovat vertailukelpoisia. Suurempi on parempi.",
+    "median_income_eur": "Sama keskitulo kuin PPS-versiossa, mutta euroina ilman hintakorjausta. Se kertoo todellisen rahamäärän. Hinnat vaihtelevat paljon maittain, joten PPS-versio sopii paremmin elintasojen vertailuun.",
+    "gini": "Yksi luku siitä, kuinka tasaisesti tulot jakautuvat ihmisten kesken. 0 tarkoittaa, että kaikilla on täsmälleen sama tulo. 100 tarkoittaa, että yksi ihminen omistaa kaiken. Oikeat maat ovat yleensä noin 24:n ja 35:n välissä. Pienempi tarkoittaa tasaisempaa. Sijoitus 1 on tasaisin maa.",
+    "life_expectancy": "Kuinka monta vuotta vastasyntynyt eläisi keskimäärin, jos kuolleisuus pysyisi saman vuoden tasolla koko elämän ajan. Suurempi on parempi. Lukuun vaikuttavat terveydenhuolto, elintavat, tapaturmat ja monet muut asiat. Koko väestö, vuodesta 1960 alkaen.",
+    "pisa_math": "PISA on kolmen vuoden välein monissa maissa 15-vuotiaille tehtävä koe. Tämä luku kertoo, kuinka hyvin oppilaat osaavat käyttää matematiikkaa arjen ongelmien ratkaisemiseen. Suurempi on parempi. Muutama piste ero on yleensä liian pieni merkitäkseen paljon. OECD-keskiarvo on mukana vertailuna, koska PISA:ssa ei ole EU-keskiarvoa.",
+    "pisa_reading": "Sama PISA-koe, mutta lukutaitoon: tekstien, kuten artikkelien, viestien ja ohjeiden, ymmärtäminen ja tiedon löytäminen niistä. Suurempi on parempi. Muutama piste ero on yleensä liian pieni merkitäkseen paljon. OECD-keskiarvo on mukana vertailuna.",
+    "pisa_science": "Sama PISA-koe, mutta luonnontieteisiin: tieteellisten asioiden selittäminen ja todisteiden käyttäminen johtopäätöksiin. Suurempi on parempi. Muutama piste ero on yleensä liian pieni merkitäkseen paljon. OECD-keskiarvo on mukana vertailuna."
   }
 }

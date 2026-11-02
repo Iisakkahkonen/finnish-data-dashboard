@@ -243,3 +243,21 @@ footer p {
 .sources-licence {
   color: var(--muted);
 }
+
+.explain {
+  margin: 1rem 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.explain summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.explain p {
+  margin: 0.5rem 0 0;
+}

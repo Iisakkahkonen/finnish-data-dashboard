@@ -141,9 +141,9 @@
   },
   "notes": {
     "gdp_per_capita": "Eurostat says this series is mainly for comparing countries with each other, not for comparing a country with its own past.",
-    "pisa_math": "PISA is held every three years. This data covers 2003 to 2022. Luxembourg has no 2022 value. The OECD average is shown for comparison; the EU27 average is not available for PISA. Countries outside Europe appear only when PISA is selected.",
-    "pisa_reading": "PISA is held every three years. This data covers 2003 to 2022. Luxembourg has no 2022 value. The OECD average is shown for comparison; the EU27 average is not available for PISA. Countries outside Europe appear only when PISA is selected.",
-    "pisa_science": "PISA is held every three years. This data covers 2003 to 2022. Luxembourg has no 2022 value. The OECD average is shown for comparison; the EU27 average is not available for PISA. Countries outside Europe appear only when PISA is selected.",
+    "pisa_math": "PISA is held every three years. This data covers 2003 to 2022. Luxembourg has no 2022 value. The OECD average is shown for comparison; the EU27 average is not available for PISA. For 2003 to 2009 reading and science, the OECD average is calculated from the OECD countries in the data; it is within about 3 points of the official average where that can be checked. Countries outside Europe appear only when PISA is selected.",
+    "pisa_reading": "PISA is held every three years. This data covers 2003 to 2022. Luxembourg has no 2022 value. The OECD average is shown for comparison; the EU27 average is not available for PISA. For 2003 to 2009 reading and science, the OECD average is calculated from the OECD countries in the data; it is within about 3 points of the official average where that can be checked. Countries outside Europe appear only when PISA is selected.",
+    "pisa_science": "PISA is held every three years. This data covers 2003 to 2022. Luxembourg has no 2022 value. The OECD average is shown for comparison; the EU27 average is not available for PISA. For 2003 to 2009 reading and science, the OECD average is calculated from the OECD countries in the data; it is within about 3 points of the official average where that can be checked. Countries outside Europe appear only when PISA is selected.",
     "life_expectancy": "Life expectancy at birth, annual, total population, from Eurostat.",
     "gini": "Gini coefficient on a 0–100 scale. Lower means more equal. Rank 1 is the most equal country.",
     "median_income_pps": "Median equivalised net income in purchasing power standard (PPS), so countries compare on equal terms.",
@@ -161,5 +161,19 @@
     "gini": "Eurostat, Gini coefficient of equivalised disposable income, total population (dataset ilc_di12).",
     "median_income_pps": "Eurostat, median equivalised net income in PPS, total population (dataset ilc_di03).",
     "median_income_eur": "Eurostat, median equivalised net income in euro, total population (dataset ilc_di03)."
+  },
+  "explainTitle": "What does this number mean?",
+  "explain": {
+    "unemployment": "Out of all people who have a job or are looking for one, this is the share who are looking but do not have a job. It counts people aged 15 to 74. Lower is better. People who are not looking for work do not count as unemployed, even if they have no job.",
+    "inflation": "How much prices went up over one year, in percent. If it is 2%, something that cost 100 euros last year costs about 102 euros now. Eurostat calls this measure HICP. A negative number means prices fell.",
+    "gdp_per_capita": "Everything a country produces in a year, divided by the number of people. It is adjusted for price differences (PPS), so it shows what people can actually buy. The EU average is set to 100. Above 100 means richer than the EU average. Eurostat warns that it is mainly for comparing countries, not for tracking one country over the years.",
+    "at_risk_of_poverty": "The share of people whose income is below 60% of the middle income in their own country. The middle income is the one that splits the population in half. Lower is better. It measures people who have much less than others around them, not whether someone can pay for basics.",
+    "median_income_pps": "The middle income: half of people earn more and half earn less. It is after taxes and benefits, and adjusted for household size, so one person and a family are compared fairly. It is adjusted for price differences (PPS), so countries compare on equal terms. Higher is better.",
+    "median_income_eur": "The same middle income as the PPS version, but in euros without the price adjustment. It shows the actual money amount. Prices differ a lot between countries, so use the PPS version when you want to compare how people live.",
+    "gini": "A single number for how evenly income is spread across people. 0 means everyone has exactly the same income. 100 means one person has everything. Real countries usually sit between about 24 and 35. Lower means more equal. Rank 1 is the most equal country.",
+    "life_expectancy": "How many years a newborn would live, on average, if the death rates of that year stayed the same for their whole life. Higher is better. It depends on health care, lifestyle, accidents and many other things. Shown for the whole population, from 1960 onwards.",
+    "pisa_math": "PISA is a test for 15-year-olds in many countries, held every three years. This score shows how well students can use maths to solve everyday problems. Higher is better. A difference of a few points is usually too small to mean much. The OECD average is shown as a comparison, because there is no EU average for PISA.",
+    "pisa_reading": "The same PISA test, but for reading: understanding texts such as articles, messages and instructions, and finding information in them. Higher is better. A difference of a few points is usually too small to mean much. The OECD average is shown as a comparison.",
+    "pisa_science": "The same PISA test, but for science: explaining scientific things and using evidence to reach conclusions. Higher is better. A difference of a few points is usually too small to mean much. The OECD average is shown as a comparison."
   }
 }
