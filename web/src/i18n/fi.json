@@ -112,12 +112,14 @@
   "rangeFrom": "Alkaen",
   "rangeTo": "Asti",
   "loadError": "indicators.json-tiedoston lataaminen epäonnistui. Aja datan käsittelyskripti ensin.",
-  "footerSource": "Lähde: Eurostat, lisenssi CC BY 4.0.",
+  "footerSource": "Lähteet: Eurostat ja OECD (PISA), molemmat CC BY 4.0 -lisenssillä. Lisätiedot kohdassa ”Lähteet ja menetelmä”.",
   "footerUpdated": "Data haettu viimeksi",
   "columns": {
     "country": "Maa",
     "value": "Arvo",
-    "rank": "Sijoitus EU27:ssä"
+    "rank": "Sijoitus EU27:ssä",
+    "year": "Vuosi",
+    "difference": "Ero"
   },
   "presetNames": {
     "default": "Suomi ja vertailumaat",
@@ -176,5 +178,36 @@
     "pisa_math": "OECD:n kansainvälinen oppimistulosten arviointiohjelma PISA testaa 15-vuotiaita yleensä kolmen vuoden välein. Tämän aineiston uusimmat tulokset ovat vuodelta 2022. Matematiikan koe mittaa, kuinka hyvin oppilaat osaavat soveltaa matematiikkaa todellisiin ongelmiin. Pisteet ovat maiden keskiarvoja asteikolla, jolla OECD-maiden keskiarvo asetettiin 500:aan vuonna 2003, kun matematiikka oli ensimmäistä kertaa pääalue. EU:ssa vuonna 2022 pisteet vaihtelivat 417:stä (Bulgaria) 510:een (Viro). Muutaman pisteen erot mahtuvat yleensä virhemarginaaliin. PISA:ssa ei ole EU-keskiarvoa, joten vertailuna näytetään OECD-keskiarvo. Suurempi on parempi.",
     "pisa_reading": "PISA-lukutaidon koe mittaa, kuinka hyvin oppilaat osaavat ymmärtää, käyttää, arvioida ja pohtia kirjoitettuja tekstejä, kuten artikkeleita, ohjeita ja verkkoviestejä. Asteikko asetettiin niin, että OECD-maiden keskiarvo oli 500 vuonna 2000. Kuten matematiikassa, muutaman pisteen erot mahtuvat yleensä virhemarginaaliin, ja vertailuna näytetään OECD-keskiarvo. Suurempi on parempi.",
     "pisa_science": "PISA-luonnontieteiden koe mittaa, kuinka hyvin oppilaat osaavat selittää ilmiöitä tieteellisesti, arvioida ja suunnitella tieteellisiä tutkimuksia sekä tulkita aineistoa ja todisteita. Asteikko asetettiin niin, että OECD-maiden keskiarvo oli 500 vuonna 2006; aiemmat tulokset eivät ole suoraan vertailukelpoisia, eikä niitä näytetä. Muutaman pisteen erot mahtuvat yleensä virhemarginaaliin, ja vertailuna näytetään OECD-keskiarvo. Suurempi on parempi."
+  },
+  "viewGap": "Suomen ero",
+  "shareExport": "Jaa ja lataa",
+  "copyLink": "Kopioi linkki",
+  "downloadCsv": "Lataa CSV",
+  "linkCopied": "Linkki kopioitu",
+  "linkCopyFailed": "Kopiointi ei onnistunut. Kopioi osoite selaimen osoitekentästä.",
+  "nothingToExport": "Tälle näkymälle ei ole ladattavaa dataa.",
+  "csvDownloaded": "Ladattu {file}",
+  "gapTitle": "{country} miinus {benchmark}",
+  "gapAbove": "Vuonna {year} {country} oli {amount} {genitive} yläpuolella.",
+  "gapBelow": "Vuonna {year} {country} oli {amount} {genitive} alapuolella.",
+  "gapEqual": "Vuonna {year} {country} oli samalla tasolla kuin {name}.",
+  "gapScopeNote": "Tämä näkymä näyttää aina Suomen eron ({name}). Maavalinta ei vaikuta tähän näkymään.",
+  "gapNoBenchmark": "Tälle indikaattorille ei ole EU27- tai OECD-keskiarvoa.",
+  "benchmarkGenitive": {
+    "EU27_2020": "EU27-keskiarvon",
+    "OECD": "OECD-keskiarvon"
+  },
+  "gapUnits": {
+    "unemployment": "%-yks.",
+    "inflation": "%-yks.",
+    "at_risk_of_poverty": "%-yks.",
+    "gdp_per_capita": "indeksipistettä",
+    "pisa_math": "pistettä",
+    "pisa_reading": "pistettä",
+    "pisa_science": "pistettä",
+    "life_expectancy": "vuotta",
+    "gini": "pistettä",
+    "median_income_pps": "PPS",
+    "median_income_eur": "euroa"
   }
 }

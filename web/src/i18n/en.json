@@ -112,12 +112,14 @@
   "rangeFrom": "From",
   "rangeTo": "To",
   "loadError": "Could not load indicators.json. Run the data pipeline first.",
-  "footerSource": "Source: Eurostat, licensed under CC BY 4.0.",
+  "footerSource": "Sources: Eurostat and the OECD (PISA), both licensed under CC BY 4.0. Details under “Sources and method”.",
   "footerUpdated": "Data last pulled",
   "columns": {
     "country": "Country",
     "value": "Value",
-    "rank": "EU27 rank"
+    "rank": "EU27 rank",
+    "year": "Year",
+    "difference": "Difference"
   },
   "presetNames": {
     "default": "Finland and peers",
@@ -176,5 +178,36 @@
     "pisa_math": "The OECD's Programme for International Student Assessment (PISA) tests 15-year-olds, normally every three years. The most recent results in this data are from 2022. The mathematics test measures how well students can apply mathematics to real-world problems. Scores are country averages on a scale set so that the OECD average was 500 in 2003, when mathematics was first the main subject. In the EU in 2022, scores ranged from 417 (Bulgaria) to 510 (Estonia). Differences of a few points are usually within the margin of error. PISA has no EU average, so the OECD average is shown instead. Higher is better.",
     "pisa_reading": "The PISA reading test measures how well students can understand, use, evaluate and reflect on written texts, such as articles, instructions and online messages. The scale was set so that the OECD average was 500 in 2000. As with mathematics, differences of a few points are usually within the margin of error, and the OECD average is shown for comparison. Higher is better.",
     "pisa_science": "The PISA science test measures how well students can explain phenomena scientifically, evaluate and design scientific enquiry, and interpret data and evidence. The scale was set so that the OECD average was 500 in 2006; earlier results are not directly comparable and are not shown. Differences of a few points are usually within the margin of error, and the OECD average is shown for comparison. Higher is better."
+  },
+  "viewGap": "Finland's gap",
+  "shareExport": "Share and export",
+  "copyLink": "Copy link",
+  "downloadCsv": "Download CSV",
+  "linkCopied": "Link copied",
+  "linkCopyFailed": "Could not copy. Copy the address from the browser's address bar instead.",
+  "nothingToExport": "There is no data to download for this view.",
+  "csvDownloaded": "Downloaded {file}",
+  "gapTitle": "{country} minus {benchmark}",
+  "gapAbove": "In {year}, {country} was {amount} above the {name}.",
+  "gapBelow": "In {year}, {country} was {amount} below the {name}.",
+  "gapEqual": "In {year}, {country} was equal to the {name}.",
+  "gapScopeNote": "This view always shows Finland's gap to the {name}. The country selection does not apply here.",
+  "gapNoBenchmark": "No EU27 or OECD average is available for this indicator.",
+  "benchmarkGenitive": {
+    "EU27_2020": "EU27 average",
+    "OECD": "OECD average"
+  },
+  "gapUnits": {
+    "unemployment": "pp",
+    "inflation": "pp",
+    "at_risk_of_poverty": "pp",
+    "gdp_per_capita": "index points",
+    "pisa_math": "points",
+    "pisa_reading": "points",
+    "pisa_science": "points",
+    "life_expectancy": "years",
+    "gini": "points",
+    "median_income_pps": "PPS",
+    "median_income_eur": "EUR"
   }
 }

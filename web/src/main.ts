@@ -1,4 +1,4 @@
-import { Chart, registerables, type Plugin } from "chart.js";
+import { Chart, registerables, type Plugin, type TooltipItem } from "chart.js";
 import en from "./i18n/en.json";
 import fi from "./i18n/fi.json";
 import type { Dataset, DataRow } from "./types";
@@ -6,13 +6,16 @@ import type { Dataset, DataRow } from "./types";
 Chart.register(...registerables);
 
 type Lang = "en" | "fi";
-type View = "chart" | "table";
+type View = "chart" | "table" | "gap";
+const VIEWS: View[] = ["chart", "table", "gap"];
 const dictionaries = { en, fi } as const;
 
 // Above this many countries the line chart gets unreadable, so ranked bars are shown.
 const CHART_MAX = 8;
 const FOCUS = "FI";
 const AGGREGATE = "EU27_2020";
+// Bars in the gap view that sit below the benchmark (Okabe-Ito vermillion).
+const BELOW_COLOR = "#D55E00";
 
 const PRESETS: Record<string, string[]> = {
   default: ["FI", "SE", "DK", "NO", "AT", "EU27_2020"],
@@ -199,6 +202,9 @@ function applyLanguage(): void {
     button.setAttribute("aria-pressed", String(button.dataset.lang === lang));
   });
 
+  el("footer-source").textContent = t("footerSource");
+  if (dataset) el("footer-updated").textContent = `${t("footerUpdated")}: ${dataset.updated}`;
+
   renderPresets();
   renderAll();
 }
@@ -299,7 +305,18 @@ function selectRange(indicator: string): number[] {
 
 // ---- Rendering ------------------------------------------------------------
 
+// Draws the page and keeps the address bar in step with the current choices.
 function renderAll(): void {
+  renderContent();
+  writeHash();
+}
+
+// Table and ranked bars show one year at a time; lines show a range of years.
+function usesSingleYear(geos: string[]): boolean {
+  return view === "table" || geos.length > CHART_MAX;
+}
+
+function renderContent(): void {
   if (!dataset) return;
 
   renderChips();
@@ -321,6 +338,11 @@ function renderAll(): void {
   updateYearControls([], 0, false);
   updateRangeControls([], false);
 
+  if (view === "gap") {
+    renderGap(indicator);
+    return;
+  }
+
   if (geos.length === 0) {
     statusEl.textContent = t("noCountries");
     destroyChart();
@@ -331,7 +353,7 @@ function renderAll(): void {
 
   // Table and ranked bars both show one year at a time, so they get the year scrubber.
   // Lines are used for up to CHART_MAX countries; above that, ranked bars.
-  const yearMode = view === "table" || geos.length > CHART_MAX;
+  const yearMode = usesSingleYear(geos);
   const year = yearMode ? selectYear(indicator, geos) : null;
 
   if (view === "table") {
@@ -532,6 +554,328 @@ function renderTable(indicator: string, geos: string[], year: number | null): vo
   wrap.append(table);
 }
 
+// ---- Gap to the EU average --------------------------------------------------
+
+interface GapPoint {
+  year: number;
+  focus: number;
+  bench: number;
+  gap: number;
+  rank: number | undefined;
+}
+
+// Reference series for the gap view: the EU27 average, or the OECD average for PISA.
+function benchmarkFor(indicator: string): string | null {
+  const geos = new Set(rowsFor(indicator).map((r) => r.geo));
+  if (geos.has(AGGREGATE)) return AGGREGATE;
+  if (geos.has("OECD")) return "OECD";
+  return null;
+}
+
+// Years where both Finland and the benchmark have a value, with Finland's EU27 rank.
+function gapPoints(indicator: string, bench: string, years: number[]): GapPoint[] {
+  const focus = seriesFor(indicator, FOCUS);
+  const reference = seriesFor(indicator, bench);
+  const points: GapPoint[] = [];
+  for (const year of years) {
+    const f = focus.get(year);
+    const b = reference.get(year);
+    if (f === undefined || b === undefined) continue;
+    points.push({
+      year,
+      focus: f,
+      bench: b,
+      gap: Math.round((f - b) * 100) / 100,
+      rank: dataset?.ranks[indicator]?.[FOCUS]?.[String(year)],
+    });
+  }
+  return points;
+}
+
+function currentGap(indicator: string): { bench: string; points: GapPoint[] } | null {
+  const bench = benchmarkFor(indicator);
+  if (bench === null) return null;
+  const years = selectRange(indicator);
+  return { bench, points: gapPoints(indicator, bench, years) };
+}
+
+function plainNumber(value: number): string {
+  return value.toLocaleString(lang === "fi" ? "fi-FI" : "en-GB", { maximumFractionDigits: 2 });
+}
+
+// Number with an explicit sign: +2.1, −0.3, 0.
+function signed(value: number): string {
+  if (value === 0) return plainNumber(0);
+  return `${value > 0 ? "+" : "−"}${plainNumber(Math.abs(value))}`;
+}
+
+function renderGap(indicator: string): void {
+  const statusEl = el("status");
+  const gap = currentGap(indicator);
+  if (gap === null || gap.points.length === 0) {
+    statusEl.textContent = gap === null ? t("gapNoBenchmark") : t("noData");
+    destroyChart();
+    el("chart-wrap").hidden = true;
+    el("table-wrap").hidden = true;
+    return;
+  }
+
+  const { bench, points } = gap;
+  const unit = t(`gapUnits.${indicator}`);
+  const country = t(`countries.${FOCUS}`);
+  const benchName = t(`countries.${bench}`);
+  const title = t("gapTitle").replace("{country}", country).replace("{benchmark}", benchName);
+
+  el("chart-wrap").hidden = false;
+  el("table-wrap").hidden = false;
+  el("chart-wrap").style.height = "380px";
+
+  destroyChart();
+  chart = new Chart(el<HTMLCanvasElement>("chart"), {
+    type: "bar",
+    data: {
+      labels: points.map((p) => String(p.year)),
+      datasets: [
+        {
+          label: `${title} (${unit})`,
+          data: points.map((p) => p.gap),
+          backgroundColor: points.map((p) => (p.gap >= 0 ? FOCUS_COLOR : BELOW_COLOR)),
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        title: { display: true, text: `${t(`indicators.${indicator}`)} · ${title} (${unit})` },
+        tooltip: {
+          callbacks: {
+            label: (item: TooltipItem<"bar">) => {
+              const p = points[item.dataIndex];
+              return `${country} ${plainNumber(p.focus)} · ${benchName} ${plainNumber(p.bench)} · ${signed(p.gap)} ${unit}`;
+            },
+          },
+        },
+      },
+    },
+  });
+
+  const last = points[points.length - 1];
+  const template = last.gap === 0 ? t("gapEqual") : last.gap > 0 ? t("gapAbove") : t("gapBelow");
+  const sentence = template
+    .replace("{year}", String(last.year))
+    .replace("{country}", country)
+    .replace("{amount}", `${plainNumber(Math.abs(last.gap))} ${unit}`)
+    .replace("{name}", benchName)
+    .replace("{genitive}", t(`benchmarkGenitive.${bench}`));
+  statusEl.textContent = `${sentence} ${t("gapScopeNote").replace("{name}", benchName)}`;
+
+  renderGapTable(indicator, bench, points, unit);
+}
+
+// Newest year first: Finland, the benchmark, the difference and Finland's EU27 rank.
+function renderGapTable(indicator: string, bench: string, points: GapPoint[], unit: string): void {
+  const wrap = el("table-wrap");
+  wrap.innerHTML = "";
+
+  const table = document.createElement("table");
+  table.createCaption().textContent = t(`indicators.${indicator}`);
+  const headRow = table.createTHead().insertRow();
+  const heads = [
+    t("columns.year"),
+    t(`countries.${FOCUS}`),
+    t(`countries.${bench}`),
+    `${t("columns.difference")} (${unit})`,
+    t("columns.rank"),
+  ];
+  for (const text of heads) {
+    const th = document.createElement("th");
+    th.textContent = text;
+    headRow.append(th);
+  }
+
+  const body = table.createTBody();
+  for (const p of [...points].reverse()) {
+    const row = body.insertRow();
+    const cells = [
+      String(p.year),
+      formatValue(p.focus, indicator),
+      formatValue(p.bench, indicator),
+      signed(p.gap),
+      p.rank ? String(p.rank) : "—",
+    ];
+    for (const text of cells) row.insertCell().textContent = text;
+  }
+  wrap.append(table);
+}
+
+// ---- Shareable link ----------------------------------------------------------
+
+// Puts the current choices into the address, so copying the address reproduces the view.
+function writeHash(): void {
+  if (!dataset) return;
+  const parts = [
+    `i=${currentIndicator()}`,
+    `c=${effectiveSelection().join(",")}`,
+    `v=${view}`,
+    `l=${lang}`,
+  ];
+  if (barYear !== null) parts.push(`y=${barYear}`);
+  if (rangeStart !== null) parts.push(`from=${rangeStart}`);
+  if (rangeEnd !== null) parts.push(`to=${rangeEnd}`);
+  history.replaceState(null, "", `#${parts.join("&")}`);
+}
+
+// Restores choices from the address. Anything unknown or invalid is ignored.
+function readHash(): void {
+  if (!dataset) return;
+  const params = new URLSearchParams(location.hash.replace(/^#/, ""));
+
+  const indicator = params.get("i");
+  if (indicator && INDICATOR_KEYS.includes(indicator)) {
+    el<HTMLSelectElement>("indicator-select").value = indicator;
+  }
+
+  const wantedView = params.get("v");
+  if (wantedView && VIEWS.includes(wantedView as View)) view = wantedView as View;
+
+  const known = new Set(dataset.records.map((r) => r.geo));
+  const countries = params.get("c");
+  if (countries !== null) {
+    const list = countries.split(",").filter((g) => known.has(g));
+    if (list.length > 0) selected = list;
+  }
+
+  const whole = (key: string): number | null => {
+    const raw = params.get(key);
+    if (raw === null || raw === "") return null;
+    const n = Number(raw);
+    return Number.isInteger(n) ? n : null;
+  };
+  barYear = whole("y");
+  rangeStart = whole("from");
+  rangeEnd = whole("to");
+
+  const wantedLang = params.get("l");
+  if (wantedLang === "en" || wantedLang === "fi") lang = wantedLang;
+}
+
+let feedbackTimer: number | undefined;
+
+function showFeedback(text: string): void {
+  const box = el("action-feedback");
+  box.textContent = text;
+  window.clearTimeout(feedbackTimer);
+  feedbackTimer = window.setTimeout(() => {
+    box.textContent = "";
+  }, 4000);
+}
+
+async function copyLink(): Promise<void> {
+  writeHash();
+  const address = location.href;
+  try {
+    await navigator.clipboard.writeText(address);
+    showFeedback(t("linkCopied"));
+  } catch {
+    // Older browsers and insecure pages: fall back to a hidden text box.
+    const box = document.createElement("textarea");
+    box.value = address;
+    box.style.position = "fixed";
+    box.style.opacity = "0";
+    document.body.append(box);
+    box.select();
+    const ok = document.execCommand("copy");
+    box.remove();
+    showFeedback(t(ok ? "linkCopied" : "linkCopyFailed"));
+  }
+}
+
+// ---- CSV download ------------------------------------------------------------
+
+function csvLine(cells: Array<string | number | undefined>): string {
+  return cells
+    .map((cell) => {
+      const text = cell === undefined ? "" : String(cell);
+      return /[",\r\n]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
+    })
+    .join(",");
+}
+
+// The data behind what is on screen: one year for the table and ranked bars,
+// the chosen range for lines, or the gap table in the gap view.
+function buildCsv(): { filename: string; text: string } | null {
+  if (!dataset) return null;
+  const indicator = currentIndicator();
+  const lines: string[] = [];
+  let span: string;
+
+  if (view === "gap") {
+    const gap = currentGap(indicator);
+    if (gap === null || gap.points.length === 0) return null;
+    lines.push(
+      csvLine(["indicator", "year", "finland", "benchmark", "benchmark_value", "difference", "finland_eu27_rank"]),
+    );
+    for (const p of gap.points) {
+      lines.push(csvLine([indicator, p.year, p.focus, gap.bench, p.bench, p.gap, p.rank]));
+    }
+    span = `${gap.points[0].year}-${gap.points[gap.points.length - 1].year}`;
+  } else {
+    const geos = effectiveSelection();
+    const all = yearsFor(indicator);
+    if (geos.length === 0 || all.length === 0) return null;
+
+    let years: number[];
+    if (usesSingleYear(geos)) {
+      const year = barYear !== null && all.includes(barYear) ? barYear : defaultYear(indicator, geos, all);
+      years = [year];
+    } else {
+      const from = rangeStart ?? all[0];
+      const to = rangeEnd ?? all[all.length - 1];
+      years = all.filter((y) => y >= from && y <= to);
+    }
+
+    lines.push(csvLine(["indicator", "geo", "country", "year", "value", "eu27_rank"]));
+    let rows = 0;
+    for (const geo of geos) {
+      const series = seriesFor(indicator, geo);
+      for (const year of years) {
+        const value = series.get(year);
+        if (value === undefined) continue;
+        const rank = dataset.ranks[indicator]?.[geo]?.[String(year)];
+        lines.push(csvLine([indicator, geo, t(`countries.${geo}`), year, value, rank]));
+        rows += 1;
+      }
+    }
+    if (rows === 0) return null;
+    span = years.length === 1 ? String(years[0]) : `${years[0]}-${years[years.length - 1]}`;
+  }
+
+  // The byte order mark lets Excel read the accented letters correctly.
+  return {
+    filename: `finland-vs-eu_${indicator}_${span}.csv`,
+    text: `﻿${lines.join("\r\n")}\r\n`,
+  };
+}
+
+function downloadCsv(): void {
+  const csv = buildCsv();
+  if (csv === null) {
+    showFeedback(t("nothingToExport"));
+    return;
+  }
+  const url = URL.createObjectURL(new Blob([csv.text], { type: "text/csv;charset=utf-8" }));
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = csv.filename;
+  document.body.append(link);
+  link.click();
+  link.remove();
+  window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+  showFeedback(t("csvDownloaded").replace("{file}", csv.filename));
+}
+
 // ---- Startup --------------------------------------------------------------
 
 async function init(): Promise<void> {
@@ -591,6 +935,15 @@ async function init(): Promise<void> {
     renderAll();
   });
 
+  el<HTMLButtonElement>("copy-link").addEventListener("click", () => {
+    void copyLink();
+  });
+  el<HTMLButtonElement>("download-csv").addEventListener("click", downloadCsv);
+  window.addEventListener("hashchange", () => {
+    readHash();
+    applyLanguage();
+  });
+
   statusEl.textContent = t("loading");
   applyLanguage();
 
@@ -604,8 +957,8 @@ async function init(): Promise<void> {
     return;
   }
 
-  el("footer-updated").textContent = `${t("footerUpdated")}: ${dataset.updated}`;
-  renderAll();
+  readHash();
+  applyLanguage();
 }
 
 init();

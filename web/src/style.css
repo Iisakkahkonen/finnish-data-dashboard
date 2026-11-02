@@ -261,3 +261,15 @@ footer p {
 .explain p {
   margin: 0.5rem 0 0;
 }
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.action-feedback {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
