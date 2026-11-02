@@ -136,7 +136,8 @@
     "pisa_science": "PISA science mean score (age 15)",
     "life_expectancy": "Life expectancy at birth (years)",
     "gini": "Gini coefficient of equivalised income (0–100)",
-    "median_income": "Median equivalised net income (PPS)"
+    "median_income_pps": "Median equivalised net income (PPS)",
+    "median_income_eur": "Median equivalised net income (EUR)"
   },
   "notes": {
     "gdp_per_capita": "Eurostat says this series is mainly for comparing countries with each other, not for comparing a country with its own past.",
@@ -145,7 +146,8 @@
     "pisa_science": "PISA is held every three years. This data covers 2003 to 2022. Luxembourg has no 2022 value. The OECD average is shown for comparison; the EU27 average is not available for PISA. Countries outside Europe appear only when PISA is selected.",
     "life_expectancy": "Life expectancy at birth, annual, total population, from Eurostat.",
     "gini": "Gini coefficient on a 0–100 scale. Lower means more equal. Rank 1 is the most equal country.",
-    "median_income": "Median equivalised net income in purchasing power standard (PPS), so countries compare on equal terms."
+    "median_income_pps": "Median equivalised net income in purchasing power standard (PPS), so countries compare on equal terms.",
+    "median_income_eur": "Median equivalised net income in euro. Prices differ between countries, so PPS is better for comparing living standards."
   },
   "sourcesTitle": "Sources and method",
   "sources": {
@@ -157,6 +159,7 @@
     "licence": "Eurostat data © European Union, CC BY 4.0. PISA data via DataHub and World Bank EdStats, CC BY 4.0. Code under Apache 2.0.",
     "lifeexp": "Eurostat, life expectancy by age and sex, total population, age less than 1 year, annual (dataset demo_mlexpec).",
     "gini": "Eurostat, Gini coefficient of equivalised disposable income, total population (dataset ilc_di12).",
-    "median_income": "Eurostat, median equivalised net income in PPS, total population (dataset ilc_di03)."
+    "median_income_pps": "Eurostat, median equivalised net income in PPS, total population (dataset ilc_di03).",
+    "median_income_eur": "Eurostat, median equivalised net income in euro, total population (dataset ilc_di03)."
   }
 }

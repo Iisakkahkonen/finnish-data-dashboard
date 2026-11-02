@@ -32,7 +32,8 @@ const INDICATOR_KEYS = [
   "pisa_science",
   "life_expectancy",
   "gini",
-  "median_income",
+  "median_income_pps",
+  "median_income_eur",
 ];
 // Indicators whose values are percentages, so they get a % sign when shown.
 const PERCENT_INDICATORS = ["unemployment", "inflation", "at_risk_of_poverty"];

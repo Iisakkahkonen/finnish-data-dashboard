@@ -136,7 +136,8 @@
     "pisa_science": "PISA-luonnontieteiden keskiarvo (15-vuotiaat)",
     "life_expectancy": "Elinajanodote syntyessä (vuotta)",
     "gini": "Gini-kerroin, ekvivalentti tulo (0–100)",
-    "median_income": "Mediaanitulo, ekvivalentti (PPS)"
+    "median_income_pps": "Mediaanitulo, ekvivalentti (PPS)",
+    "median_income_eur": "Mediaanitulo, ekvivalentti (euroa)"
   },
   "notes": {
     "gdp_per_capita": "Eurostat kertoo, että tämä sarja on pääasiassa tarkoitettu maiden vertailuun keskenään, ei maan omaan menneisyyteen verrattuna.",
@@ -145,7 +146,8 @@
     "pisa_science": "PISA järjestetään kolmen vuoden välein. Tässä näkyvät vuodet 2003–2022. Luxemburgilla ei ole arvoa vuodelta 2022. Vertailuun on OECD-keskiarvo; EU27-keskiarvoa PISA ei tarjoa. Eurooppaa ulkopuoliset maat näkyvät vain, kun PISA on valittuna.",
     "life_expectancy": "Elinajanodote syntyessä, vuosittain, koko väestö, Eurostat.",
     "gini": "Gini-kerroin asteikolla 0–100. Pienempi tarkoittaa tasaisempaa tulojakaumaa. Sijoitus 1 on tasaisin maa.",
-    "median_income": "Ekvivalentti mediaanitulo ostovoimastandardeina (PPS), jotta maat ovat vertailukelpoisia."
+    "median_income_pps": "Ekvivalentti mediaanitulo ostovoimastandardeina (PPS), jotta maat ovat vertailukelpoisia.",
+    "median_income_eur": "Ekvivalentti mediaanitulo euroina. Hinnat vaihtelevat maiden välillä, joten PPS sopii paremmin elintasojen vertailuun."
   },
   "sourcesTitle": "Lähteet ja menetelmä",
   "sources": {
@@ -157,6 +159,7 @@
     "licence": "Eurostat-data © Euroopan unioni, CC BY 4.0. PISA-data DataHubin ja World Bank EdStatsin kautta, CC BY 4.0. Koodi Apache 2.0 -lisenssillä.",
     "lifeexp": "Eurostat, elinajanodote iän ja sukupuolen mukaan, koko väestö, alle yhden vuoden ikä, vuosittain (tietokanta demo_mlexpec).",
     "gini": "Eurostat, ekvivalentin käytettävissä olevan tulon Gini-kerroin, koko väestö (tietokanta ilc_di12).",
-    "median_income": "Eurostat, ekvivalentti mediaanitulo PPS-yksiköissä, koko väestö (tietokanta ilc_di03)."
+    "median_income_pps": "Eurostat, ekvivalentti mediaanitulo PPS-yksiköissä, koko väestö (tietokanta ilc_di03).",
+    "median_income_eur": "Eurostat, ekvivalentti mediaanitulo euroina, koko väestö (tietokanta ilc_di03)."
   }
 }
