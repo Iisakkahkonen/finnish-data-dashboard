@@ -164,7 +164,7 @@
   },
   "explainTitle": "Mitä tämä luku tarkoittaa?",
   "explain": {
-    "unemployment": "Niistä, joilla on työ tai jotka etsivät työtä, tämä on osuus, jotka etsivät työtä mutta eivät ole töissä. Mukana ovat 15–74-vuotiaat. Pienempi on parempi. Ihmiset, jotka eivät etsi työtä, eivät ole työttömiä, vaikka heillä ei olisi työtä.",
+    "unemployment": "Kaikista, jotka ovat töissä tai etsivät töitä, tämä on osuus, jotka etsivät töitä mutta eivät ole töissä juuri nyt. Mukana ovat 15–74-vuotiaat. Pienempi on parempi. Ihmiset, jotka eivät etsi töitä, eivät ole työttömiä, vaikka heillä ei olisi työtä.",
     "inflation": "Kuinka paljon hinnat nousivat vuodessa, prosentteina. Jos luku on 2 %, sata euroa maksava asia maksaa vuoden päästä noin 102 euroa. Eurostat kutsuu tätä mittaria HICP:ksi. Negatiivinen luku tarkoittaa, että hinnat laskivat.",
     "gdp_per_capita": "Kaikki, mitä maa tuottaa vuodessa, jaettuna asukasmäärällä. Luku on korjattu hintaerojen mukaan (PPS), joten se kertoo, mitä ihmiset oikeasti voivat ostaa. EU:n keskiarvo on 100. Yli 100 tarkoittaa, että maa on rikkaampi kuin EU keskimäärin. Eurostat varoittaa, että luku on pääasiassa maiden vertailuun, ei yhden maan kehityksen seuraamiseen vuosien ajalta.",
     "at_risk_of_poverty": "Niiden ihmisten osuus, joiden tulot ovat alle 60 % oman maan keskituloista. Keskitulo on tulo, joka jakaa väestön kahtia. Pienempi on parempi. Mittari kertoo ihmisistä, joilla on paljon vähemmän kuin ympärillä olevilla, ei siitä, pystyykö joku maksamaan perustarpeensa.",

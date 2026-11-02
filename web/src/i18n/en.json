@@ -164,7 +164,7 @@
   },
   "explainTitle": "What does this number mean?",
   "explain": {
-    "unemployment": "Out of all people who have a job or are looking for one, this is the share who are looking but do not have a job. It counts people aged 15 to 74. Lower is better. People who are not looking for work do not count as unemployed, even if they have no job.",
+    "unemployment": "Out of everyone who is working or looking for work, this is the share who is looking for work but has no job right now. It counts people aged 15 to 74. Lower is better. People who are not looking for work do not count as unemployed, even if they have no job.",
     "inflation": "How much prices went up over one year, in percent. If it is 2%, something that cost 100 euros last year costs about 102 euros now. Eurostat calls this measure HICP. A negative number means prices fell.",
     "gdp_per_capita": "Everything a country produces in a year, divided by the number of people. It is adjusted for price differences (PPS), so it shows what people can actually buy. The EU average is set to 100. Above 100 means richer than the EU average. Eurostat warns that it is mainly for comparing countries, not for tracking one country over the years.",
     "at_risk_of_poverty": "The share of people whose income is below 60% of the middle income in their own country. The middle income is the one that splits the population in half. Lower is better. It measures people who have much less than others around them, not whether someone can pay for basics.",
