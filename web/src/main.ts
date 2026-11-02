@@ -6,12 +6,10 @@ import type { Dataset, DataRow } from "./types";
 Chart.register(...registerables);
 
 type Lang = "en" | "fi";
-type View = "chart" | "table" | "gap" | "scatter" | "rank";
-const VIEWS: View[] = ["chart", "table", "gap", "scatter", "rank"];
+type View = "chart" | "bars" | "table" | "gap" | "scatter" | "rank";
+const VIEWS: View[] = ["chart", "bars", "table", "gap", "scatter", "rank"];
 const dictionaries = { en, fi } as const;
 
-// Above this many countries the line chart gets unreadable, so ranked bars are shown.
-const CHART_MAX = 8;
 const FOCUS = "FI";
 const AGGREGATE = "EU27_2020";
 // Bars in the gap view that sit below the benchmark (Okabe-Ito vermillion).
@@ -320,8 +318,8 @@ function renderAll(): void {
 }
 
 // Table and ranked bars show one year at a time; lines show a range of years.
-function usesSingleYear(geos: string[]): boolean {
-  return view === "table" || (view !== "rank" && geos.length > CHART_MAX);
+function usesSingleYear(): boolean {
+  return view === "table" || view === "bars";
 }
 
 function renderContent(): void {
@@ -371,8 +369,8 @@ function renderContent(): void {
   }
 
   // Table and ranked bars both show one year at a time, so they get the year scrubber.
-  // Lines are used for up to CHART_MAX countries; above that, ranked bars.
-  const yearMode = usesSingleYear(geos);
+  // Lines show a range of years; ranked bars are an option for comparing one year.
+  const yearMode = usesSingleYear();
   const year = yearMode ? selectYear(indicator, geos) : null;
 
   if (view === "table") {
@@ -393,13 +391,52 @@ function renderContent(): void {
   }
 }
 
+
+// Country names at the right end of each line, nudged apart so they do not overlap.
+function endLabelsPlugin(items: Array<{ dataset: number; geo: string; last: number }>): Plugin<"line"> {
+  return {
+    id: "endLabels",
+    afterDatasetsDraw(c: Chart<"line">) {
+      const ctx = c.ctx;
+      ctx.save();
+      ctx.font = "600 12px system-ui, -apple-system, sans-serif";
+      ctx.textBaseline = "middle";
+      const labels = items
+        .filter((item) => item.last >= 0)
+        .map((item) => {
+          const point = c.getDatasetMeta(item.dataset).data[item.last];
+          return { geo: item.geo, x: point.x + 8, y: point.y };
+        })
+        .sort((a, b) => a.y - b.y);
+      const gap = 13;
+      for (let i = 1; i < labels.length; i++) {
+        if (labels[i].y - labels[i - 1].y < gap) labels[i].y = labels[i - 1].y + gap;
+      }
+      for (const label of labels) {
+        ctx.fillStyle = colorFor(label.geo);
+        ctx.fillText(t(`countries.${label.geo}`), label.x, label.y);
+      }
+      ctx.restore();
+    },
+  };
+}
+
+// Index of the last year with a value, or -1.
+function lastIndexWith(years: number[], has: (year: number) => boolean): number {
+  let last = -1;
+  years.forEach((y, i) => {
+    if (has(y)) last = i;
+  });
+  return last;
+}
+
 function destroyChart(): void {
   chart?.destroy();
   chart = null;
 }
 
 function renderChart(indicator: string, geos: string[]): void {
-  el("chart-wrap").style.height = "420px";
+  el("chart-wrap").style.height = geos.length > 8 ? "620px" : "420px";
   const years = selectRange(indicator);
   if (years.length === 0) {
     el("status").textContent = t("noData");
@@ -425,13 +462,22 @@ function renderChart(indicator: string, geos: string[]): void {
     };
   });
 
+  const endLabels = endLabelsPlugin(
+    geos.map((geo, dataset) => {
+      const points = seriesFor(indicator, geo);
+      return { dataset, geo, last: lastIndexWith(years, (y) => points.has(y)) };
+    }),
+  );
+
   destroyChart();
   chart = new Chart(el<HTMLCanvasElement>("chart"), {
     type: "line",
+    plugins: [endLabels],
     data: { labels: years.map(String), datasets },
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      layout: { padding: { right: window.innerWidth < 480 ? 72 : 96 } },
       interaction: { mode: "index", intersect: false },
       plugins: {
         legend: { position: "bottom" },
@@ -471,7 +517,7 @@ function renderBars(indicator: string, geos: string[], year: number | null): voi
     .sort((a, b) => b.value - a.value);
   const missing = entries.filter((e) => e.value === null).map((e) => t(`countries.${e.geo}`));
 
-  const messages = [t("barNotice")];
+  const messages: string[] = [];
   if (missing.length > 0) {
     messages.push(
       t("missingYear").replace("{year}", String(year)).replace("{names}", missing.join(", ")),
@@ -977,27 +1023,9 @@ function renderRank(indicator: string, selectedGeos: string[]): void {
   for (const g of geos) for (const y of shown) worst = Math.max(worst, rankOf(g, y) ?? 1);
   worst = Math.max(worst, 27);
 
-  // Country names at the right end of each line, so lines can be read without the legend.
-  const endLabels: Plugin<"line"> = {
-    id: "endLabels",
-    afterDatasetsDraw(c: Chart<"line">) {
-      const ctx = c.ctx;
-      ctx.save();
-      ctx.font = "600 12px system-ui, -apple-system, sans-serif";
-      ctx.textBaseline = "middle";
-      geos.forEach((geo, di) => {
-        let last = -1;
-        shown.forEach((y, i) => {
-          if (rankOf(geo, y) !== null) last = i;
-        });
-        if (last < 0) return;
-        const point = c.getDatasetMeta(di).data[last];
-        ctx.fillStyle = colorFor(geo);
-        ctx.fillText(t(`countries.${geo}`), point.x + 8, point.y);
-      });
-      ctx.restore();
-    },
-  };
+  const endLabels = endLabelsPlugin(
+    geos.map((geo, dataset) => ({ dataset, geo, last: lastIndexWith(shown, (y) => rankOf(geo, y) !== null) })),
+  );
 
   el("chart-wrap").hidden = false;
   el("chart-wrap").style.height = geos.length > 8 ? "620px" : "460px";
@@ -1190,7 +1218,7 @@ function buildCsv(): { filename: string; text: string } | null {
     if (geos.length === 0 || all.length === 0) return null;
 
     let years: number[];
-    if (usesSingleYear(geos)) {
+    if (usesSingleYear()) {
       const year = barYear !== null && all.includes(barYear) ? barYear : defaultYear(indicator, geos, all);
       years = [year];
     } else {

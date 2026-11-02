@@ -105,7 +105,6 @@
   "loading": "Ladataan dataa…",
   "noData": "Tälle indikaattorille ei ole dataa.",
   "noCountries": "Valitse vähintään yksi maa.",
-  "barNotice": "Näytetään järjestetyt palkit, koska viivoja on vaikea lukea yli 8 maan kanssa.",
   "missingYear": "Ei arvoa vuodelle {year}: {names}.",
   "prevYear": "Edellinen vuosi",
   "nextYear": "Seuraava vuosi",
@@ -229,5 +228,6 @@
   "rankAxis": "Sijoitus EU27-maiden joukossa (1 = paras)",
   "rankNoData": "Valituille maille ei ole EU27-sijoitusta. Sijoitus lasketaan vain EU:n jäsenvaltioille.",
   "rankNoFinland": "Suomella ei ole sijoitusta tällä jaksolla.",
-  "rankSummary": "Vuonna {year} Suomi oli sijalla {rank} EU27-maiden joukossa (1 = paras). Paras sijoitus jaksolla oli {best} ({bestYear}) ja heikoin {worst} ({worstYear})."
+  "rankSummary": "Vuonna {year} Suomi oli sijalla {rank} EU27-maiden joukossa (1 = paras). Paras sijoitus jaksolla oli {best} ({bestYear}) ja heikoin {worst} ({worstYear}).",
+  "viewBars": "Järjestetyt palkit"
 }

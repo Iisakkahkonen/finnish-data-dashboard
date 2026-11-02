@@ -157,6 +157,18 @@ const check = (name, ok, detail = "") => { results.push([ok, name, detail]); };
   await page.waitForSelector("#country-chips .chip");
   check("rank view explains missing ranks for non-EU countries", (await page.textContent("#status")).includes("Ranks exist only for EU member states"), await page.textContent("#status"));
 
+  // 14. Lines stay lines above eight countries; ranked bars are an explicit option
+  const many = "FI,SE,DK,EE,DE,AT,NO,JP,MN,OECD";
+  await page.goto(base + `#i=pisa_math&c=${many}&v=chart&l=en`);
+  await page.waitForSelector("#country-chips .chip");
+  const manyLines = await page.evaluate(() => { const c = window.__charts.at(-1); return { type: c.type, n: c.data.datasets.length, plugin: c.plugins.map((x) => x.id) }; });
+  check("ten countries still draw as manyLines, with end labels", manyLines.type === "line" && manyLines.n === 10 && manyLines.plugin.includes("endLabels"), JSON.stringify(manyLines));
+  await page.click('[data-view="bars"]');
+  const barsType = await page.evaluate(() => window.__charts.at(-1).type);
+  check("ranked bars view draws bars", barsType === "bar", barsType);
+  check("year scrubber visible in bars view", await page.isVisible("#year-controls"));
+  check("hash holds bars view", (await page.evaluate(() => location.hash)).includes("v=bars"));
+
   check("no page or console errors", errors.length === 0, errors.join(" || "));
   await browser.close();
 

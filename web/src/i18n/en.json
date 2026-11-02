@@ -105,7 +105,6 @@
   "loading": "Loading data…",
   "noData": "No data for this indicator.",
   "noCountries": "Select at least one country.",
-  "barNotice": "Showing ranked bars, because lines are hard to read with more than 8 countries.",
   "missingYear": "No value for {year}: {names}.",
   "prevYear": "Previous year",
   "nextYear": "Next year",
@@ -229,5 +228,6 @@
   "rankAxis": "Rank among the EU27 (1 = best)",
   "rankNoData": "No EU27 rank is available for the selected countries. Ranks exist only for EU member states.",
   "rankNoFinland": "Finland has no rank in this period.",
-  "rankSummary": "In {year} Finland ranked {rank} among the EU27 countries (1 = best). Its best rank in this period was {best} ({bestYear}) and its lowest {worst} ({worstYear})."
+  "rankSummary": "In {year} Finland ranked {rank} among the EU27 countries (1 = best). Its best rank in this period was {best} ({bestYear}) and its lowest {worst} ({worstYear}).",
+  "viewBars": "Ranked bars"
 }
