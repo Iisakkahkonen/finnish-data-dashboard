@@ -4,6 +4,7 @@
   --muted: #666;
   --accent: #1f4e9c;
   --border: #d9d9d4;
+  --on-accent: #fff;
   color-scheme: light dark;
 }
 
@@ -14,6 +15,7 @@
     --muted: #9a9a9a;
     --accent: #7aa7ff;
     --border: #35383d;
+    --on-accent: #0b0d10;
   }
 }
 
@@ -39,7 +41,7 @@ main,
 footer {
   max-width: 960px;
   margin: 0 auto;
-  padding: 1rem 1.25rem;
+  padding: 1rem max(1rem, env(safe-area-inset-left));
 }
 
 header {
@@ -67,7 +69,7 @@ h1 {
 .lang-switch button[aria-pressed="true"] {
   background: var(--accent);
   border-color: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
 }
 
 .control {
@@ -80,6 +82,8 @@ h1 {
 
 select {
   font: inherit;
+  width: 100%;
+  min-width: 0;
   padding: 0.5rem;
   border: 1px solid var(--border);
   background: var(--bg);
@@ -114,6 +118,7 @@ footer p {
 }
 
 .controls {
+  min-width: 0;
   display: grid;
   gap: 1rem;
   margin-bottom: 1rem;
@@ -151,7 +156,7 @@ footer p {
 .chip[aria-pressed="true"] {
   background: var(--accent);
   border-color: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
 }
 
 .year-controls {
@@ -272,4 +277,23 @@ footer p {
 .action-feedback {
   color: var(--muted);
   font-size: 0.9rem;
+}
+
+/* Keyboard focus: visible on every interactive element. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.chart-wrap {
+  min-width: 0;
+}
+
+@media (max-width: 480px) {
+  .chart-wrap {
+    height: 320px;
+  }
+  .year-value {
+    min-width: 0;
+  }
 }
