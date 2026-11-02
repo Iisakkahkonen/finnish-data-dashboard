@@ -50,6 +50,15 @@
         <span id="year-value" class="year-value" aria-live="polite"></span>
       </div>
 
+      <div id="range-controls" class="year-controls" hidden>
+        <span data-i18n="rangeFrom">From</span>
+        <input type="range" id="range-from" min="0" max="0" step="1" value="0" aria-label="Start year" />
+        <span id="range-from-value" class="year-value"></span>
+        <span data-i18n="rangeTo">To</span>
+        <input type="range" id="range-to" min="0" max="0" step="1" value="0" aria-label="End year" />
+        <span id="range-to-value" class="year-value"></span>
+      </div>
+
       <div id="chart-wrap" class="chart-wrap">
         <canvas id="chart" aria-label="Line chart"></canvas>
       </div>

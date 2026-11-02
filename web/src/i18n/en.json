@@ -13,6 +13,8 @@
   "missingYear": "No value for {year}: {names}.",
   "prevYear": "Previous year",
   "nextYear": "Next year",
+  "rangeFrom": "From",
+  "rangeTo": "To",
   "loadError": "Could not load indicators.json. Run the data pipeline first.",
   "footerSource": "Source: Eurostat, licensed under CC BY 4.0.",
   "footerUpdated": "Data last pulled",

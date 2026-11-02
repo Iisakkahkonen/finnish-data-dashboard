@@ -43,6 +43,9 @@ let view: View = "chart";
 let barYear: number | null = null;
 // Years available for the current indicator, used by the year controls.
 let currentYears: number[] = [];
+// Start and end years for the line chart. null means "full range".
+let rangeStart: number | null = null;
+let rangeEnd: number | null = null;
 
 const el = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 
@@ -241,6 +244,37 @@ function stepYear(delta: number): void {
   renderAll();
 }
 
+// Start/end range scrubber for the line chart. Both default to the full range.
+function updateRangeControls(years: number[], visible: boolean): void {
+  const controls = el("range-controls");
+  controls.hidden = !visible;
+  if (!visible || years.length === 0) return;
+
+  const start = rangeStart ?? years[0];
+  const end = rangeEnd ?? years[years.length - 1];
+  const from = el<HTMLInputElement>("range-from");
+  const to = el<HTMLInputElement>("range-to");
+  from.max = to.max = String(years.length - 1);
+  from.value = String(years.indexOf(start));
+  to.value = String(years.indexOf(end));
+  el("range-from-value").textContent = String(start);
+  el("range-to-value").textContent = String(end);
+}
+
+// Years inside the chosen range, for the line chart.
+function selectRange(indicator: string): number[] {
+  const years = yearsFor(indicator);
+  currentYears = years;
+  if (years.length === 0) {
+    updateRangeControls([], false);
+    return [];
+  }
+  if (rangeStart === null || !years.includes(rangeStart)) rangeStart = years[0];
+  if (rangeEnd === null || !years.includes(rangeEnd)) rangeEnd = years[years.length - 1];
+  updateRangeControls(years, true);
+  return years.filter((y) => y >= (rangeStart ?? years[0]) && y <= (rangeEnd ?? years[years.length - 1]));
+}
+
 // ---- Rendering ------------------------------------------------------------
 
 function renderAll(): void {
@@ -262,6 +296,7 @@ function renderAll(): void {
 
   statusEl.textContent = "";
   updateYearControls([], 0, false);
+  updateRangeControls([], false);
 
   if (geos.length === 0) {
     statusEl.textContent = t("noCountries");
@@ -301,7 +336,7 @@ function destroyChart(): void {
 
 function renderChart(indicator: string, geos: string[]): void {
   el("chart-wrap").style.height = "420px";
-  const years = yearsFor(indicator);
+  const years = selectRange(indicator);
   if (years.length === 0) {
     el("status").textContent = t("noData");
     destroyChart();
@@ -492,6 +527,8 @@ async function init(): Promise<void> {
   // Changing indicator resets the year so the new indicator starts at its latest year.
   select.addEventListener("change", () => {
     barYear = null;
+    rangeStart = null;
+    rangeEnd = null;
     renderAll();
   });
   document.querySelectorAll<HTMLButtonElement>("[data-lang]").forEach((button) => {
@@ -515,6 +552,21 @@ async function init(): Promise<void> {
   });
   el<HTMLButtonElement>("year-prev").addEventListener("click", () => stepYear(-1));
   el<HTMLButtonElement>("year-next").addEventListener("click", () => stepYear(1));
+
+  el<HTMLInputElement>("range-from").addEventListener("input", (event) => {
+    const year = currentYears[Number((event.target as HTMLInputElement).value)];
+    if (year === undefined) return;
+    rangeStart = year;
+    if (rangeEnd !== null && year > rangeEnd) rangeEnd = year;
+    renderAll();
+  });
+  el<HTMLInputElement>("range-to").addEventListener("input", (event) => {
+    const year = currentYears[Number((event.target as HTMLInputElement).value)];
+    if (year === undefined) return;
+    rangeEnd = year;
+    if (rangeStart !== null && year < rangeStart) rangeStart = year;
+    renderAll();
+  });
 
   statusEl.textContent = t("loading");
   applyLanguage();

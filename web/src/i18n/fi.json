@@ -13,6 +13,8 @@
   "missingYear": "Ei arvoa vuodelle {year}: {names}.",
   "prevYear": "Edellinen vuosi",
   "nextYear": "Seuraava vuosi",
+  "rangeFrom": "Alkaen",
+  "rangeTo": "Asti",
   "loadError": "indicators.json-tiedoston lataaminen epäonnistui. Aja datan käsittelyskripti ensin.",
   "footerSource": "Lähde: Eurostat, lisenssi CC BY 4.0.",
   "footerUpdated": "Data haettu viimeksi",
