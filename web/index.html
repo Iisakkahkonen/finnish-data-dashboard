@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Finland vs. EU</title>
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1 id="title">Finland vs. EU</h1>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="fi">FI</button>
+      </div>
+    </header>
+
+    <main>
+      <label class="control">
+        <span id="indicator-label">Indicator</span>
+        <select id="indicator-select"></select>
+      </label>
+
+      <p id="note" class="note" hidden></p>
+
+      <div class="chart-wrap">
+        <canvas id="chart" aria-label="Line chart"></canvas>
+      </div>
+
+      <p id="status" class="status" role="status"></p>
+    </main>
+
+    <footer>
+      <p id="footer-source"></p>
+      <p id="footer-updated"></p>
+    </footer>
+
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>

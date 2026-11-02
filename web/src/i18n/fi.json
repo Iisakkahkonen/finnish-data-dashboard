@@ -1,0 +1,26 @@
+{
+  "title": "Suomi vs. EU: keskeiset indikaattorit",
+  "indicator": "Indikaattori",
+  "loading": "Ladataan dataa…",
+  "noData": "Tälle indikaattorille ei ole dataa.",
+  "loadError": "indicators.json-tiedoston lataaminen epäonnistui. Aja datan käsittelyskripti ensin.",
+  "footerSource": "Lähde: Eurostat, lisenssi CC BY 4.0.",
+  "footerUpdated": "Data haettu viimeksi",
+  "indicators": {
+    "unemployment": "Työttömyysaste, 15–74-vuotiaat",
+    "inflation": "Kuluttajahintojen inflaatio (HICP), vuosimuutos",
+    "gdp_per_capita": "BKT asukasta kohden PPS (EU27 = 100)",
+    "at_risk_of_poverty": "Köyhyysriski (60 % mediaanitulosta)"
+  },
+  "notes": {
+    "gdp_per_capita": "Eurostat kertoo, että tämä sarja on pääasiassa tarkoitettu maiden vertailuun keskenään, ei maan omaan menneisyyteen verrattuna."
+  },
+  "countries": {
+    "FI": "Suomi",
+    "SE": "Ruotsi",
+    "DK": "Tanska",
+    "NO": "Norja",
+    "AT": "Itävalta",
+    "EU27_2020": "EU27-keskiarvo"
+  }
+}

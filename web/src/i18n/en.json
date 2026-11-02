@@ -1,0 +1,26 @@
+{
+  "title": "Finland vs. EU: key indicators",
+  "indicator": "Indicator",
+  "loading": "Loading data…",
+  "noData": "No data for this indicator.",
+  "loadError": "Could not load indicators.json. Run the data pipeline first.",
+  "footerSource": "Source: Eurostat, licensed under CC BY 4.0.",
+  "footerUpdated": "Data last pulled",
+  "indicators": {
+    "unemployment": "Unemployment rate, 15–74",
+    "inflation": "HICP inflation, annual rate",
+    "gdp_per_capita": "GDP per capita in PPS (EU27 = 100)",
+    "at_risk_of_poverty": "At-risk-of-poverty rate (60% of median)"
+  },
+  "notes": {
+    "gdp_per_capita": "Eurostat says this series is mainly for comparing countries with each other, not for comparing a country with its own past."
+  },
+  "countries": {
+    "FI": "Finland",
+    "SE": "Sweden",
+    "DK": "Denmark",
+    "NO": "Norway",
+    "AT": "Austria",
+    "EU27_2020": "EU27 average"
+  }
+}
