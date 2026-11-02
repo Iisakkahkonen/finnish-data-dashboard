@@ -7,7 +7,7 @@ A small dashboard comparing Finland with its Nordic and Baltic neighbours, Austr
 
 ## What it shows
 
-- **Indicators:** unemployment rate (15–74), HICP inflation, GDP per capita in purchasing power standard (EU27 = 100), the at-risk-of-poverty rate (60% of the national median), and PISA mathematics scores for 15-year-olds (2003 to 2018).
+- **Indicators:** unemployment rate (15–74), HICP inflation, GDP per capita in purchasing power standard (EU27 = 100), the at-risk-of-poverty rate (60% of the national median), and PISA mathematics scores for 15-year-olds (2003 to 2022).
 - **Countries:** Finland, Sweden, Denmark, Norway, Austria, Iceland, the other EU27 members, and the EU27 average. Pick any combination, or use a preset such as "Nordics" or "Baltics".
 - **Three views:**
   - A line chart over time for up to 8 countries, with a start and end year you can set.
@@ -26,7 +26,7 @@ Most figures come from [Eurostat](https://ec.europa.eu/eurostat), using these da
 | GDP per capita in PPS | `tec00114` |
 | At-risk-of-poverty rate | `ilc_li02` |
 
-PISA scores come from the OECD PISA results, as mirrored by World Bank EdStats (CC BY 4.0). They are stored in `data-pipeline/raw/pisa-scores.csv` and cover 2003 to 2018. The 2022 round is not included yet.
+PISA scores come from the OECD PISA results, as mirrored by World Bank EdStats (CC BY 4.0). They are stored as CSV files in `data-pipeline/raw/`: `pisa-scores.csv` (a DataHub mirror, 2000 to 2018) and `pisa-2022-and-oecd-averages.csv` (the 2022 means and OECD averages for 2003 to 2022, taken from the OECD reports). Luxembourg has no 2022 value because it is not in the extracted 2022 tables.
 
 The Eurostat data is refreshed every Monday and on every push to `main`. The pipeline pulls the latest values and rebuilds the site.
 

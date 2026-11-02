@@ -82,7 +82,7 @@ INDICATORS = [
         dataset="",  # not used for PISA; data comes from raw/pisa-scores.csv
         filters={},
         higher_is_better=True,
-        unit_note="mean score on the PISA scale; 2003 to 2018 only",
+        unit_note="mean score on the PISA scale; 2003 to 2022",
         source="pisa",
     ),
 ]

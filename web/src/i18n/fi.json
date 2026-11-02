@@ -39,7 +39,7 @@
   },
   "notes": {
     "gdp_per_capita": "Eurostat kertoo, että tämä sarja on pääasiassa tarkoitettu maiden vertailuun keskenään, ei maan omaan menneisyyteen verrattuna.",
-    "pisa_math": "PISA järjestetään kolmen vuoden välein. Tässä näkyvät vuodet 2003–2018. Vuoden 2022 kierros ei ole vielä mukana. Vertailuun on OECD-keskiarvo; EU27-keskiarvoa PISA ei tarjoa."
+    "pisa_math": "PISA järjestetään kolmen vuoden välein. Tässä näkyvät vuodet 2003–2022. Luxemburgilla ei ole arvoa vuodelta 2022. Vertailuun on OECD-keskiarvo; EU27-keskiarvoa PISA ei tarjoa."
   },
   "countries": {
     "FI": "Suomi",

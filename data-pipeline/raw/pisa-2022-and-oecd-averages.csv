@@ -1,0 +1,35 @@
+country_name,country_code,year,subject,mean_score
+Austria,AUT,2022,mathematics,487.0
+Belgium,BEL,2022,mathematics,489.0
+Bulgaria,BGR,2022,mathematics,417.0
+Croatia,HRV,2022,mathematics,463.0
+Cyprus,CYP,2022,mathematics,418.0
+Czech Republic,CZE,2022,mathematics,487.0
+Denmark,DNK,2022,mathematics,489.0
+Estonia,EST,2022,mathematics,510.0
+Finland,FIN,2022,mathematics,484.0
+France,FRA,2022,mathematics,474.0
+Germany,DEU,2022,mathematics,475.0
+Greece,GRC,2022,mathematics,430.0
+Hungary,HUN,2022,mathematics,473.0
+Iceland,ISL,2022,mathematics,459.0
+Ireland,IRL,2022,mathematics,492.0
+Italy,ITA,2022,mathematics,471.0
+Latvia,LVA,2022,mathematics,483.0
+Lithuania,LTU,2022,mathematics,475.0
+Malta,MLT,2022,mathematics,466.0
+Netherlands,NLD,2022,mathematics,493.0
+Norway,NOR,2022,mathematics,468.0
+Poland,POL,2022,mathematics,489.0
+Portugal,PRT,2022,mathematics,472.0
+Romania,ROU,2022,mathematics,428.0
+Slovak Republic,SVK,2022,mathematics,464.0
+Slovenia,SVN,2022,mathematics,485.0
+Spain,ESP,2022,mathematics,473.0
+Sweden,SWE,2022,mathematics,482.0
+OECD average,OED,2003,mathematics,500.0
+OECD average,OED,2006,mathematics,498.0
+OECD average,OED,2009,mathematics,496.0
+OECD average,OED,2012,mathematics,494.0
+OECD average,OED,2015,mathematics,490.0
+OECD average,OED,2022,mathematics,472.0

@@ -1,8 +1,12 @@
 """Load PISA mean scores from the bundled CSV.
 
 Source: OECD PISA results, as mirrored by the World Bank EdStats data (CC BY 4.0).
-The file is committed in data-pipeline/raw/ so the build does not depend on an
-outside download. It covers 2000 to 2018 only; the 2022 round is not included yet.
+The files are committed in data-pipeline/raw/ so the build does not depend on an
+outside download:
+- pisa-scores.csv: 2000 to 2018, from the DataHub mirror above.
+- pisa-2022-and-oecd-averages.csv: the 2022 mathematics means and the OECD average
+  for 2003 to 2022, transcribed from the OECD PISA report tables (PISA 2003 to 2022).
+  Luxembourg is missing because it does not appear in the extracted 2022 tables.
 """
 
 from __future__ import annotations
@@ -12,7 +16,8 @@ from pathlib import Path
 
 from eurostat import _to_finite_float
 
-RAW_FILE = Path(__file__).resolve().parent / "raw" / "pisa-scores.csv"
+RAW_DIR = Path(__file__).resolve().parent / "raw"
+RAW_FILES = [RAW_DIR / "pisa-scores.csv", RAW_DIR / "pisa-2022-and-oecd-averages.csv"]
 
 # PISA used ISO 3166 alpha-3 codes. Map them to the Eurostat-style codes the
 # rest of the pipeline uses. Countries not listed here are left out.
@@ -37,24 +42,25 @@ FIRST_COMPARABLE_YEAR = 2003
 def load_pisa_rows(subject: str = "mathematics") -> list[dict]:
     """Return rows of {'geo', 'time', 'value'} in the same shape as parse_jsonstat output."""
     rows = []
-    with RAW_FILE.open(encoding="utf-8", newline="") as handle:
-        for record in csv.DictReader(handle):
-            if record["subject"] != subject:
-                continue
-            year = int(record["year"])
-            if year < FIRST_COMPARABLE_YEAR:
-                continue
+    for raw_file in RAW_FILES:
+        with raw_file.open(encoding="utf-8", newline="") as handle:
+            for record in csv.DictReader(handle):
+                if record["subject"] != subject:
+                    continue
+                year = int(record["year"])
+                if year < FIRST_COMPARABLE_YEAR:
+                    continue
 
-            code = record["country_code"]
-            if code == OECD_CODE:
-                geo = OECD_GEO
-            elif code in ISO3_TO_GEO:
-                geo = ISO3_TO_GEO[code]
-            else:
-                continue
+                code = record["country_code"]
+                if code == OECD_CODE:
+                    geo = OECD_GEO
+                elif code in ISO3_TO_GEO:
+                    geo = ISO3_TO_GEO[code]
+                else:
+                    continue
 
-            value = _to_finite_float(record["mean_score"])
-            if value is None:
-                continue
-            rows.append({"geo": geo, "time": str(year), "value": value})
+                value = _to_finite_float(record["mean_score"])
+                if value is None:
+                    continue
+                rows.append({"geo": geo, "time": str(year), "value": value})
     return rows

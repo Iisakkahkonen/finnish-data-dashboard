@@ -39,7 +39,7 @@
   },
   "notes": {
     "gdp_per_capita": "Eurostat says this series is mainly for comparing countries with each other, not for comparing a country with its own past.",
-    "pisa_math": "PISA is held every three years. This data covers 2003 to 2018. The 2022 round is not included yet. The OECD average is shown for comparison; the EU27 average is not available for PISA."
+    "pisa_math": "PISA is held every three years. This data covers 2003 to 2022. Luxembourg has no 2022 value. The OECD average is shown for comparison; the EU27 average is not available for PISA."
   },
   "countries": {
     "FI": "Finland",

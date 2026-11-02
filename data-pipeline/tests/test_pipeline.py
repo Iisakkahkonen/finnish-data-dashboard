@@ -74,11 +74,15 @@ def test_pisa_loader_uses_comparable_years_and_known_codes():
     years = {int(r["time"]) for r in rows}
     geos = {r["geo"] for r in rows}
 
-    assert min(years) == 2003 and max(years) == 2018  # no 2000, no 2022 yet
+    assert min(years) == 2003 and max(years) == 2022  # no 2000
     assert "FI" in geos and "SE" in geos and "OECD" in geos
     assert all(len(g) == 2 or g == "OECD" for g in geos)  # no raw ISO3 codes leak through
     finland_2003 = [r["value"] for r in rows if r["geo"] == "FI" and r["time"] == "2003"]
     assert finland_2003 == [544.3]
+    finland_2022 = [r["value"] for r in rows if r["geo"] == "FI" and r["time"] == "2022"]
+    assert finland_2022 == [484.0]
+    oecd_2022 = [r["value"] for r in rows if r["geo"] == "OECD" and r["time"] == "2022"]
+    assert oecd_2022 == [472.0]
 
 
 def test_to_records_shape():
