@@ -120,6 +120,29 @@ const check = (name, ok, detail = "") => { results.push([ok, name, detail]); };
   const l2 = text.replace("﻿", "").trim().split("\r\n");
   check("line CSV respects range (2018-2022, 2 countries)", l2.length === 11 && dl.suggestedFilename().endsWith("2018-2022.csv"), `${l2.length} lines, ${dl.suggestedFilename()}`);
 
+  // 12. Compare-two (scatter) view
+  await page.goto(base + "#i=life_expectancy&c=FI,SE&v=scatter&vs=gini&l=en");
+  await page.waitForSelector("#country-chips .chip");
+  const sc = await page.evaluate(() => {
+    const c = window.__charts.at(-1);
+    return { type: c.type, labels: c.data.datasets.map((d) => d.label), n: c.data.datasets.reduce((a, d) => a + d.data.length, 0) };
+  });
+  check("scatter chart with Finland and other groups", sc.type === "scatter" && sc.labels.includes("Finland") && sc.labels.includes("Selected countries") && sc.n >= 7, JSON.stringify(sc));
+  const scStatus = await page.textContent("#status");
+  check("scatter summary gives r and a caution", /correlation r = -?\d,?\.?\d+/i.test(scStatus.replace("Correlation", "correlation")) && scStatus.includes("does not show that one causes"), scStatus);
+  check("compare select excludes the x indicator", !(await page.$$eval("#compare-select option", (o) => o.map((x) => x.value))).includes("life_expectancy"));
+  check("compare control visible, year scrubber visible", (await page.isVisible("#compare-control")) && (await page.isVisible("#year-controls")));
+  await page.selectOption("#compare-select", "median_income_eur");
+  check("hash holds compared indicator", (await page.evaluate(() => location.hash)).includes("vs=median_income_eur"));
+  [dl] = await Promise.all([page.waitForEvent("download"), page.click("#download-csv")]);
+  text = fs.readFileSync(await dl.path(), "utf8");
+  check("scatter CSV has both indicators", text.replace("\ufeff", "").startsWith("indicator_x,indicator_y,geo,country,year,x,y") && dl.suggestedFilename().includes("life_expectancy-vs-median_income_eur"), dl.suggestedFilename());
+  await page.goto(base + "#i=life_expectancy&v=scatter&vs=gini&l=fi");
+  await page.waitForSelector("#country-chips .chip");
+  check("scatter summary in Finnish", (await page.textContent("#status")).includes("Korrelaatio r ="), await page.textContent("#status"));
+  await page.click('[data-view="chart"]');
+  check("compare control hides again in chart view", !(await page.isVisible("#compare-control")));
+
   check("no page or console errors", errors.length === 0, errors.join(" || "));
   await browser.close();
 

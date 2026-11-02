@@ -6,8 +6,8 @@ import type { Dataset, DataRow } from "./types";
 Chart.register(...registerables);
 
 type Lang = "en" | "fi";
-type View = "chart" | "table" | "gap";
-const VIEWS: View[] = ["chart", "table", "gap"];
+type View = "chart" | "table" | "gap" | "scatter";
+const VIEWS: View[] = ["chart", "table", "gap", "scatter"];
 const dictionaries = { en, fi } as const;
 
 // Above this many countries the line chart gets unreadable, so ranked bars are shown.
@@ -61,6 +61,8 @@ let currentYears: number[] = [];
 // Start and end years for the line chart. null means "full range".
 let rangeStart: number | null = null;
 let rangeEnd: number | null = null;
+// Indicator on the vertical axis of the comparison view. null means "pick a sensible default".
+let compareKey: string | null = null;
 
 const el = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 
@@ -338,6 +340,12 @@ function renderContent(): void {
   statusEl.textContent = "";
   updateYearControls([], 0, false);
   updateRangeControls([], false);
+  el("compare-control").hidden = view !== "scatter";
+
+  if (view === "scatter") {
+    renderScatter(indicator, geos);
+    return;
+  }
 
   if (view === "gap") {
     renderGap(indicator);
@@ -714,6 +722,224 @@ function renderGapTable(indicator: string, bench: string, points: GapPoint[], un
 
 // ---- Shareable link ----------------------------------------------------------
 
+
+// ---- Comparison of two indicators (scatter) ------------------------------------
+
+interface ScatterPoint {
+  geo: string;
+  x: number;
+  y: number;
+}
+
+interface ScatterGroup {
+  label: string;
+  color: string;
+  radius: number;
+  style: "circle" | "rectRot";
+  points: ScatterPoint[];
+}
+
+// Countries with a value for both indicators in one year, split from the aggregates.
+function scatterPointsFor(xKey: string, yKey: string, year: number): ScatterPoint[] {
+  const xs = new Map<string, number>();
+  for (const row of rowsFor(xKey)) if (row.year === year) xs.set(row.geo, row.value);
+  const points: ScatterPoint[] = [];
+  for (const row of rowsFor(yKey)) {
+    const x = xs.get(row.geo);
+    if (row.year === year && x !== undefined) points.push({ geo: row.geo, x, y: row.value });
+  }
+  return points;
+}
+
+// Years in which the two indicators share at least one country.
+function scatterYears(xKey: string, yKey: string): number[] {
+  const common = yearsFor(xKey).filter((y) => yearsFor(yKey).includes(y));
+  return common.filter((y) => scatterPointsFor(xKey, yKey, y).length > 0);
+}
+
+function defaultCompareKey(xKey: string): string {
+  const preferred = xKey === "gdp_per_capita" ? "life_expectancy" : "gdp_per_capita";
+  return preferred;
+}
+
+// Pearson correlation coefficient, or null when it cannot be computed.
+function pearson(points: ScatterPoint[]): number | null {
+  const n = points.length;
+  if (n < 3) return null;
+  const mx = points.reduce((sum, p) => sum + p.x, 0) / n;
+  const my = points.reduce((sum, p) => sum + p.y, 0) / n;
+  let sxy = 0;
+  let sxx = 0;
+  let syy = 0;
+  for (const p of points) {
+    sxy += (p.x - mx) * (p.y - my);
+    sxx += (p.x - mx) ** 2;
+    syy += (p.y - my) ** 2;
+  }
+  if (sxx === 0 || syy === 0) return null;
+  return sxy / Math.sqrt(sxx * syy);
+}
+
+function describeCorrelation(r: number, year: number, n: number): string {
+  const size = Math.abs(r);
+  const rText = r.toLocaleString(lang === "fi" ? "fi-FI" : "en-GB", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+  const base = (text: string) =>
+    text.replace("{year}", String(year)).replace("{n}", String(n)).replace("{r}", rText);
+  if (size < 0.2) return `${base(t("scatterSummaryNone"))} ${t("scatterCaution")}`;
+  const strength = t(size >= 0.7 ? "scatterStrong" : size >= 0.4 ? "scatterModerate" : "scatterWeak");
+  const direction = t(r > 0 ? "scatterPositive" : "scatterNegative");
+  return `${base(t("scatterSummary")).replace("{strength}", strength).replace("{direction}", direction)} ${t("scatterCaution")}`;
+}
+
+function renderScatter(xKey: string, selectedGeos: string[]): void {
+  const statusEl = el("status");
+  el("table-wrap").hidden = true;
+
+  // The vertical-axis list leaves out the indicator already on the horizontal axis.
+  const compare = el<HTMLSelectElement>("compare-select");
+  if (compareKey === null || compareKey === xKey || !INDICATOR_KEYS.includes(compareKey)) {
+    compareKey = defaultCompareKey(xKey);
+  }
+  compare.innerHTML = "";
+  for (const key of INDICATOR_KEYS.filter((k) => k !== xKey)) {
+    const option = document.createElement("option");
+    option.value = key;
+    option.textContent = t(`indicators.${key}`);
+    compare.append(option);
+  }
+  compare.value = compareKey;
+  const yKey = compareKey;
+
+  const years = scatterYears(xKey, yKey);
+  currentYears = years;
+  if (years.length === 0) {
+    statusEl.textContent = t("scatterNoOverlap");
+    destroyChart();
+    el("chart-wrap").hidden = true;
+    return;
+  }
+  if (barYear === null || !years.includes(barYear)) {
+    let pick = years[years.length - 1];
+    for (let i = years.length - 1; i >= 0; i--) {
+      if (scatterPointsFor(xKey, yKey, years[i]).filter((p) => p.geo !== AGGREGATE && p.geo !== "OECD").length >= 10) {
+        pick = years[i];
+        break;
+      }
+    }
+    barYear = pick;
+  }
+  const year = barYear;
+  updateYearControls(years, year, true);
+
+  const all = scatterPointsFor(xKey, yKey, year);
+  const countries = all.filter((p) => p.geo !== AGGREGATE && p.geo !== "OECD");
+  const candidates: ScatterGroup[] = [
+    {
+      label: t("scatterOthers"),
+      color: BAR_COLOR,
+      radius: 4,
+      style: "circle",
+      points: countries.filter((p) => p.geo !== FOCUS && !selectedGeos.includes(p.geo)),
+    },
+    {
+      label: t("scatterSelected"),
+      color: PALETTE[0],
+      radius: 6,
+      style: "circle",
+      points: countries.filter((p) => p.geo !== FOCUS && selectedGeos.includes(p.geo)),
+    },
+    {
+      label: t(`countries.${AGGREGATE}`),
+      color: AGGREGATE_COLOR,
+      radius: 7,
+      style: "rectRot",
+      points: all.filter((p) => p.geo === AGGREGATE || p.geo === "OECD"),
+    },
+    {
+      label: t(`countries.${FOCUS}`),
+      color: FOCUS_COLOR,
+      radius: 8,
+      style: "circle",
+      points: countries.filter((p) => p.geo === FOCUS),
+    },
+  ];
+  const groups = candidates.filter((g) => g.points.length > 0);
+
+  // Names next to the points the reader is most likely looking for.
+  const nameLabels: Plugin<"scatter"> = {
+    id: "nameLabels",
+    afterDatasetsDraw(c: Chart<"scatter">) {
+      const ctx = c.ctx;
+      ctx.save();
+      ctx.font = "600 12px system-ui, -apple-system, sans-serif";
+      ctx.fillStyle = getComputedStyle(document.body).color;
+      ctx.textBaseline = "middle";
+      groups.forEach((group, di) => {
+        if (group.label === t("scatterOthers")) return;
+        c.getDatasetMeta(di).data.forEach((element, index) => {
+          ctx.fillText(t(`countries.${group.points[index].geo}`), element.x + 10, element.y);
+        });
+      });
+      ctx.restore();
+    },
+  };
+
+  el("chart-wrap").hidden = false;
+  el("chart-wrap").style.height = "460px";
+  destroyChart();
+  chart = new Chart(el<HTMLCanvasElement>("chart"), {
+    type: "scatter",
+    plugins: [nameLabels],
+    data: {
+      datasets: groups.map((g) => ({
+        label: g.label,
+        data: g.points.map((p) => ({ x: p.x, y: p.y })),
+        backgroundColor: g.color,
+        borderColor: g.color,
+        pointRadius: g.radius,
+        pointHoverRadius: g.radius + 2,
+        pointStyle: g.style,
+      })),
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      layout: { padding: { right: 60 } },
+      plugins: {
+        legend: { position: "bottom" },
+        title: {
+          display: true,
+          text: t("scatterTitle")
+            .replace("{y}", t(`indicators.${yKey}`))
+            .replace("{x}", t(`indicators.${xKey}`))
+            .replace("{year}", String(year)),
+        },
+        tooltip: {
+          callbacks: {
+            label: (item: TooltipItem<"scatter">) => {
+              const p = groups[item.datasetIndex].points[item.dataIndex];
+              return `${t(`countries.${p.geo}`)}: ${formatValue(p.x, xKey)} / ${formatValue(p.y, yKey)}`;
+            },
+          },
+        },
+      },
+      scales: {
+        x: { title: { display: true, text: t(`indicators.${xKey}`) } },
+        y: { title: { display: true, text: t(`indicators.${yKey}`) } },
+      },
+    },
+  });
+
+  const r = pearson(countries);
+  statusEl.textContent =
+    r === null
+      ? t("scatterTooFew").replace("{year}", String(year))
+      : describeCorrelation(r, year, countries.length);
+}
+
 // Puts the current choices into the address, so copying the address reproduces the view.
 function writeHash(): void {
   if (!dataset) return;
@@ -723,6 +949,7 @@ function writeHash(): void {
     `v=${view}`,
     `l=${lang}`,
   ];
+  if (view === "scatter" && compareKey !== null) parts.push(`vs=${compareKey}`);
   if (barYear !== null) parts.push(`y=${barYear}`);
   if (rangeStart !== null) parts.push(`from=${rangeStart}`);
   if (rangeEnd !== null) parts.push(`to=${rangeEnd}`);
@@ -738,6 +965,9 @@ function readHash(): void {
   if (indicator && INDICATOR_KEYS.includes(indicator)) {
     el<HTMLSelectElement>("indicator-select").value = indicator;
   }
+
+  const wantedCompare = params.get("vs");
+  compareKey = wantedCompare && INDICATOR_KEYS.includes(wantedCompare) ? wantedCompare : null;
 
   const wantedView = params.get("v");
   if (wantedView && VIEWS.includes(wantedView as View)) view = wantedView as View;
@@ -812,6 +1042,20 @@ function buildCsv(): { filename: string; text: string } | null {
   const indicator = currentIndicator();
   const lines: string[] = [];
   let span: string;
+
+  if (view === "scatter") {
+    if (compareKey === null || barYear === null) return null;
+    const points = scatterPointsFor(indicator, compareKey, barYear);
+    if (points.length === 0) return null;
+    lines.push(csvLine(["indicator_x", "indicator_y", "geo", "country", "year", "x", "y"]));
+    for (const p of points) {
+      lines.push(csvLine([indicator, compareKey, p.geo, t(`countries.${p.geo}`), barYear, p.x, p.y]));
+    }
+    return {
+      filename: `finland-vs-eu_${indicator}-vs-${compareKey}_${barYear}.csv`,
+      text: `\ufeff${lines.join("\r\n")}\r\n`,
+    };
+  }
 
   if (view === "gap") {
     const gap = currentGap(indicator);
@@ -898,6 +1142,11 @@ async function init(): Promise<void> {
     barYear = null;
     rangeStart = null;
     rangeEnd = null;
+    renderAll();
+  });
+  el<HTMLSelectElement>("compare-select").addEventListener("change", (event) => {
+    compareKey = (event.target as HTMLSelectElement).value;
+    barYear = null;
     renderAll();
   });
   document.querySelectorAll<HTMLButtonElement>("[data-lang]").forEach((button) => {

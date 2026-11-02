@@ -209,5 +209,20 @@
     "gini": "points",
     "median_income_pps": "PPS",
     "median_income_eur": "EUR"
-  }
+  },
+  "viewScatter": "Compare two",
+  "compareWith": "Compare with (vertical axis)",
+  "scatterTitle": "{y} against {x}, {year}",
+  "scatterOthers": "Other countries",
+  "scatterSelected": "Selected countries",
+  "scatterNoOverlap": "These two indicators have no year in common with data for the same countries.",
+  "scatterTooFew": "Too few countries have both values in {year} to measure a relationship.",
+  "scatterSummary": "In {year}, {n} countries have a value for both. Correlation r = {r}: a {strength} {direction} relationship.",
+  "scatterSummaryNone": "In {year}, {n} countries have a value for both. Correlation r = {r}: no clear relationship.",
+  "scatterCaution": "A relationship alone does not show that one causes the other.",
+  "scatterStrong": "strong",
+  "scatterModerate": "moderate",
+  "scatterWeak": "weak",
+  "scatterPositive": "positive",
+  "scatterNegative": "negative"
 }

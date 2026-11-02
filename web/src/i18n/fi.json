@@ -209,5 +209,20 @@
     "gini": "pistettä",
     "median_income_pps": "PPS",
     "median_income_eur": "euroa"
-  }
+  },
+  "viewScatter": "Vertaa kahta",
+  "compareWith": "Vertaa (pystyakseli)",
+  "scatterTitle": "{y} suhteessa mittariin {x}, {year}",
+  "scatterOthers": "Muut maat",
+  "scatterSelected": "Valitut maat",
+  "scatterNoOverlap": "Näillä kahdella mittarilla ei ole yhtään yhteistä vuotta, jolta olisi tietoja samoista maista.",
+  "scatterTooFew": "Vuodelta {year} liian harvalla maalla on molemmat arvot, jotta yhteyttä voisi mitata.",
+  "scatterSummary": "Vuonna {year} {n} maalla on arvo molemmille. Korrelaatio r = {r}: {strength} {direction} yhteys.",
+  "scatterSummaryNone": "Vuonna {year} {n} maalla on arvo molemmille. Korrelaatio r = {r}: ei selvää yhteyttä.",
+  "scatterCaution": "Yhteys ei yksin osoita, että toinen tekijä aiheuttaa toisen.",
+  "scatterStrong": "vahva",
+  "scatterModerate": "kohtalainen",
+  "scatterWeak": "heikko",
+  "scatterPositive": "positiivinen",
+  "scatterNegative": "negatiivinen"
 }
