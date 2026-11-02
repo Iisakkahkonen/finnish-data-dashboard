@@ -9,7 +9,7 @@
   "loading": "Ladataan dataa…",
   "noData": "Tälle indikaattorille ei ole dataa.",
   "noCountries": "Valitse vähintään yksi maa.",
-  "tableNotice": "Näytetään taulukko, koska kuvio on vaikea lukea yli 8 maan kanssa.",
+  "barNotice": "Näytetään järjestetyt palkit, koska viivoja on vaikea lukea yli 8 maan kanssa.",
   "loadError": "indicators.json-tiedoston lataaminen epäonnistui. Aja datan käsittelyskripti ensin.",
   "footerSource": "Lähde: Eurostat, lisenssi CC BY 4.0.",
   "footerUpdated": "Data haettu viimeksi",

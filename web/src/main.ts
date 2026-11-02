@@ -29,7 +29,7 @@ const FOCUS_COLOR = "#0072B2";
 const AGGREGATE_COLOR = "#888888";
 const PALETTE = ["#E69F00", "#56B4E9", "#009E73", "#D55E00", "#CC79A7", "#B8860B", "#8C564B"];
 // Dash patterns so lines stay distinguishable in grayscale, too.
-const DASHES: number[][] = [[], [8, 4], [2, 3], [10, 4, 2, 4], [14, 4], [6, 3, 2, 3], [4, 4]];
+const DASHES: number[][] = [[], [12, 5], [4, 4], [16, 5, 4, 5], [6, 6, 2, 6], [20, 6]];
 
 let lang: Lang = "en";
 let dataset: Dataset | null = null;
@@ -52,10 +52,10 @@ function t(path: string): string {
   return typeof node === "string" ? node : path;
 }
 
-// Each non-focus country gets a fixed slot based on the full country list,
-// so its color and dash pattern do not change when other countries are toggled.
+// Non-focus countries are numbered within the current selection, so every
+// selected line gets its own color. Colors can shift when other countries are toggled.
 function slotFor(geo: string): number {
-  const others = allGeos().filter((g) => g !== FOCUS && g !== AGGREGATE);
+  const others = effectiveSelection().filter((g) => g !== FOCUS && g !== AGGREGATE);
   return Math.max(0, others.indexOf(geo));
 }
 
@@ -212,18 +212,23 @@ function renderAll(): void {
     return;
   }
 
-  // Too many lines for a readable chart: show the table instead.
-  const showTable = view === "table" || geos.length > CHART_MAX;
-  statusEl.textContent = view === "chart" && showTable ? t("tableNotice") : "";
-
-  if (showTable) {
+  if (view === "table") {
     destroyChart();
     el("chart-wrap").hidden = true;
     el("table-wrap").hidden = false;
     renderTable(indicator, geos);
+    statusEl.textContent = "";
+    return;
+  }
+
+  // Too many lines for a readable line chart: switch to ranked bars.
+  const useBars = geos.length > CHART_MAX;
+  statusEl.textContent = useBars ? t("barNotice") : "";
+  el("table-wrap").hidden = true;
+  el("chart-wrap").hidden = false;
+  if (useBars) {
+    renderBars(indicator, geos);
   } else {
-    el("table-wrap").hidden = true;
-    el("chart-wrap").hidden = false;
     renderChart(indicator, geos);
   }
 }
@@ -234,6 +239,7 @@ function destroyChart(): void {
 }
 
 function renderChart(indicator: string, geos: string[]): void {
+  el("chart-wrap").style.height = "420px";
   const years = [...new Set(rowsFor(indicator).map((r) => r.year))].sort((a, b) => a - b);
   if (years.length === 0) {
     el("status").textContent = t("noData");
@@ -249,7 +255,7 @@ function renderChart(indicator: string, geos: string[]): void {
       data: years.map((y) => points.get(y) ?? null),
       borderColor: colorFor(geo),
       backgroundColor: colorFor(geo),
-      borderWidth: isFocus ? 3.5 : 1.5,
+      borderWidth: isFocus ? 3.5 : 2.5,
       borderDash: dashFor(geo),
       pointRadius: isFocus ? 3 : 0,
       spanGaps: true,
@@ -267,6 +273,47 @@ function renderChart(indicator: string, geos: string[]): void {
       interaction: { mode: "index", intersect: false },
       plugins: {
         legend: { position: "bottom" },
+        title: { display: true, text: t(`indicators.${indicator}`) },
+      },
+    },
+  });
+}
+
+// Ranked horizontal bars of the latest value per country. Used when there are
+// too many countries for readable lines. Each bar shows the year it refers to.
+function renderBars(indicator: string, geos: string[]): void {
+  const bars = geos
+    .map((geo) => ({ geo, point: latestPoint(indicator, geo) }))
+    .filter((bar): bar is { geo: string; point: { year: number; value: number } } => bar.point !== null)
+    .sort((a, b) => b.point.value - a.point.value);
+
+  destroyChart();
+  if (bars.length === 0) {
+    el("status").textContent = t("noData");
+    return;
+  }
+
+  el("chart-wrap").style.height = `${Math.max(420, bars.length * 26 + 80)}px`;
+  chart = new Chart(el<HTMLCanvasElement>("chart"), {
+    type: "bar",
+    data: {
+      labels: bars.map((bar) => `${t(`countries.${bar.geo}`)} (${bar.point.year})`),
+      datasets: [
+        {
+          label: t(`indicators.${indicator}`),
+          data: bars.map((bar) => bar.point.value),
+          backgroundColor: bars.map((bar) =>
+            bar.geo === FOCUS ? FOCUS_COLOR : bar.geo === AGGREGATE ? AGGREGATE_COLOR : "#9aa5b1",
+          ),
+        },
+      ],
+    },
+    options: {
+      indexAxis: "y",
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
         title: { display: true, text: t(`indicators.${indicator}`) },
       },
     },

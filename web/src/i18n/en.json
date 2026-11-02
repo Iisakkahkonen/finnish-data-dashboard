@@ -9,7 +9,7 @@
   "loading": "Loading data…",
   "noData": "No data for this indicator.",
   "noCountries": "Select at least one country.",
-  "tableNotice": "Showing a table, because the chart is hard to read with more than 8 countries.",
+  "barNotice": "Showing ranked bars, because lines are hard to read with more than 8 countries.",
   "loadError": "Could not load indicators.json. Run the data pipeline first.",
   "footerSource": "Source: Eurostat, licensed under CC BY 4.0.",
   "footerUpdated": "Data last pulled",
