@@ -105,4 +105,14 @@ INDICATORS = [
         unit_note="mean score on the PISA scale; 2003 to 2022",
         source="pisa",
     ),
+    Indicator(
+        key="life_expectancy",
+        label_en="Life expectancy at birth (years)",
+        label_fi="Elinajanodote syntyessä (vuotta)",
+        dataset="",
+        filters={},
+        higher_is_better=True,
+        unit_note="years; snapshot years only (1980, 1990, 2000, 2010, 2023, 2024)",
+        source="lifeexp",
+    ),
 ]

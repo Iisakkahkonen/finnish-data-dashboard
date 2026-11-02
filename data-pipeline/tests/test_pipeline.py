@@ -111,3 +111,13 @@ def test_pisa_subjects_load_separately():
     assert fi_2022_science == [511.0]
     assert {r["geo"] for r in reading} == {r["geo"] for r in load_pisa_rows("mathematics")}
 
+
+def test_life_expectancy_snapshot_years():
+    from lifeexp import load_life_expectancy_rows
+
+    rows = load_life_expectancy_rows()
+    years = sorted({int(r["time"]) for r in rows})
+    assert years == [1980, 1990, 2000, 2010, 2023, 2024]
+    fi_2024 = [r["value"] for r in rows if r["geo"] == "FI" and r["time"] == "2024"]
+    assert fi_2024 == [82.21]
+

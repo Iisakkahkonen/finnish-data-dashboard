@@ -30,6 +30,7 @@ const INDICATOR_KEYS = [
   "pisa_math",
   "pisa_reading",
   "pisa_science",
+  "life_expectancy",
 ];
 // Indicators whose values are percentages, so they get a % sign when shown.
 const PERCENT_INDICATORS = ["unemployment", "inflation", "at_risk_of_poverty"];

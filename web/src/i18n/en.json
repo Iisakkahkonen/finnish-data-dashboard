@@ -133,13 +133,15 @@
     "at_risk_of_poverty": "At-risk-of-poverty rate (60% of median)",
     "pisa_math": "PISA mathematics mean score (age 15)",
     "pisa_reading": "PISA reading mean score (age 15)",
-    "pisa_science": "PISA science mean score (age 15)"
+    "pisa_science": "PISA science mean score (age 15)",
+    "life_expectancy": "Life expectancy at birth (years)"
   },
   "notes": {
     "gdp_per_capita": "Eurostat says this series is mainly for comparing countries with each other, not for comparing a country with its own past.",
     "pisa_math": "PISA is held every three years. This data covers 2003 to 2022. Luxembourg has no 2022 value. The OECD average is shown for comparison; the EU27 average is not available for PISA. Countries outside Europe appear only when PISA is selected.",
     "pisa_reading": "PISA is held every three years. This data covers 2003 to 2022. Luxembourg has no 2022 value. The OECD average is shown for comparison; the EU27 average is not available for PISA. Countries outside Europe appear only when PISA is selected.",
-    "pisa_science": "PISA is held every three years. This data covers 2003 to 2022. Luxembourg has no 2022 value. The OECD average is shown for comparison; the EU27 average is not available for PISA. Countries outside Europe appear only when PISA is selected."
+    "pisa_science": "PISA is held every three years. This data covers 2003 to 2022. Luxembourg has no 2022 value. The OECD average is shown for comparison; the EU27 average is not available for PISA. Countries outside Europe appear only when PISA is selected.",
+    "life_expectancy": "Life expectancy at birth from Eurostat's mortality and life expectancy statistics, total population. The source table has only six years: 1980, 1990, 2000, 2010, 2023 and 2024."
   },
   "sourcesTitle": "Sources and method",
   "sources": {
@@ -148,6 +150,7 @@
     "gdp_per_capita": "GDP per capita in PPS, volume index with EU27 = 100 Eurostat dataset:",
     "at_risk_of_poverty": "Share of people with income below 60% of the national median, all ages Eurostat dataset:",
     "pisa": "Mean mathematics scores at age 15. 2000–2018 from the DataHub mirror of World Bank EdStats. 2003–2022 means and OECD averages typed from the OECD PISA reports.",
-    "licence": "Eurostat data © European Union, CC BY 4.0. PISA data via DataHub and World Bank EdStats, CC BY 4.0. Code under Apache 2.0."
+    "licence": "Eurostat data © European Union, CC BY 4.0. PISA data via DataHub and World Bank EdStats, CC BY 4.0. Code under Apache 2.0.",
+    "lifeexp": "Eurostat, 'Mortality and life expectancy statistics', table 1, total population. The table has only the years 1980, 1990, 2000, 2010, 2023 and 2024."
   }
 }
