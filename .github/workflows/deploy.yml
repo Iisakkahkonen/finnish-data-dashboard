@@ -40,11 +40,19 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Build site
+      - name: Install web dependencies
+        working-directory: web
+        run: npm install
+
+      - name: Browser tests
         working-directory: web
         run: |
-          npm install
-          npm run build
+          npx playwright install --with-deps chromium
+          npm run test:e2e
+
+      - name: Build site
+        working-directory: web
+        run: npm run build
 
       - uses: actions/configure-pages@v5
 
