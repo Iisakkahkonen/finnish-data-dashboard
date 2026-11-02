@@ -156,9 +156,10 @@ function allGeos(): string[] {
   const eurostatGeos = new Set(
     dataset.records.filter((r) => !isPisa(r.indicator)).map((r) => r.geo),
   );
-  const geos = [...new Set(dataset.records.map((r) => r.geo))].filter(
-    (g) => onlyPisa || eurostatGeos.has(g),
-  );
+  // Only countries that have at least one value for the chosen indicator.
+  const indicator = currentIndicator();
+  const withData = new Set(rowsFor(indicator).map((r) => r.geo));
+  const geos = [...withData].filter((g) => onlyPisa || eurostatGeos.has(g));
   return geos.sort((a, b) => {
     if (a === FOCUS) return -1;
     if (b === FOCUS) return 1;
@@ -399,7 +400,8 @@ function renderChart(indicator: string, geos: string[]): void {
       backgroundColor: colorFor(geo),
       borderWidth: isFocus ? 3.5 : 2.5,
       borderDash: dashFor(geo),
-      pointRadius: isFocus ? 3 : 0,
+      // A country with a single data point has no line, so it needs a visible marker.
+      pointRadius: isFocus || points.size < 2 ? 4 : 0,
       spanGaps: true,
       tension: 0.2,
     };
