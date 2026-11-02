@@ -16,16 +16,38 @@
     </header>
 
     <main>
-      <label class="control">
-        <span id="indicator-label">Indicator</span>
-        <select id="indicator-select"></select>
-      </label>
+      <section class="controls">
+        <label class="control">
+          <span data-i18n="indicator">Indicator</span>
+          <select id="indicator-select"></select>
+        </label>
+
+        <div class="control">
+          <span data-i18n="presets">Presets</span>
+          <div id="presets" class="buttons"></div>
+        </div>
+
+        <div class="control">
+          <span data-i18n="countries">Countries</span>
+          <div id="country-chips" class="chips"></div>
+        </div>
+
+        <div class="control">
+          <span data-i18n="view">View</span>
+          <div class="lang-switch" role="group">
+            <button type="button" data-view="chart" data-i18n="viewChart">Chart</button>
+            <button type="button" data-view="table" data-i18n="viewTable">Table</button>
+          </div>
+        </div>
+      </section>
 
       <p id="note" class="note" hidden></p>
 
-      <div class="chart-wrap">
+      <div id="chart-wrap" class="chart-wrap">
         <canvas id="chart" aria-label="Line chart"></canvas>
       </div>
+
+      <div id="table-wrap" class="table-wrap" hidden></div>
 
       <p id="status" class="status" role="status"></p>
     </main>

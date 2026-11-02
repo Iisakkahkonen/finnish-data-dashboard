@@ -6,45 +6,121 @@ import type { Dataset, DataRow } from "./types";
 Chart.register(...registerables);
 
 type Lang = "en" | "fi";
+type View = "chart" | "table";
 const dictionaries = { en, fi } as const;
 
-// Countries shown on every chart. Finland is drawn thicker.
-const COUNTRIES = ["FI", "SE", "DK", "NO", "AT", "EU27_2020"] as const;
-const COLORS: Record<string, string> = {
-  FI: "#1f4e9c",
-  SE: "#7a9cc6",
-  DK: "#c0504d",
-  NO: "#9bbb59",
-  AT: "#8064a2",
-  EU27_2020: "#555555",
+// Above this many countries the chart gets unreadable, so the table is shown instead.
+const CHART_MAX = 8;
+const FOCUS = "FI";
+const AGGREGATE = "EU27_2020";
+
+const PRESETS: Record<string, string[]> = {
+  default: ["FI", "SE", "DK", "NO", "AT", "EU27_2020"],
+  nordics: ["FI", "SE", "DK", "NO", "IS"],
+  baltics: ["EE", "LV", "LT"],
+  bigEu: ["DE", "FR", "IT", "ES", "NL", "PL"],
+  financeOnly: ["FI"],
 };
+
 const INDICATOR_KEYS = ["unemployment", "inflation", "gdp_per_capita", "at_risk_of_poverty"];
+
+const FOCUS_COLOR = "#1f4e9c";
+const AGGREGATE_COLOR = "#555555";
+const PALETTE = [
+  "#c0504d", "#9bbb59", "#8064a2", "#f79646", "#4bacc6", "#7f7f7f",
+  "#b5651d", "#2e8b57", "#d4a017", "#6a5acd", "#008b8b", "#cd5c5c",
+  "#556b2f", "#4682b4", "#8b4513", "#7a9cc6",
+];
 
 let lang: Lang = "en";
 let dataset: Dataset | null = null;
 let chart: Chart | null = null;
+let selected: string[] = [...PRESETS.default];
+let view: View = "chart";
 
 const el = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 
 function t(path: string): string {
-  // Look up a dotted key such as "indicators.unemployment" in the current language.
-  const value = path.split(".").reduce<unknown>(
-    (obj, key) => (obj as Record<string, unknown>)?.[key],
-    dictionaries[lang],
-  );
-  return typeof value === "string" ? value : path;
+  let node: unknown = dictionaries[lang];
+  for (const key of path.split(".")) {
+    if (node && typeof node === "object") {
+      node = (node as Record<string, unknown>)[key];
+    } else {
+      node = undefined;
+      break;
+    }
+  }
+  return typeof node === "string" ? node : path;
 }
+
+function colorFor(geo: string): string {
+  if (geo === FOCUS) return FOCUS_COLOR;
+  if (geo === AGGREGATE) return AGGREGATE_COLOR;
+  let hash = 0;
+  for (const ch of geo) hash = (hash * 31 + ch.charCodeAt(0)) >>> 0;
+  return PALETTE[hash % PALETTE.length];
+}
+
+// All countries in the data, Finland first, EU average last, the rest by name.
+function allGeos(): string[] {
+  if (!dataset) return [];
+  const geos = [...new Set(dataset.records.map((r) => r.geo))];
+  return geos.sort((a, b) => {
+    if (a === FOCUS) return -1;
+    if (b === FOCUS) return 1;
+    if (a === AGGREGATE) return 1;
+    if (b === AGGREGATE) return -1;
+    return t(`countries.${a}`).localeCompare(t(`countries.${b}`), lang);
+  });
+}
+
+// Selected countries in display order.
+function effectiveSelection(): string[] {
+  return allGeos().filter((g) => selected.includes(g));
+}
+
+function currentIndicator(): string {
+  return el<HTMLSelectElement>("indicator-select").value;
+}
+
+function rowsFor(indicator: string): DataRow[] {
+  return dataset ? dataset.records.filter((r) => r.indicator === indicator) : [];
+}
+
+function seriesFor(indicator: string, geo: string): Map<number, number> {
+  const points = new Map<number, number>();
+  for (const row of rowsFor(indicator)) {
+    if (row.geo === geo) points.set(row.year, row.value);
+  }
+  return points;
+}
+
+function latestPoint(indicator: string, geo: string): { year: number; value: number } | null {
+  let latest: { year: number; value: number } | null = null;
+  for (const row of rowsFor(indicator)) {
+    if (row.geo === geo && (!latest || row.year > latest.year)) {
+      latest = { year: row.year, value: row.value };
+    }
+  }
+  return latest;
+}
+
+function formatValue(value: number): string {
+  return value.toLocaleString(lang === "fi" ? "fi-FI" : "en-GB", { maximumFractionDigits: 1 });
+}
+
+// ---- Controls -------------------------------------------------------------
 
 function applyLanguage(): void {
   document.documentElement.lang = lang;
-  el("title").textContent = t("title");
-  el("indicator-label").textContent = t("indicator");
-  el("footer-source").textContent = t("footerSource");
   document.title = t("title");
+  document.querySelectorAll<HTMLElement>("[data-i18n]").forEach((node) => {
+    node.textContent = t(node.dataset.i18n ?? "");
+  });
 
-  // Re-label dropdown options and keep the current selection.
+  // Re-label the indicator dropdown, keeping the current choice.
   const select = el<HTMLSelectElement>("indicator-select");
-  const current = select.value;
+  const current = select.value || INDICATOR_KEYS[0];
   select.innerHTML = "";
   for (const key of INDICATOR_KEYS) {
     const option = document.createElement("option");
@@ -52,69 +128,126 @@ function applyLanguage(): void {
     option.textContent = t(`indicators.${key}`);
     select.append(option);
   }
-  select.value = current || INDICATOR_KEYS[0];
+  select.value = current;
 
-  document.querySelectorAll<HTMLButtonElement>(".lang-switch button").forEach((button) => {
+  document.querySelectorAll<HTMLButtonElement>("[data-lang]").forEach((button) => {
     button.setAttribute("aria-pressed", String(button.dataset.lang === lang));
   });
 
-  renderChart();
+  renderPresets();
+  renderAll();
 }
 
-function seriesFor(indicator: string, geo: string, rows: DataRow[]): Map<number, number> {
-  const points = new Map<number, number>();
-  for (const row of rows) {
-    if (row.indicator === indicator && row.geo === geo) {
-      points.set(row.year, row.value);
-    }
+function renderPresets(): void {
+  const box = el("presets");
+  box.innerHTML = "";
+  for (const key of Object.keys(PRESETS)) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "chip";
+    button.textContent = t(`presetNames.${key}`);
+    button.addEventListener("click", () => {
+      const available = new Set(allGeos());
+      selected = PRESETS[key].filter((g) => available.has(g));
+      renderAll();
+    });
+    box.append(button);
   }
-  return points;
 }
 
-function renderChart(): void {
+function renderChips(): void {
+  const box = el("country-chips");
+  box.innerHTML = "";
+  for (const geo of allGeos()) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "chip";
+    button.dataset.geo = geo;
+    button.textContent = t(`countries.${geo}`);
+    button.setAttribute("aria-pressed", String(selected.includes(geo)));
+    button.addEventListener("click", () => {
+      selected = selected.includes(geo)
+        ? selected.filter((g) => g !== geo)
+        : [...selected, geo];
+      renderAll();
+    });
+    box.append(button);
+  }
+}
+
+// ---- Rendering ------------------------------------------------------------
+
+function renderAll(): void {
   if (!dataset) return;
 
-  const indicator = el<HTMLSelectElement>("indicator-select").value;
-  const rows = dataset.records;
+  renderChips();
+  document.querySelectorAll<HTMLButtonElement>("[data-view]").forEach((button) => {
+    button.setAttribute("aria-pressed", String(button.dataset.view === view));
+  });
+
   const statusEl = el("status");
   const noteEl = el("note");
-
-  // Union of years across the countries we show, sorted ascending.
-  const years = [
-    ...new Set(
-      rows.filter((r) => r.indicator === indicator).map((r) => r.year),
-    ),
-  ].sort((a, b) => a - b);
-
-  if (years.length === 0) {
-    statusEl.textContent = t("noData");
-    chart?.destroy();
-    chart = null;
-    return;
-  }
-  statusEl.textContent = "";
+  const geos = effectiveSelection();
+  const indicator = currentIndicator();
 
   const note = t(`notes.${indicator}`);
   noteEl.hidden = note.startsWith("notes.");
   noteEl.textContent = noteEl.hidden ? "" : note;
 
-  const datasets = COUNTRIES.map((geo) => {
-    const points = seriesFor(indicator, geo, rows);
-    const isFocus = geo === "FI";
+  if (geos.length === 0) {
+    statusEl.textContent = t("noCountries");
+    destroyChart();
+    el("table-wrap").hidden = true;
+    el("chart-wrap").hidden = true;
+    return;
+  }
+
+  // Too many lines for a readable chart: show the table instead.
+  const showTable = view === "table" || geos.length > CHART_MAX;
+  statusEl.textContent = view === "chart" && showTable ? t("tableNotice") : "";
+
+  if (showTable) {
+    destroyChart();
+    el("chart-wrap").hidden = true;
+    el("table-wrap").hidden = false;
+    renderTable(indicator, geos);
+  } else {
+    el("table-wrap").hidden = true;
+    el("chart-wrap").hidden = false;
+    renderChart(indicator, geos);
+  }
+}
+
+function destroyChart(): void {
+  chart?.destroy();
+  chart = null;
+}
+
+function renderChart(indicator: string, geos: string[]): void {
+  const years = [...new Set(rowsFor(indicator).map((r) => r.year))].sort((a, b) => a - b);
+  if (years.length === 0) {
+    el("status").textContent = t("noData");
+    destroyChart();
+    return;
+  }
+
+  const datasets = geos.map((geo) => {
+    const points = seriesFor(indicator, geo);
+    const isFocus = geo === FOCUS;
     return {
       label: t(`countries.${geo}`),
       data: years.map((y) => points.get(y) ?? null),
-      borderColor: COLORS[geo],
-      backgroundColor: COLORS[geo],
+      borderColor: colorFor(geo),
+      backgroundColor: colorFor(geo),
       borderWidth: isFocus ? 3.5 : 1.5,
-      borderDash: geo === "EU27_2020" ? [6, 4] : [],
+      borderDash: geo === AGGREGATE ? [6, 4] : [],
       pointRadius: isFocus ? 3 : 0,
       spanGaps: true,
       tension: 0.2,
     };
   });
 
-  chart?.destroy();
+  destroyChart();
   chart = new Chart(el<HTMLCanvasElement>("chart"), {
     type: "line",
     data: { labels: years.map(String), datasets },
@@ -130,20 +263,63 @@ function renderChart(): void {
   });
 }
 
+function renderTable(indicator: string, geos: string[]): void {
+  const wrap = el("table-wrap");
+  wrap.innerHTML = "";
+
+  const table = document.createElement("table");
+  const headRow = table.createTHead().insertRow();
+  for (const key of ["country", "year", "value", "rank"]) {
+    const th = document.createElement("th");
+    th.textContent = t(`columns.${key}`);
+    headRow.append(th);
+  }
+
+  const body = table.createTBody();
+  for (const geo of geos) {
+    const latest = latestPoint(indicator, geo);
+    const rank = latest ? dataset?.ranks[indicator]?.[geo]?.[String(latest.year)] : undefined;
+    const row = body.insertRow();
+    const cells = [
+      t(`countries.${geo}`),
+      latest ? String(latest.year) : "—",
+      latest ? formatValue(latest.value) : "—",
+      rank ? String(rank) : "—",
+    ];
+    for (const text of cells) {
+      row.insertCell().textContent = text;
+    }
+  }
+  wrap.append(table);
+}
+
+// ---- Startup --------------------------------------------------------------
+
 async function init(): Promise<void> {
   const statusEl = el("status");
   const select = el<HTMLSelectElement>("indicator-select");
 
-  // Default language: the saved choice, else Finnish if the browser prefers it.
+  // Saved language, else Finnish if the browser prefers it, else English.
   const saved = localStorage.getItem("lang");
-  lang = saved === "fi" || saved === "en" ? saved : navigator.language.startsWith("fi") ? "fi" : "en";
+  lang =
+    saved === "fi" || saved === "en"
+      ? saved
+      : navigator.language.startsWith("fi")
+        ? "fi"
+        : "en";
 
-  select.addEventListener("change", renderChart);
-  document.querySelectorAll<HTMLButtonElement>(".lang-switch button").forEach((button) => {
+  select.addEventListener("change", renderAll);
+  document.querySelectorAll<HTMLButtonElement>("[data-lang]").forEach((button) => {
     button.addEventListener("click", () => {
       lang = button.dataset.lang as Lang;
       localStorage.setItem("lang", lang);
       applyLanguage();
+    });
+  });
+  document.querySelectorAll<HTMLButtonElement>("[data-view]").forEach((button) => {
+    button.addEventListener("click", () => {
+      view = button.dataset.view as View;
+      renderAll();
     });
   });
 
@@ -161,7 +337,7 @@ async function init(): Promise<void> {
   }
 
   el("footer-updated").textContent = `${t("footerUpdated")}: ${dataset.updated}`;
-  renderChart();
+  renderAll();
 }
 
 init();

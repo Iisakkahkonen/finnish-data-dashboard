@@ -1,11 +1,31 @@
 {
   "title": "Suomi vs. EU: keskeiset indikaattorit",
   "indicator": "Indikaattori",
+  "countries": "Maat",
+  "presets": "Valmiit valinnat",
+  "view": "Näkymä",
+  "viewChart": "Kuvio",
+  "viewTable": "Taulukko",
   "loading": "Ladataan dataa…",
   "noData": "Tälle indikaattorille ei ole dataa.",
+  "noCountries": "Valitse vähintään yksi maa.",
+  "tableNotice": "Näytetään taulukko, koska kuvio on vaikea lukea yli 8 maan kanssa.",
   "loadError": "indicators.json-tiedoston lataaminen epäonnistui. Aja datan käsittelyskripti ensin.",
   "footerSource": "Lähde: Eurostat, lisenssi CC BY 4.0.",
   "footerUpdated": "Data haettu viimeksi",
+  "columns": {
+    "country": "Maa",
+    "year": "Viimeisin vuosi",
+    "value": "Viimeisin arvo",
+    "rank": "Sijoitus EU27:ssä"
+  },
+  "presetNames": {
+    "default": "Suomi ja vertailumaat",
+    "nordics": "Pohjoismaat",
+    "baltics": "Baltia",
+    "bigEu": "Suuret EU-maat",
+    "financeOnly": "Vain Suomi"
+  },
   "indicators": {
     "unemployment": "Työttömyysaste, 15–74-vuotiaat",
     "inflation": "Kuluttajahintojen inflaatio (HICP), vuosimuutos",
@@ -21,6 +41,16 @@
     "DK": "Tanska",
     "NO": "Norja",
     "AT": "Itävalta",
+    "IS": "Islanti",
+    "EE": "Viro",
+    "LV": "Latvia",
+    "LT": "Liettua",
+    "DE": "Saksa",
+    "FR": "Ranska",
+    "IT": "Italia",
+    "ES": "Espanja",
+    "NL": "Alankomaat",
+    "PL": "Puola",
     "EU27_2020": "EU27-keskiarvo"
   }
 }

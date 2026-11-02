@@ -1,11 +1,31 @@
 {
   "title": "Finland vs. EU: key indicators",
   "indicator": "Indicator",
+  "countries": "Countries",
+  "presets": "Presets",
+  "view": "View",
+  "viewChart": "Chart",
+  "viewTable": "Table",
   "loading": "Loading data…",
   "noData": "No data for this indicator.",
+  "noCountries": "Select at least one country.",
+  "tableNotice": "Showing a table, because the chart is hard to read with more than 8 countries.",
   "loadError": "Could not load indicators.json. Run the data pipeline first.",
   "footerSource": "Source: Eurostat, licensed under CC BY 4.0.",
   "footerUpdated": "Data last pulled",
+  "columns": {
+    "country": "Country",
+    "year": "Latest year",
+    "value": "Latest value",
+    "rank": "Rank among EU27"
+  },
+  "presetNames": {
+    "default": "Finland and peers",
+    "nordics": "Nordics",
+    "baltics": "Baltics",
+    "bigEu": "Big EU",
+    "financeOnly": "Finland only"
+  },
   "indicators": {
     "unemployment": "Unemployment rate, 15–74",
     "inflation": "HICP inflation, annual rate",
@@ -21,6 +41,16 @@
     "DK": "Denmark",
     "NO": "Norway",
     "AT": "Austria",
+    "IS": "Iceland",
+    "EE": "Estonia",
+    "LV": "Latvia",
+    "LT": "Lithuania",
+    "DE": "Germany",
+    "FR": "France",
+    "IT": "Italy",
+    "ES": "Spain",
+    "NL": "Netherlands",
+    "PL": "Poland",
     "EU27_2020": "EU27 average"
   }
 }
