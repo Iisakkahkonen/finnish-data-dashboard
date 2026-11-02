@@ -21,6 +21,11 @@
   box-sizing: border-box;
 }
 
+/* Make the hidden attribute win over class rules such as display: flex. */
+[hidden] {
+  display: none !important;
+}
+
 body {
   margin: 0;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
