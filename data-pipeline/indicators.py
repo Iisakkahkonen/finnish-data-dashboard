@@ -32,7 +32,10 @@ EU27 = [
     "SI", "ES", "SE",
 ]
 
-GEOS = sorted(set(EU27 + PEERS + [EU_AGGREGATE]))
+# Non-EU European countries pulled for comparison. Not part of the EU27 ranking.
+OTHER_EUROPEAN = ["IS"]
+
+GEOS = sorted(set(EU27 + PEERS + OTHER_EUROPEAN + [EU_AGGREGATE]))
 
 INDICATORS = [
     Indicator(
