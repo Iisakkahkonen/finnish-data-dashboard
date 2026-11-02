@@ -1,4 +1,4 @@
-import { Chart, registerables } from "chart.js";
+import { Chart, registerables, type Plugin } from "chart.js";
 import en from "./i18n/en.json";
 import fi from "./i18n/fi.json";
 import type { Dataset, DataRow } from "./types";
@@ -23,6 +23,8 @@ const PRESETS: Record<string, string[]> = {
 };
 
 const INDICATOR_KEYS = ["unemployment", "inflation", "gdp_per_capita", "at_risk_of_poverty"];
+// Indicators whose values are percentages, so they get a % sign when shown.
+const PERCENT_INDICATORS = ["unemployment", "inflation", "at_risk_of_poverty"];
 
 // Okabe-Ito colorblind-safe palette. Finland is always blue; the EU average is grey and dashed.
 const FOCUS_COLOR = "#0072B2";
@@ -101,9 +103,15 @@ function defaultYear(indicator: string, geos: string[], years: number[]): number
   return years[years.length - 1];
 }
 
-function formatValue(value: number): string {
+function formatValue(value: number, indicator?: string): string {
   if (!Number.isFinite(value)) return "—";
-  return value.toLocaleString(lang === "fi" ? "fi-FI" : "en-GB", { maximumFractionDigits: 1 });
+  const text = value.toLocaleString(lang === "fi" ? "fi-FI" : "en-GB", {
+    maximumFractionDigits: 2,
+  });
+  if (indicator && PERCENT_INDICATORS.includes(indicator)) {
+    return lang === "fi" ? `${text} %` : `${text}%`;
+  }
+  return text;
 }
 
 // ---- Colors and dashes ------------------------------------------------------
@@ -374,9 +382,28 @@ function renderBars(indicator: string, geos: string[]): void {
 
   if (bars.length === 0) return;
 
+  // Draws each bar's exact value just past its end.
+  const valueLabels: Plugin<"bar"> = {
+    id: "valueLabels",
+    afterDatasetsDraw(c: Chart<"bar">) {
+      const ctx = c.ctx;
+      const meta = c.getDatasetMeta(0);
+      ctx.save();
+      ctx.font = "600 13px system-ui, -apple-system, sans-serif";
+      ctx.fillStyle = getComputedStyle(document.body).color;
+      ctx.textAlign = "left";
+      ctx.textBaseline = "middle";
+      meta.data.forEach((element, index) => {
+        ctx.fillText(formatValue(bars[index].value, indicator), element.x + 6, element.y);
+      });
+      ctx.restore();
+    },
+  };
+
   el("chart-wrap").style.height = `${Math.max(420, bars.length * 26 + 80)}px`;
   chart = new Chart(el<HTMLCanvasElement>("chart"), {
     type: "bar",
+    plugins: [valueLabels],
     data: {
       labels: bars.map((bar) => t(`countries.${bar.geo}`)),
       datasets: [
@@ -393,6 +420,8 @@ function renderBars(indicator: string, geos: string[]): void {
       indexAxis: "y",
       responsive: true,
       maintainAspectRatio: false,
+      // Room on the right so the value labels fit inside the chart.
+      layout: { padding: { right: 72 } },
       plugins: {
         legend: { display: false },
         title: { display: true, text: `${t(`indicators.${indicator}`)} · ${year}` },
@@ -421,7 +450,7 @@ function renderTable(indicator: string, geos: string[]): void {
     const cells = [
       t(`countries.${geo}`),
       latest ? String(latest.year) : "—",
-      latest ? formatValue(latest.value) : "—",
+      latest ? formatValue(latest.value, indicator) : "—",
       rank ? String(rank) : "—",
     ];
     for (const text of cells) {
