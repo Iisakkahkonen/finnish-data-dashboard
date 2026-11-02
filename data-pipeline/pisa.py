@@ -28,6 +28,18 @@ ISO3_TO_GEO = {
     "ITA": "IT", "LVA": "LV", "LTU": "LT", "LUX": "LU", "MLT": "MT",
     "NLD": "NL", "NOR": "NO", "POL": "PL", "PRT": "PT", "ROU": "RO",
     "SVK": "SK", "SVN": "SI", "ESP": "ES", "SWE": "SE",
+    # Non-European countries that take PISA but are not in the Eurostat data.
+    "ALB": "AL", "DZA": "DZ", "ARG": "AR", "AUS": "AU", "AZE": "AZ", "BLR": "BY",
+    "BIH": "BA", "BRA": "BR", "BRN": "BN", "CAN": "CA", "CHL": "CL", "CHN": "CN",
+    "COL": "CO", "CRI": "CR", "DOM": "DO", "GEO": "GE", "HKG": "HK", "IDN": "ID",
+    "ISR": "IL", "JPN": "JP", "JOR": "JO", "KAZ": "KZ", "KOR": "KR", "XKX": "XK",
+    "KGZ": "KG", "LBN": "LB", "LIE": "LI", "MAC": "MO", "MYS": "MY", "MUS": "MU",
+    "MEX": "MX", "MDA": "MD", "MNE": "ME", "MAR": "MA", "NZL": "NZ", "MKD": "MK",
+    "PAN": "PA", "PER": "PE", "PHL": "PH", "QAT": "QA", "RUS": "RU", "SAU": "SA",
+    "SRB": "RS", "SGP": "SG", "CHE": "CH", "THA": "TH", "TTO": "TT", "TUN": "TN",
+    "TUR": "TR", "UKR": "UA", "ARE": "AE", "GBR": "GB", "USA": "US", "URY": "UY",
+    "VNM": "VN", "MNG": "MN", "UZB": "UZ", "GTM": "GT", "SLV": "SV", "PRY": "PY",
+    "KHM": "KH", "TWN": "TW", "PSE": "PS",
 }
 
 # The OECD average appears in the file as "OECD members" with this code.

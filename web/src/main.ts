@@ -137,9 +137,18 @@ function dashFor(geo: string): number[] {
 // ---- Country lists ----------------------------------------------------------
 
 // All countries in the data, Finland first, EU average last, the rest by name.
+const PISA_INDICATOR = "pisa_math";
+
 function allGeos(): string[] {
   if (!dataset) return [];
-  const geos = [...new Set(dataset.records.map((r) => r.geo))];
+  // Countries that only appear in PISA are listed only while PISA is selected.
+  const onlyPisa = currentIndicator() === PISA_INDICATOR;
+  const eurostatGeos = new Set(
+    dataset.records.filter((r) => r.indicator !== PISA_INDICATOR).map((r) => r.geo),
+  );
+  const geos = [...new Set(dataset.records.map((r) => r.geo))].filter(
+    (g) => onlyPisa || eurostatGeos.has(g),
+  );
   return geos.sort((a, b) => {
     if (a === FOCUS) return -1;
     if (b === FOCUS) return 1;
