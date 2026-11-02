@@ -224,5 +224,10 @@
   "scatterModerate": "kohtalainen",
   "scatterWeak": "heikko",
   "scatterPositive": "positiivinen",
-  "scatterNegative": "negatiivinen"
+  "scatterNegative": "negatiivinen",
+  "viewRank": "Sijoitus ajan yli",
+  "rankAxis": "Sijoitus EU27-maiden joukossa (1 = paras)",
+  "rankNoData": "Valituille maille ei ole EU27-sijoitusta. Sijoitus lasketaan vain EU:n jäsenvaltioille.",
+  "rankNoFinland": "Suomella ei ole sijoitusta tällä jaksolla.",
+  "rankSummary": "Vuonna {year} Suomi oli sijalla {rank} EU27-maiden joukossa (1 = paras). Paras sijoitus jaksolla oli {best} ({bestYear}) ja heikoin {worst} ({worstYear})."
 }

@@ -143,6 +143,20 @@ const check = (name, ok, detail = "") => { results.push([ok, name, detail]); };
   await page.click('[data-view="chart"]');
   check("compare control hides again in chart view", !(await page.isVisible("#compare-control")));
 
+  // 13. Rank over time
+  await page.goto(base + "#i=gini&c=FI,SE,DK,EU27_2020&v=rank&l=en");
+  await page.waitForSelector("#country-chips .chip");
+  const rk = await page.evaluate(() => { const c = window.__charts.at(-1); return { type: c.type, rev: c.options.scales.y.reverse, labels: c.data.datasets.map((d) => d.label) }; });
+  check("rank chart is a reversed line chart without the EU average", rk.type === "line" && rk.rev === true && rk.labels.includes("Finland") && !rk.labels.includes("EU27 average") && rk.labels.length === 3, JSON.stringify(rk));
+  check("rank summary names Finland's position", /Finland ranked \d+ among the EU27/.test(await page.textContent("#status")), await page.textContent("#status"));
+  check("range controls visible in rank view", await page.isVisible("#range-controls"));
+  [dl] = await Promise.all([page.waitForEvent("download"), page.click("#download-csv")]);
+  text = fs.readFileSync(await dl.path(), "utf8");
+  check("rank CSV includes the rank column", text.includes("eu27_rank") && dl.suggestedFilename().startsWith("finland-vs-eu_gini_"), dl.suggestedFilename());
+  await page.goto(base + "#i=pisa_math&c=JP,MN&v=rank&l=en");
+  await page.waitForSelector("#country-chips .chip");
+  check("rank view explains missing ranks for non-EU countries", (await page.textContent("#status")).includes("Ranks exist only for EU member states"), await page.textContent("#status"));
+
   check("no page or console errors", errors.length === 0, errors.join(" || "));
   await browser.close();
 

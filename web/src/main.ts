@@ -6,8 +6,8 @@ import type { Dataset, DataRow } from "./types";
 Chart.register(...registerables);
 
 type Lang = "en" | "fi";
-type View = "chart" | "table" | "gap" | "scatter";
-const VIEWS: View[] = ["chart", "table", "gap", "scatter"];
+type View = "chart" | "table" | "gap" | "scatter" | "rank";
+const VIEWS: View[] = ["chart", "table", "gap", "scatter", "rank"];
 const dictionaries = { en, fi } as const;
 
 // Above this many countries the line chart gets unreadable, so ranked bars are shown.
@@ -316,7 +316,7 @@ function renderAll(): void {
 
 // Table and ranked bars show one year at a time; lines show a range of years.
 function usesSingleYear(geos: string[]): boolean {
-  return view === "table" || geos.length > CHART_MAX;
+  return view === "table" || (view !== "rank" && geos.length > CHART_MAX);
 }
 
 function renderContent(): void {
@@ -344,6 +344,11 @@ function renderContent(): void {
 
   if (view === "scatter") {
     renderScatter(indicator, geos);
+    return;
+  }
+
+  if (view === "rank") {
+    renderRank(indicator, geos);
     return;
   }
 
@@ -938,6 +943,89 @@ function renderScatter(xKey: string, selectedGeos: string[]): void {
     r === null
       ? t("scatterTooFew").replace("{year}", String(year))
       : describeCorrelation(r, year, countries.length);
+}
+
+
+// ---- Rank over time ---------------------------------------------------------
+
+// EU27 rank per year for the selected countries (1 = best). Only EU27 members have ranks.
+function renderRank(indicator: string, selectedGeos: string[]): void {
+  const statusEl = el("status");
+  el("table-wrap").hidden = true;
+  const table = dataset?.ranks[indicator] ?? {};
+  const geos = [FOCUS, ...selectedGeos.filter((g) => g !== FOCUS)].filter(
+    (g) => selectedGeos.includes(g) && table[g] !== undefined,
+  );
+  const years = selectRange(indicator);
+  const rankOf = (geo: string, y: number): number | null => table[geo]?.[String(y)] ?? null;
+  const shown = years.filter((y) => geos.some((g) => rankOf(g, y) !== null));
+
+  if (geos.length === 0 || shown.length === 0) {
+    statusEl.textContent = t("rankNoData");
+    destroyChart();
+    el("chart-wrap").hidden = true;
+    updateRangeControls([], false);
+    return;
+  }
+
+  let worst = 1;
+  for (const g of geos) for (const y of shown) worst = Math.max(worst, rankOf(g, y) ?? 1);
+  worst = Math.max(worst, 27);
+
+  el("chart-wrap").hidden = false;
+  el("chart-wrap").style.height = "460px";
+  destroyChart();
+  chart = new Chart(el<HTMLCanvasElement>("chart"), {
+    type: "line",
+    data: {
+      labels: shown.map(String),
+      datasets: geos.map((geo) => ({
+        label: t(`countries.${geo}`),
+        data: shown.map((y) => rankOf(geo, y)),
+        borderColor: colorFor(geo),
+        backgroundColor: colorFor(geo),
+        borderWidth: geo === FOCUS ? 3.5 : 2.5,
+        borderDash: dashFor(geo),
+        pointRadius: geo === FOCUS ? 3 : 0,
+        spanGaps: true,
+      })),
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: "index", intersect: false },
+      plugins: {
+        legend: { position: "bottom" },
+        title: { display: true, text: `${t(`indicators.${indicator}`)} · ${t("rankAxis")}` },
+      },
+      scales: {
+        y: {
+          reverse: true,
+          min: 1,
+          max: worst,
+          ticks: { precision: 0 },
+          title: { display: true, text: t("rankAxis") },
+        },
+      },
+    },
+  });
+
+  const finland = shown.filter((y) => rankOf(FOCUS, y) !== null);
+  if (finland.length === 0) {
+    statusEl.textContent = t("rankNoFinland");
+    return;
+  }
+  const ranks = finland.map((y) => ({ year: y, rank: rankOf(FOCUS, y) as number }));
+  const latest = ranks[ranks.length - 1];
+  const best = ranks.reduce((a, b) => (b.rank < a.rank ? b : a));
+  const low = ranks.reduce((a, b) => (b.rank > a.rank ? b : a));
+  statusEl.textContent = t("rankSummary")
+    .replace("{year}", String(latest.year))
+    .replace("{rank}", String(latest.rank))
+    .replace("{best}", String(best.rank))
+    .replace("{bestYear}", String(best.year))
+    .replace("{worst}", String(low.rank))
+    .replace("{worstYear}", String(low.year));
 }
 
 // Puts the current choices into the address, so copying the address reproduces the view.

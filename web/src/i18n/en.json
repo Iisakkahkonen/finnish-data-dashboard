@@ -224,5 +224,10 @@
   "scatterModerate": "moderate",
   "scatterWeak": "weak",
   "scatterPositive": "positive",
-  "scatterNegative": "negative"
+  "scatterNegative": "negative",
+  "viewRank": "Rank over time",
+  "rankAxis": "Rank among the EU27 (1 = best)",
+  "rankNoData": "No EU27 rank is available for the selected countries. Ranks exist only for EU member states.",
+  "rankNoFinland": "Finland has no rank in this period.",
+  "rankSummary": "In {year} Finland ranked {rank} among the EU27 countries (1 = best). Its best rank in this period was {best} ({bestYear}) and its lowest {worst} ({worstYear})."
 }
