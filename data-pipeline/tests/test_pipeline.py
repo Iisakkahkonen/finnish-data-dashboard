@@ -125,3 +125,23 @@ def test_bundled_eurostat_csvs_load():
 
     income = load_raw_csv("median-income-pps.csv")
     assert all(r["value"] > 0 for r in income)
+
+
+def test_rank_by_distance_from_target():
+    rows = [
+        {"geo": "A", "time": "2024", "value": 2.2},
+        {"geo": "B", "time": "2024", "value": -0.5},
+        {"geo": "C", "time": "2024", "value": 1.9},
+        {"geo": "D", "time": "2024", "value": 6.0},
+    ]
+    ranks = rank_by_year(rows, higher_is_better=False, target=2.0)
+    assert [g for g, _ in sorted(ranks.items(), key=lambda kv: kv[1][2024])] == ["C", "A", "B", "D"]
+
+
+def test_pisa_subjects_start_where_their_scale_starts():
+    from pisa import load_pisa_rows
+
+    assert min(int(r["time"]) for r in load_pisa_rows("reading")) == 2000
+    assert min(int(r["time"]) for r in load_pisa_rows("mathematics")) == 2003
+    assert min(int(r["time"]) for r in load_pisa_rows("science")) == 2006
+

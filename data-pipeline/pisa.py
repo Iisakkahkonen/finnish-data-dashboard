@@ -46,9 +46,10 @@ ISO3_TO_GEO = {
 OECD_CODE = "OED"
 OECD_GEO = "OECD"
 
-# Mathematics was a major domain only from 2003 on. Earlier scores are not
-# comparable with the later rounds.
-FIRST_COMPARABLE_YEAR = 2003
+# Each subject's scale was fixed in the round where it was first the main
+# subject: reading in 2000, mathematics in 2003, science in 2006. Scores from
+# before that round are not on the same scale and are left out.
+FIRST_COMPARABLE_YEAR = {"reading": 2000, "mathematics": 2003, "science": 2006}
 
 
 def load_pisa_rows(subject: str = "mathematics") -> list[dict]:
@@ -60,7 +61,7 @@ def load_pisa_rows(subject: str = "mathematics") -> list[dict]:
                 if record["subject"] != subject:
                     continue
                 year = int(record["year"])
-                if year < FIRST_COMPARABLE_YEAR:
+                if year < FIRST_COMPARABLE_YEAR[subject]:
                     continue
 
                 code = record["country_code"]

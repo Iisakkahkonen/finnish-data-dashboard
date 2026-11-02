@@ -7,7 +7,7 @@ Pieni kojelauta, joka vertaa Suomea Pohjoismaihin, Baltiaan, Itävaltaan ja EU27
 
 ## Mitä sivu näyttää
 
-- **Indikaattorit:** työttömyysaste (15–74-vuotiaat), kuluttajahintojen inflaatio (HICP, vuosimuutos), BKT asukasta kohden PPS-yksiköissä (EU27 = 100), köyhyysriski (60 % kansallisesta mediaanitulosta), ekvivalentti mediaanitulo (PPS), elinajanodote syntyessä, tulojen Gini-kerroin sekä PISA-pistemäärät matematiikassa, lukutaidossa ja luonnontieteissä 15-vuotiaille (2003–2022).
+- **Indikaattorit:** työttömyysaste (15–74-vuotiaat), kuluttajahintojen inflaatio (HICP, vuosimuutos), BKT asukasta kohden PPS-yksiköissä (EU27 = 100), köyhyysriski (60 % kansallisesta mediaanitulosta), ekvivalentti mediaanitulo (PPS), elinajanodote syntyessä, tulojen Gini-kerroin sekä PISA-pistemäärät 15-vuotiaille matematiikassa (vuodesta 2003), lukutaidossa (vuodesta 2000) ja luonnontieteissä (vuodesta 2006) vuoteen 2022 asti.
 - **Maat:** Suomi, Ruotsi, Tanska, Norja, Itävalta, Islanti, muut EU27-maat ja EU27-keskiarvo. Voit valita mitä tahansa yhdistelmää tai käyttää valmista valintaa, kuten "Pohjoismaat" tai "Baltia".
 - **Kolme näkymää:**
   - Viivakuvio ajan yli enintään 8 maalle, jossa voit asettaa alku- ja loppuvuoden.
@@ -35,6 +35,7 @@ Eurostatin data päivitetään joka maanantai ja jokaisella muutoksella `main`-h
 
 ## Miten lukea kuvaajia
 
+- **Inflaatio** sijoitetaan sen mukaan, kuinka lähellä se on 2 %:a, joka on keskuspankkien tavallinen tavoite.
 - **Sijoitus** lasketaan vain EU27-jäsenmaiden kesken. Norja ja Islanti näkyvät vertailun vuoksi, mutta niitä ei sijoiteta.
 - **BKT asukasta kohden** on volyymi-indeksi, jossa EU27-keskiarvo on 100. Eurostatin mukaan tämä sarja on pääasiassa tarkoitettu maiden vertailuun keskenään, ei yhden maan kehityksen seuraamiseen ajan yli. Sivu näyttää tästä huomautuksen BKT-kuvaajien yhteydessä.
 - **Puuttuvia arvoja** ei täytetä. Jos maalla ei ole arvoa valitulle vuodelle, tilarivi kertoo sen.

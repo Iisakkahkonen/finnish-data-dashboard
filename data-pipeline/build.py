@@ -51,7 +51,7 @@ def build() -> dict:
         source_label = PISA_SOURCE if indicator.source == "pisa" else SOURCE
         records += to_records(rows, indicator.key, source_label, updated)
         eu_rows = [r for r in rows if r["geo"] in EU27_SET]
-        ranks[indicator.key] = rank_by_year(eu_rows, indicator.higher_is_better)
+        ranks[indicator.key] = rank_by_year(eu_rows, indicator.higher_is_better, indicator.target)
 
     return {"updated": updated, "source": SOURCE, "records": records, "ranks": ranks}
 

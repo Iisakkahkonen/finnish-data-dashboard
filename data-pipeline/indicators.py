@@ -1,9 +1,8 @@
 """Indicator definitions for the dashboard.
 
-Each entry maps a human-readable indicator to a Eurostat dataset and the
-filters that select one series. Dataset codes and dimension values below were
-written from memory and MUST be verified on the Eurostat website
-(https://ec.europa.eu/eurostat/databrowser) before the first real pull.
+Each entry maps a human-readable indicator to its source: a Eurostat dataset
+and the filters that select one series, or a bundled CSV in data-pipeline/raw/.
+Dataset codes and filters were checked in the Eurostat Data Browser.
 """
 
 from dataclasses import dataclass, field
@@ -17,6 +16,7 @@ class Indicator:
     dataset: str              # Eurostat dataset code
     filters: dict = field(default_factory=dict)  # dimension -> code
     higher_is_better: bool = True  # used for rank charts
+    target: float | None = None  # if set, rank by distance from this value instead
     unit_note: str = ""
     source: str = "eurostat"  # "eurostat" or "pisa" (bundled CSV, see pisa.py)
 
@@ -55,6 +55,7 @@ INDICATORS = [
         dataset="prc_hicp_aind",
         filters={"unit": "RCH_A_AVG", "coicop": "CP00"},
         higher_is_better=False,
+        target=2.0,  # central bank target; closest to 2% ranks first
         unit_note="% change on previous year",
     ),
         Indicator(

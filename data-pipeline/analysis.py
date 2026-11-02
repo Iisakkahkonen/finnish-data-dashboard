@@ -5,11 +5,14 @@ from __future__ import annotations
 from collections import defaultdict
 
 
-def rank_by_year(rows: list[dict], higher_is_better: bool) -> dict[str, dict[int, int]]:
+def rank_by_year(
+    rows: list[dict], higher_is_better: bool, target: float | None = None
+) -> dict[str, dict[int, int]]:
     """Rank each geo among the countries present in `rows`, per year.
 
     `rows` are dicts with keys 'geo', 'time' (year string), and 'value'.
-    Rank 1 is best. Returns {geo: {year: rank}}.
+    Rank 1 is best. If `target` is set, the value closest to it ranks first.
+    Returns {geo: {year: rank}}.
     """
     by_year: dict[str, list[tuple[str, float]]] = defaultdict(list)
     for row in rows:
@@ -17,7 +20,10 @@ def rank_by_year(rows: list[dict], higher_is_better: bool) -> dict[str, dict[int
 
     ranks: dict[str, dict[int, int]] = defaultdict(dict)
     for year, pairs in by_year.items():
-        ordered = sorted(pairs, key=lambda p: p[1], reverse=higher_is_better)
+        if target is not None:
+            ordered = sorted(pairs, key=lambda p: abs(p[1] - target))
+        else:
+            ordered = sorted(pairs, key=lambda p: p[1], reverse=higher_is_better)
         for position, (geo, _) in enumerate(ordered, start=1):
             ranks[geo][int(year)] = position
     return dict(ranks)

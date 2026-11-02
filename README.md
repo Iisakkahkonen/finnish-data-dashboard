@@ -7,7 +7,7 @@ A small dashboard comparing Finland with its Nordic and Baltic neighbours, Austr
 
 ## What it shows
 
-- **Indicators:** unemployment rate (15–74), HICP inflation, GDP per capita in PPS (EU27 = 100), the at-risk-of-poverty rate (60% of the national median), median equivalised net income (PPS), life expectancy at birth, the Gini coefficient of equivalised income, and PISA scores in mathematics, reading and science for 15-year-olds (2003 to 2022).
+- **Indicators:** unemployment rate (15–74), HICP inflation, GDP per capita in PPS (EU27 = 100), the at-risk-of-poverty rate (60% of the national median), median equivalised net income (PPS), life expectancy at birth, the Gini coefficient of equivalised income, and PISA scores for 15-year-olds in mathematics (from 2003), reading (from 2000) and science (from 2006), up to 2022.
 - **Countries:** Finland, Sweden, Denmark, Norway, Austria, Iceland, the other EU27 members, and the EU27 average. Pick any combination, or use a preset such as "Nordics" or "Baltics".
 - **Three views:**
   - A line chart over time for up to 8 countries, with a start and end year you can set.
@@ -35,6 +35,7 @@ The Eurostat data is refreshed every Monday and on every push to `main`. The pip
 
 ## How to read it
 
+- **Inflation** is ranked by distance from 2%, the usual central bank target, so the country closest to 2% ranks first.
 - **Rank** is calculated among the 27 EU members only. Norway and Iceland are shown for comparison but are not ranked.
 - **GDP per capita** is a volume index with the EU27 average set to 100. Eurostat says this series is mainly meant for comparing countries with each other, not for tracking one country over time. The dashboard shows a note with each GDP chart.
 - **Missing values** are skipped, not filled in. Where a country has no value for the chosen year, the status line names it.
