@@ -1,13 +1,13 @@
 # Suomi vs. EU: keskeiset indikaattorit
 
-Pieni kojelauta, joka vertaa Suomea Pohjoismaihin, Baltiaan, Itävaltaan ja EU27-keskiarvoon neljällä keskeisellä talous- ja yhteiskunnallisella indikaattorilla.
+Pieni kojelauta, joka vertaa Suomea Pohjoismaihin, Baltiaan, Itävaltaan ja EU27-keskiarvoon viidellä keskeisellä talous- ja yhteiskunnallisella indikaattorilla.
 
 **Julkinen sivu:** https://iisakkahkonen.github.io/finnish-data-dashboard/
 **In English:** [README.md](README.md)
 
 ## Mitä sivu näyttää
 
-- **Indikaattorit:** työttömyysaste (15–74-vuotiaat), kuluttajahintojen inflaatio (HICP, vuosimuutos), BKT asukasta kohden ostovoimakorjattuna (PPS, EU27 = 100) ja köyhyysriski (60 % kansallisesta mediaanitulosta).
+- **Indikaattorit:** työttömyysaste (15–74-vuotiaat), kuluttajahintojen inflaatio (HICP, vuosimuutos), BKT asukasta kohden ostovoimakorjattuna (PPS, EU27 = 100) köyhyysriski (60 % kansallisesta mediaanitulosta) ja PISA-matematiikan keskiarvot 15-vuotiaille (2003–2018).
 - **Maat:** Suomi, Ruotsi, Tanska, Norja, Itävalta, Islanti, muut EU27-maat ja EU27-keskiarvo. Voit valita mitä tahansa yhdistelmää tai käyttää valmista valintaa, kuten "Pohjoismaat" tai "Baltia".
 - **Kolme näkymää:**
   - Viivakuvio ajan yli enintään 8 maalle, jossa voit asettaa alku- ja loppuvuoden.
@@ -17,7 +17,7 @@ Pieni kojelauta, joka vertaa Suomea Pohjoismaihin, Baltiaan, Itävaltaan ja EU27
 
 ## Datalähteet
 
-Kaikki luvut ovat [Eurostatilta](https://ec.europa.eu/eurostat), ja ne tulevat seuraavista tietokannoista:
+Useimmat luvut ovat [Eurostatilta](https://ec.europa.eu/eurostat), ja ne tulevat seuraavista tietokannoista:
 
 | Indikaattori | Eurostatin tietokanta |
 |---|---|
@@ -26,7 +26,9 @@ Kaikki luvut ovat [Eurostatilta](https://ec.europa.eu/eurostat), ja ne tulevat s
 | BKT asukasta kohden PPS | `tec00114` |
 | Köyhyysriski | `ilc_li02` |
 
-Data päivitetään joka maanantai ja jokaisella muutoksella `main`-haaraan. Käsittelyskripti hakee uusimmat arvot ja rakentaa sivun uudelleen.
+PISA-tulokset tulevat OECD:n PISA-tuloksista, joita World Bank EdStats peilaa (CC BY 4.0). Ne ovat tiedostossa `data-pipeline/raw/pisa-scores.csv` ja kattavat vuodet 2003–2018. Vuoden 2022 kierros ei ole vielä mukana.
+
+Eurostatin data päivitetään joka maanantai ja jokaisella muutoksella `main`-haaraan. Käsittelyskripti hakee uusimmat arvot ja rakentaa sivun uudelleen.
 
 ## Miten lukea kuvaajia
 
@@ -34,6 +36,7 @@ Data päivitetään joka maanantai ja jokaisella muutoksella `main`-haaraan. Kä
 - **BKT asukasta kohden** on volyymi-indeksi, jossa EU27-keskiarvo on 100. Eurostatin mukaan tämä sarja on pääasiassa tarkoitettu maiden vertailuun keskenään, ei yhden maan kehityksen seuraamiseen ajan yli. Sivu näyttää tästä huomautuksen BKT-kuvaajien yhteydessä.
 - **Puuttuvia arvoja** ei täytetä. Jos maalla ei ole arvoa valitulle vuodelle, tilarivi kertoo sen.
 - **Köyhyysriski** on niiden ihmisten osuus, joiden tulot ovat alle 60 % kansallisesta mediaanitulosta.
+- **PISA** järjestetään kolmen vuoden välein. Vertailuun on OECD-keskiarvo, koska PISA ei tarjoa EU27-keskiarvoa.
 
 ## Käynnistys omalla koneella
 
@@ -69,3 +72,4 @@ web/                 Vite + TypeScript -sivusto, Chart.js, suomenkieliset ja eng
 
 - **Koodi:** [Apache License 2.0](LICENSE). Katso myös [NOTICE](NOTICE).
 - **Data:** © Eurostat, lisenssi [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Mainitse Eurostat, jos käytät lukuja uudelleen.
+- **PISA-data:** OECD:n PISA-tulokset World Bank EdStatsin kautta, lisenssi CC BY 4.0.

@@ -34,10 +34,12 @@
     "unemployment": "Unemployment rate, 15–74",
     "inflation": "HICP inflation, annual rate",
     "gdp_per_capita": "GDP per capita in PPS (EU27 = 100)",
-    "at_risk_of_poverty": "At-risk-of-poverty rate (60% of median)"
+    "at_risk_of_poverty": "At-risk-of-poverty rate (60% of median)",
+    "pisa_math": "PISA mathematics mean score (age 15)"
   },
   "notes": {
-    "gdp_per_capita": "Eurostat says this series is mainly for comparing countries with each other, not for comparing a country with its own past."
+    "gdp_per_capita": "Eurostat says this series is mainly for comparing countries with each other, not for comparing a country with its own past.",
+    "pisa_math": "PISA is held every three years. This data covers 2003 to 2018. The 2022 round is not included yet. The OECD average is shown for comparison; the EU27 average is not available for PISA."
   },
   "countries": {
     "FI": "Finland",
@@ -69,6 +71,7 @@
     "RO": "Romania",
     "SI": "Slovenia",
     "SK": "Slovakia",
+    "OECD": "OECD average",
     "EU27_2020": "EU27 average"
   }
 }

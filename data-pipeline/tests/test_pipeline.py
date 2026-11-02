@@ -67,6 +67,20 @@ def test_build_params_keeps_repeated_geo():
     assert ("geo", "FI") in params and ("geo", "SE") in params
 
 
+def test_pisa_loader_uses_comparable_years_and_known_codes():
+    from pisa import load_pisa_rows
+
+    rows = load_pisa_rows()
+    years = {int(r["time"]) for r in rows}
+    geos = {r["geo"] for r in rows}
+
+    assert min(years) == 2003 and max(years) == 2018  # no 2000, no 2022 yet
+    assert "FI" in geos and "SE" in geos and "OECD" in geos
+    assert all(len(g) == 2 or g == "OECD" for g in geos)  # no raw ISO3 codes leak through
+    finland_2003 = [r["value"] for r in rows if r["geo"] == "FI" and r["time"] == "2003"]
+    assert finland_2003 == [544.3]
+
+
 def test_to_records_shape():
     rows = [{"geo": "FI", "time": "2023", "value": 7.5}]
     records = to_records(rows, "unemployment", "Eurostat", "2026-11-02")

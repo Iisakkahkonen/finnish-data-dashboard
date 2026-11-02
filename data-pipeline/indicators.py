@@ -18,6 +18,7 @@ class Indicator:
     filters: dict = field(default_factory=dict)  # dimension -> code
     higher_is_better: bool = True  # used for rank charts
     unit_note: str = ""
+    source: str = "eurostat"  # "eurostat" or "pisa" (bundled CSV, see pisa.py)
 
 
 # Finland, peers, and the EU aggregate. Eurostat geo codes.
@@ -73,5 +74,15 @@ INDICATORS = [
         filters={"unit": "PC", "sex": "T", "age": "TOTAL", "rskpovth": "B_60"},
         higher_is_better=False,
         unit_note="% of population",
+    ),
+    Indicator(
+        key="pisa_math",
+        label_en="PISA mathematics mean score (age 15)",
+        label_fi="PISA-matematiikan keskiarvo (15-vuotiaat)",
+        dataset="",  # not used for PISA; data comes from raw/pisa-scores.csv
+        filters={},
+        higher_is_better=True,
+        unit_note="mean score on the PISA scale; 2003 to 2018 only",
+        source="pisa",
     ),
 ]

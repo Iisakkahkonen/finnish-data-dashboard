@@ -18,10 +18,12 @@ if __package__ in (None, ""):
 
 from analysis import rank_by_year, to_records  # noqa: E402
 from eurostat import fetch_indicator_rows  # noqa: E402
+from pisa import load_pisa_rows  # noqa: E402
 from indicators import EU27, GEOS, INDICATORS  # noqa: E402
 
 OUTPUT = Path(__file__).resolve().parent.parent / "data" / "indicators.json"
 SOURCE = "Eurostat"
+PISA_SOURCE = "OECD PISA via World Bank EdStats (CC BY 4.0)"
 EU27_SET = set(EU27)
 
 
@@ -31,14 +33,19 @@ def build() -> dict:
     ranks: dict[str, dict] = {}
 
     for indicator in INDICATORS:
-        print(f"Fetching {indicator.key} ({indicator.dataset})...", flush=True)
-        rows = fetch_indicator_rows(indicator.dataset, indicator.filters, GEOS)
+        if indicator.source == "pisa":
+            print(f"Reading {indicator.key} from bundled CSV...", flush=True)
+            rows = load_pisa_rows()
+        else:
+            print(f"Fetching {indicator.key} ({indicator.dataset})...", flush=True)
+            rows = fetch_indicator_rows(indicator.dataset, indicator.filters, GEOS)
         # Keep only annual values; the datasets used here are annual already.
         rows = [r for r in rows if "time" in r and len(r["time"]) == 4]
         if not rows:
             raise RuntimeError(f"No rows returned for {indicator.key}; check dataset codes")
 
-        records += to_records(rows, indicator.key, SOURCE, updated)
+        source_label = PISA_SOURCE if indicator.source == "pisa" else SOURCE
+        records += to_records(rows, indicator.key, source_label, updated)
         eu_rows = [r for r in rows if r["geo"] in EU27_SET]
         ranks[indicator.key] = rank_by_year(eu_rows, indicator.higher_is_better)
 

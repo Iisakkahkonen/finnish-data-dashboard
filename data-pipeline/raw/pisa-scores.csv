@@ -1,0 +1,1262 @@
+country_name,country_code,year,subject,mean_score
+Albania,ALB,2000,mathematics,381.0
+Albania,ALB,2000,reading,348.8
+Albania,ALB,2000,science,376.5
+Argentina,ARG,2000,mathematics,388.0
+Argentina,ARG,2000,reading,418.3
+Argentina,ARG,2000,science,396.2
+Australia,AUS,2000,mathematics,533.0
+Australia,AUS,2000,reading,528.3
+Australia,AUS,2000,science,527.5
+Austria,AUT,2000,mathematics,502.5
+Austria,AUT,2000,reading,507.0
+Austria,AUT,2000,science,504.7
+Belgium,BEL,2000,mathematics,520.0
+Belgium,BEL,2000,reading,507.1
+Belgium,BEL,2000,science,495.7
+Brazil,BRA,2000,mathematics,334.0
+Brazil,BRA,2000,reading,396.0
+Brazil,BRA,2000,science,375.2
+Bulgaria,BGR,2000,mathematics,430.0
+Bulgaria,BGR,2000,reading,430.4
+Bulgaria,BGR,2000,science,448.3
+Canada,CAN,2000,mathematics,533.0
+Canada,CAN,2000,reading,534.3
+Canada,CAN,2000,science,529.4
+Chile,CHL,2000,mathematics,384.0
+Chile,CHL,2000,reading,409.6
+Chile,CHL,2000,science,414.9
+Czechia,CZE,2000,mathematics,498.0
+Czechia,CZE,2000,reading,491.6
+Czechia,CZE,2000,science,511.4
+Denmark,DNK,2000,mathematics,514.0
+Denmark,DNK,2000,reading,496.9
+Denmark,DNK,2000,science,481.0
+Finland,FIN,2000,mathematics,536.0
+Finland,FIN,2000,reading,546.5
+Finland,FIN,2000,science,537.7
+France,FRA,2000,mathematics,517.0
+France,FRA,2000,reading,504.7
+France,FRA,2000,science,500.5
+Germany,DEU,2000,mathematics,490.0
+Germany,DEU,2000,reading,484.0
+Germany,DEU,2000,science,487.1
+Greece,GRC,2000,mathematics,447.0
+Greece,GRC,2000,reading,473.8
+Greece,GRC,2000,science,460.6
+"Hong Kong SAR, China",HKG,2000,mathematics,560.0
+"Hong Kong SAR, China",HKG,2000,reading,525.5
+"Hong Kong SAR, China",HKG,2000,science,540.8
+Hungary,HUN,2000,mathematics,488.0
+Hungary,HUN,2000,reading,480.0
+Hungary,HUN,2000,science,496.1
+Iceland,ISL,2000,mathematics,514.0
+Iceland,ISL,2000,reading,506.9
+Iceland,ISL,2000,science,495.9
+Indonesia,IDN,2000,mathematics,367.0
+Indonesia,IDN,2000,reading,370.6
+Indonesia,IDN,2000,science,393.3
+Ireland,IRL,2000,mathematics,503.0
+Ireland,IRL,2000,reading,526.7
+Ireland,IRL,2000,science,513.4
+Israel,ISR,2000,mathematics,433.0
+Israel,ISR,2000,reading,452.2
+Israel,ISR,2000,science,434.1
+Italy,ITA,2000,mathematics,457.0
+Italy,ITA,2000,reading,487.5
+Italy,ITA,2000,science,477.6
+Japan,JPN,2000,mathematics,557.0
+Japan,JPN,2000,reading,522.2
+Japan,JPN,2000,science,550.4
+"Korea, Rep.",KOR,2000,mathematics,547.0
+"Korea, Rep.",KOR,2000,reading,524.8
+"Korea, Rep.",KOR,2000,science,552.1
+Latvia,LVA,2000,mathematics,463.0
+Latvia,LVA,2000,reading,458.1
+Latvia,LVA,2000,science,460.1
+Liechtenstein,LIE,2000,mathematics,514.0
+Liechtenstein,LIE,2000,reading,482.6
+Liechtenstein,LIE,2000,science,476.1
+Luxembourg,LUX,2000,mathematics,446.0
+Luxembourg,LUX,2000,reading,441.0
+Luxembourg,LUX,2000,science,443.1
+Mexico,MEX,2000,mathematics,387.0
+Mexico,MEX,2000,reading,422.0
+Mexico,MEX,2000,science,421.5
+New Zealand,NZL,2000,mathematics,537.0
+New Zealand,NZL,2000,reading,528.8
+New Zealand,NZL,2000,science,527.7
+North Macedonia,MKD,2000,mathematics,381.0
+North Macedonia,MKD,2000,reading,373.0
+North Macedonia,MKD,2000,science,400.7
+Norway,NOR,2000,mathematics,499.0
+Norway,NOR,2000,reading,505.3
+Norway,NOR,2000,science,500.3
+Peru,PER,2000,mathematics,292.0
+Peru,PER,2000,reading,327.1
+Peru,PER,2000,science,333.3
+Poland,POL,2000,mathematics,470.0
+Poland,POL,2000,reading,479.1
+Poland,POL,2000,science,483.1
+Portugal,PRT,2000,mathematics,454.0
+Portugal,PRT,2000,reading,470.2
+Portugal,PRT,2000,science,459.0
+Romania,ROU,2000,mathematics,426.0
+Romania,ROU,2000,reading,427.9
+Romania,ROU,2000,science,441.0
+Russian Federation,RUS,2000,mathematics,478.0
+Russian Federation,RUS,2000,reading,461.8
+Russian Federation,RUS,2000,science,460.3
+Spain,ESP,2000,mathematics,476.0
+Spain,ESP,2000,reading,492.6
+Spain,ESP,2000,science,490.9
+Sweden,SWE,2000,mathematics,510.0
+Sweden,SWE,2000,reading,516.3
+Sweden,SWE,2000,science,512.1
+Switzerland,CHE,2000,mathematics,529.0
+Switzerland,CHE,2000,reading,494.4
+Switzerland,CHE,2000,science,495.7
+Thailand,THA,2000,mathematics,432.0
+Thailand,THA,2000,reading,430.7
+Thailand,THA,2000,science,436.4
+United Kingdom,GBR,2000,mathematics,529.0
+United Kingdom,GBR,2000,reading,523.0
+United Kingdom,GBR,2000,science,532.0
+United States,USA,2000,mathematics,493.0
+United States,USA,2000,reading,504.4
+United States,USA,2000,science,499.5
+Australia,AUS,2003,mathematics,524.3
+Australia,AUS,2003,reading,525.4
+Australia,AUS,2003,science,525.1
+Austria,AUT,2003,mathematics,505.6
+Austria,AUT,2003,reading,490.7
+Austria,AUT,2003,science,491.0
+Belgium,BEL,2003,mathematics,529.3
+Belgium,BEL,2003,reading,507.0
+Belgium,BEL,2003,science,508.8
+Brazil,BRA,2003,mathematics,356.0
+Brazil,BRA,2003,reading,402.8
+Brazil,BRA,2003,science,389.6
+Canada,CAN,2003,mathematics,532.5
+Canada,CAN,2003,reading,527.9
+Canada,CAN,2003,science,518.7
+Czechia,CZE,2003,mathematics,516.5
+Czechia,CZE,2003,reading,488.5
+Czechia,CZE,2003,science,523.3
+Denmark,DNK,2003,mathematics,514.3
+Denmark,DNK,2003,reading,492.3
+Denmark,DNK,2003,science,475.2
+Finland,FIN,2003,mathematics,544.3
+Finland,FIN,2003,reading,543.5
+Finland,FIN,2003,science,548.2
+France,FRA,2003,mathematics,510.8
+France,FRA,2003,reading,496.2
+France,FRA,2003,science,511.2
+Germany,DEU,2003,mathematics,503.0
+Germany,DEU,2003,reading,491.4
+Germany,DEU,2003,science,502.3
+Greece,GRC,2003,mathematics,444.9
+Greece,GRC,2003,reading,472.3
+Greece,GRC,2003,science,481.0
+"Hong Kong SAR, China",HKG,2003,mathematics,550.4
+"Hong Kong SAR, China",HKG,2003,reading,509.5
+"Hong Kong SAR, China",HKG,2003,science,539.5
+Hungary,HUN,2003,mathematics,490.0
+Hungary,HUN,2003,reading,481.9
+Hungary,HUN,2003,science,503.3
+Iceland,ISL,2003,mathematics,515.1
+Iceland,ISL,2003,reading,491.7
+Iceland,ISL,2003,science,494.7
+Indonesia,IDN,2003,mathematics,360.2
+Indonesia,IDN,2003,reading,381.6
+Indonesia,IDN,2003,science,395.0
+Ireland,IRL,2003,mathematics,502.8
+Ireland,IRL,2003,reading,515.5
+Ireland,IRL,2003,science,505.4
+Italy,ITA,2003,mathematics,465.7
+Italy,ITA,2003,reading,475.7
+Italy,ITA,2003,science,486.5
+Japan,JPN,2003,mathematics,534.1
+Japan,JPN,2003,reading,498.1
+Japan,JPN,2003,science,547.6
+"Korea, Rep.",KOR,2003,mathematics,542.2
+"Korea, Rep.",KOR,2003,reading,534.1
+"Korea, Rep.",KOR,2003,science,538.4
+Latvia,LVA,2003,mathematics,483.4
+Latvia,LVA,2003,reading,490.6
+Latvia,LVA,2003,science,489.1
+Liechtenstein,LIE,2003,mathematics,535.8
+Liechtenstein,LIE,2003,reading,525.1
+Liechtenstein,LIE,2003,science,525.2
+Luxembourg,LUX,2003,mathematics,493.2
+Luxembourg,LUX,2003,reading,479.4
+Luxembourg,LUX,2003,science,482.8
+"Macao SAR, China",MAC,2003,mathematics,527.3
+"Macao SAR, China",MAC,2003,reading,497.6
+"Macao SAR, China",MAC,2003,science,524.7
+Mexico,MEX,2003,mathematics,385.2
+Mexico,MEX,2003,reading,399.7
+Mexico,MEX,2003,science,404.9
+Netherlands,NLD,2003,mathematics,537.8
+Netherlands,NLD,2003,reading,513.1
+Netherlands,NLD,2003,science,524.4
+New Zealand,NZL,2003,mathematics,523.5
+New Zealand,NZL,2003,reading,521.6
+New Zealand,NZL,2003,science,520.9
+Norway,NOR,2003,mathematics,495.2
+Norway,NOR,2003,reading,499.7
+Norway,NOR,2003,science,484.2
+Poland,POL,2003,mathematics,490.2
+Poland,POL,2003,reading,496.6
+Poland,POL,2003,science,497.8
+Portugal,PRT,2003,mathematics,466.0
+Portugal,PRT,2003,reading,477.6
+Portugal,PRT,2003,science,467.7
+Russian Federation,RUS,2003,mathematics,468.4
+Russian Federation,RUS,2003,reading,442.2
+Russian Federation,RUS,2003,science,489.3
+Serbia,SRB,2003,mathematics,436.9
+Serbia,SRB,2003,reading,411.7
+Serbia,SRB,2003,science,436.4
+Slovak Republic,SVK,2003,mathematics,498.2
+Slovak Republic,SVK,2003,reading,469.2
+Slovak Republic,SVK,2003,science,494.9
+Spain,ESP,2003,mathematics,485.1
+Spain,ESP,2003,reading,480.5
+Spain,ESP,2003,science,487.1
+Sweden,SWE,2003,mathematics,509.0
+Sweden,SWE,2003,reading,514.3
+Sweden,SWE,2003,science,506.1
+Switzerland,CHE,2003,mathematics,526.6
+Switzerland,CHE,2003,reading,499.1
+Switzerland,CHE,2003,science,513.0
+Thailand,THA,2003,mathematics,417.0
+Thailand,THA,2003,reading,419.9
+Thailand,THA,2003,science,429.1
+Tunisia,TUN,2003,mathematics,358.7
+Tunisia,TUN,2003,reading,374.6
+Tunisia,TUN,2003,science,384.7
+Turkiye,TUR,2003,mathematics,423.4
+Turkiye,TUR,2003,reading,441.0
+Turkiye,TUR,2003,science,434.2
+United Kingdom,GBR,2003,mathematics,508.3
+United Kingdom,GBR,2003,reading,507.0
+United Kingdom,GBR,2003,science,518.4
+United States,USA,2003,mathematics,482.9
+United States,USA,2003,reading,495.2
+United States,USA,2003,science,491.3
+Uruguay,URY,2003,mathematics,422.2
+Uruguay,URY,2003,reading,434.1
+Uruguay,URY,2003,science,438.4
+Argentina,ARG,2006,mathematics,381.3
+Argentina,ARG,2006,reading,373.7
+Argentina,ARG,2006,science,391.2
+Australia,AUS,2006,mathematics,519.9
+Australia,AUS,2006,reading,512.9
+Australia,AUS,2006,science,526.9
+Austria,AUT,2006,mathematics,505.5
+Austria,AUT,2006,reading,490.2
+Austria,AUT,2006,science,510.8
+Azerbaijan,AZE,2006,mathematics,476.0
+Azerbaijan,AZE,2006,reading,352.9
+Azerbaijan,AZE,2006,science,382.3
+Belgium,BEL,2006,mathematics,520.3
+Belgium,BEL,2006,reading,500.9
+Belgium,BEL,2006,science,510.4
+Brazil,BRA,2006,mathematics,369.5
+Brazil,BRA,2006,reading,392.9
+Brazil,BRA,2006,science,390.3
+Bulgaria,BGR,2006,mathematics,413.4
+Bulgaria,BGR,2006,reading,401.9
+Bulgaria,BGR,2006,science,434.1
+Canada,CAN,2006,mathematics,527.0
+Canada,CAN,2006,reading,527.0
+Canada,CAN,2006,science,534.5
+Chile,CHL,2006,mathematics,411.4
+Chile,CHL,2006,reading,442.1
+Chile,CHL,2006,science,438.2
+Colombia,COL,2006,mathematics,370.0
+Colombia,COL,2006,reading,385.3
+Colombia,COL,2006,science,388.0
+Croatia,HRV,2006,mathematics,467.2
+Croatia,HRV,2006,reading,477.4
+Croatia,HRV,2006,science,493.2
+Czechia,CZE,2006,mathematics,509.9
+Czechia,CZE,2006,reading,482.7
+Czechia,CZE,2006,science,512.9
+Denmark,DNK,2006,mathematics,513.0
+Denmark,DNK,2006,reading,494.5
+Denmark,DNK,2006,science,495.9
+Estonia,EST,2006,mathematics,514.6
+Estonia,EST,2006,reading,500.7
+Estonia,EST,2006,science,531.4
+Finland,FIN,2006,mathematics,548.4
+Finland,FIN,2006,reading,546.9
+Finland,FIN,2006,science,563.3
+France,FRA,2006,mathematics,495.5
+France,FRA,2006,reading,487.7
+France,FRA,2006,science,495.2
+Germany,DEU,2006,mathematics,503.8
+Germany,DEU,2006,reading,494.9
+Germany,DEU,2006,science,515.6
+Greece,GRC,2006,mathematics,459.2
+Greece,GRC,2006,reading,459.7
+Greece,GRC,2006,science,473.4
+"Hong Kong SAR, China",HKG,2006,mathematics,547.5
+"Hong Kong SAR, China",HKG,2006,reading,536.1
+"Hong Kong SAR, China",HKG,2006,science,542.2
+Hungary,HUN,2006,mathematics,490.9
+Hungary,HUN,2006,reading,482.4
+Hungary,HUN,2006,science,503.9
+Iceland,ISL,2006,mathematics,505.5
+Iceland,ISL,2006,reading,484.4
+Iceland,ISL,2006,science,490.8
+Indonesia,IDN,2006,mathematics,391.0
+Indonesia,IDN,2006,reading,392.9
+Indonesia,IDN,2006,science,393.5
+Ireland,IRL,2006,mathematics,501.5
+Ireland,IRL,2006,reading,517.3
+Ireland,IRL,2006,science,508.3
+Israel,ISR,2006,mathematics,441.9
+Israel,ISR,2006,reading,438.7
+Israel,ISR,2006,science,453.9
+Italy,ITA,2006,mathematics,461.7
+Italy,ITA,2006,reading,468.5
+Italy,ITA,2006,science,475.4
+Japan,JPN,2006,mathematics,523.1
+Japan,JPN,2006,reading,498.0
+Japan,JPN,2006,science,531.4
+Jordan,JOR,2006,mathematics,384.0
+Jordan,JOR,2006,reading,400.6
+Jordan,JOR,2006,science,422.0
+"Korea, Rep.",KOR,2006,mathematics,547.5
+"Korea, Rep.",KOR,2006,reading,556.0
+"Korea, Rep.",KOR,2006,science,522.1
+Kyrgyz Republic,KGZ,2006,mathematics,310.6
+Kyrgyz Republic,KGZ,2006,reading,284.7
+Kyrgyz Republic,KGZ,2006,science,322.0
+Latvia,LVA,2006,mathematics,486.2
+Latvia,LVA,2006,reading,479.5
+Latvia,LVA,2006,science,489.5
+Liechtenstein,LIE,2006,mathematics,525.0
+Liechtenstein,LIE,2006,reading,510.4
+Liechtenstein,LIE,2006,science,522.2
+Lithuania,LTU,2006,mathematics,486.4
+Lithuania,LTU,2006,reading,470.1
+Lithuania,LTU,2006,science,488.0
+Luxembourg,LUX,2006,mathematics,490.0
+Luxembourg,LUX,2006,reading,479.4
+Luxembourg,LUX,2006,science,486.3
+"Macao SAR, China",MAC,2006,mathematics,525.0
+"Macao SAR, China",MAC,2006,reading,492.3
+"Macao SAR, China",MAC,2006,science,510.8
+Mexico,MEX,2006,mathematics,405.7
+Mexico,MEX,2006,reading,410.5
+Mexico,MEX,2006,science,409.7
+Montenegro,MNE,2006,mathematics,399.3
+Montenegro,MNE,2006,reading,392.0
+Montenegro,MNE,2006,science,411.8
+Netherlands,NLD,2006,mathematics,530.7
+Netherlands,NLD,2006,reading,506.7
+Netherlands,NLD,2006,science,524.9
+New Zealand,NZL,2006,mathematics,522.0
+New Zealand,NZL,2006,reading,521.0
+New Zealand,NZL,2006,science,530.4
+Norway,NOR,2006,mathematics,489.8
+Norway,NOR,2006,reading,484.3
+Norway,NOR,2006,science,486.5
+Poland,POL,2006,mathematics,495.4
+Poland,POL,2006,reading,507.6
+Poland,POL,2006,science,497.8
+Portugal,PRT,2006,mathematics,466.2
+Portugal,PRT,2006,reading,472.3
+Portugal,PRT,2006,science,474.3
+Qatar,QAT,2006,mathematics,318.0
+Qatar,QAT,2006,reading,312.2
+Qatar,QAT,2006,science,349.3
+Romania,ROU,2006,mathematics,414.8
+Romania,ROU,2006,reading,395.9
+Romania,ROU,2006,science,418.4
+Russian Federation,RUS,2006,mathematics,475.7
+Russian Federation,RUS,2006,reading,439.9
+Russian Federation,RUS,2006,science,479.5
+Serbia,SRB,2006,mathematics,435.4
+Serbia,SRB,2006,reading,401.0
+Serbia,SRB,2006,science,435.6
+Slovak Republic,SVK,2006,mathematics,492.1
+Slovak Republic,SVK,2006,reading,466.3
+Slovak Republic,SVK,2006,science,488.4
+Slovenia,SVN,2006,mathematics,504.5
+Slovenia,SVN,2006,reading,494.4
+Slovenia,SVN,2006,science,518.8
+Spain,ESP,2006,mathematics,480.0
+Spain,ESP,2006,reading,460.8
+Spain,ESP,2006,science,488.4
+Sweden,SWE,2006,mathematics,502.4
+Sweden,SWE,2006,reading,507.3
+Sweden,SWE,2006,science,503.3
+Switzerland,CHE,2006,mathematics,529.7
+Switzerland,CHE,2006,reading,499.3
+Switzerland,CHE,2006,science,511.5
+Thailand,THA,2006,mathematics,417.1
+Thailand,THA,2006,reading,416.8
+Thailand,THA,2006,science,421.0
+Tunisia,TUN,2006,mathematics,365.5
+Tunisia,TUN,2006,reading,380.3
+Tunisia,TUN,2006,science,385.5
+Turkiye,TUR,2006,mathematics,423.9
+Turkiye,TUR,2006,reading,447.1
+Turkiye,TUR,2006,science,423.8
+United Kingdom,GBR,2006,mathematics,495.4
+United Kingdom,GBR,2006,reading,495.1
+United Kingdom,GBR,2006,science,514.8
+United States,USA,2006,mathematics,474.4
+United States,USA,2006,science,488.9
+Uruguay,URY,2006,mathematics,426.8
+Uruguay,URY,2006,reading,412.5
+Uruguay,URY,2006,science,428.1
+Albania,ALB,2009,mathematics,377.5
+Albania,ALB,2009,reading,384.8
+Albania,ALB,2009,science,390.7
+Argentina,ARG,2009,mathematics,388.1
+Argentina,ARG,2009,reading,398.3
+Argentina,ARG,2009,science,400.8
+Australia,AUS,2009,mathematics,514.3
+Australia,AUS,2009,reading,514.9
+Australia,AUS,2009,science,527.3
+Austria,AUT,2009,mathematics,495.9
+Austria,AUT,2009,reading,470.3
+Austria,AUT,2009,science,494.3
+Azerbaijan,AZE,2009,mathematics,431.0
+Azerbaijan,AZE,2009,reading,361.5
+Azerbaijan,AZE,2009,science,373.2
+Belgium,BEL,2009,mathematics,515.3
+Belgium,BEL,2009,reading,505.9
+Belgium,BEL,2009,science,506.6
+Brazil,BRA,2009,mathematics,385.8
+Brazil,BRA,2009,reading,411.8
+Brazil,BRA,2009,science,405.4
+Bulgaria,BGR,2009,mathematics,428.1
+Bulgaria,BGR,2009,reading,429.1
+Bulgaria,BGR,2009,science,439.3
+Canada,CAN,2009,mathematics,526.8
+Canada,CAN,2009,reading,524.2
+Canada,CAN,2009,science,528.7
+Chile,CHL,2009,mathematics,421.1
+Chile,CHL,2009,reading,449.4
+Chile,CHL,2009,science,447.5
+China,CHN,2009,mathematics,600.1
+China,CHN,2009,reading,555.8
+China,CHN,2009,science,574.6
+Colombia,COL,2009,mathematics,380.8
+Colombia,COL,2009,reading,413.2
+Colombia,COL,2009,science,401.8
+Costa Rica,CRI,2009,mathematics,409.4
+Costa Rica,CRI,2009,reading,442.6
+Costa Rica,CRI,2009,science,430.5
+Croatia,HRV,2009,mathematics,459.9
+Croatia,HRV,2009,reading,475.7
+Croatia,HRV,2009,science,486.4
+Czechia,CZE,2009,mathematics,492.8
+Czechia,CZE,2009,reading,478.2
+Czechia,CZE,2009,science,500.5
+Denmark,DNK,2009,mathematics,503.3
+Denmark,DNK,2009,reading,494.9
+Denmark,DNK,2009,science,499.3
+Estonia,EST,2009,mathematics,512.1
+Estonia,EST,2009,reading,501.0
+Estonia,EST,2009,science,527.8
+Finland,FIN,2009,mathematics,540.5
+Finland,FIN,2009,reading,535.9
+Finland,FIN,2009,science,554.1
+France,FRA,2009,mathematics,496.8
+France,FRA,2009,reading,495.6
+France,FRA,2009,science,498.2
+Georgia,GEO,2009,mathematics,379.5
+Georgia,GEO,2009,reading,374.3
+Georgia,GEO,2009,science,372.7
+Germany,DEU,2009,mathematics,512.8
+Germany,DEU,2009,reading,497.3
+Germany,DEU,2009,science,520.4
+Greece,GRC,2009,mathematics,466.1
+Greece,GRC,2009,reading,482.8
+Greece,GRC,2009,science,470.1
+"Hong Kong SAR, China",HKG,2009,mathematics,554.5
+"Hong Kong SAR, China",HKG,2009,reading,533.2
+"Hong Kong SAR, China",HKG,2009,science,549.0
+Hungary,HUN,2009,mathematics,490.2
+Hungary,HUN,2009,reading,494.2
+Hungary,HUN,2009,science,502.6
+Iceland,ISL,2009,mathematics,506.7
+Iceland,ISL,2009,reading,500.3
+Iceland,ISL,2009,science,495.6
+Indonesia,IDN,2009,mathematics,371.3
+Indonesia,IDN,2009,reading,401.7
+Indonesia,IDN,2009,science,382.6
+Ireland,IRL,2009,mathematics,487.1
+Ireland,IRL,2009,reading,495.6
+Ireland,IRL,2009,science,508.0
+Israel,ISR,2009,mathematics,446.9
+Israel,ISR,2009,reading,474.0
+Israel,ISR,2009,science,454.9
+Italy,ITA,2009,mathematics,482.9
+Italy,ITA,2009,reading,486.1
+Italy,ITA,2009,science,488.8
+Japan,JPN,2009,mathematics,529.0
+Japan,JPN,2009,reading,519.9
+Japan,JPN,2009,science,539.4
+Jordan,JOR,2009,mathematics,386.7
+Jordan,JOR,2009,reading,405.0
+Jordan,JOR,2009,science,415.4
+Kazakhstan,KAZ,2009,mathematics,404.9
+Kazakhstan,KAZ,2009,reading,390.4
+Kazakhstan,KAZ,2009,science,400.4
+"Korea, Rep.",KOR,2009,mathematics,546.2
+"Korea, Rep.",KOR,2009,reading,539.3
+"Korea, Rep.",KOR,2009,science,538.0
+Kyrgyz Republic,KGZ,2009,mathematics,331.2
+Kyrgyz Republic,KGZ,2009,reading,314.0
+Kyrgyz Republic,KGZ,2009,science,329.5
+Latvia,LVA,2009,mathematics,482.0
+Latvia,LVA,2009,reading,484.0
+Latvia,LVA,2009,science,493.9
+Liechtenstein,LIE,2009,mathematics,536.0
+Liechtenstein,LIE,2009,reading,499.3
+Liechtenstein,LIE,2009,science,519.9
+Lithuania,LTU,2009,mathematics,476.6
+Lithuania,LTU,2009,reading,468.4
+Lithuania,LTU,2009,science,491.4
+Luxembourg,LUX,2009,mathematics,489.1
+Luxembourg,LUX,2009,reading,472.2
+Luxembourg,LUX,2009,science,483.9
+"Macao SAR, China",MAC,2009,mathematics,525.3
+"Macao SAR, China",MAC,2009,reading,486.6
+"Macao SAR, China",MAC,2009,science,511.1
+Malaysia,MYS,2009,mathematics,404.3
+Malaysia,MYS,2009,reading,413.8
+Malaysia,MYS,2009,science,422.2
+Malta,MLT,2009,mathematics,462.9
+Malta,MLT,2009,reading,442.1
+Malta,MLT,2009,science,461.3
+Mauritius,MUS,2009,mathematics,420.0
+Mauritius,MUS,2009,reading,406.6
+Mauritius,MUS,2009,science,417.2
+Mexico,MEX,2009,mathematics,418.5
+Mexico,MEX,2009,reading,425.3
+Mexico,MEX,2009,science,415.9
+Moldova,MDA,2009,mathematics,397.5
+Moldova,MDA,2009,reading,388.1
+Moldova,MDA,2009,science,412.8
+Montenegro,MNE,2009,mathematics,402.5
+Montenegro,MNE,2009,reading,407.5
+Montenegro,MNE,2009,science,401.3
+Netherlands,NLD,2009,mathematics,525.8
+Netherlands,NLD,2009,reading,508.4
+Netherlands,NLD,2009,science,522.2
+New Zealand,NZL,2009,mathematics,519.3
+New Zealand,NZL,2009,reading,520.9
+New Zealand,NZL,2009,science,532.0
+Norway,NOR,2009,mathematics,498.0
+Norway,NOR,2009,reading,503.2
+Norway,NOR,2009,science,499.9
+Panama,PAN,2009,mathematics,359.7
+Panama,PAN,2009,reading,370.7
+Panama,PAN,2009,science,375.9
+Peru,PER,2009,mathematics,365.1
+Peru,PER,2009,reading,369.7
+Peru,PER,2009,science,369.4
+Poland,POL,2009,mathematics,494.8
+Poland,POL,2009,reading,500.5
+Poland,POL,2009,science,508.1
+Portugal,PRT,2009,mathematics,486.9
+Portugal,PRT,2009,reading,489.3
+Portugal,PRT,2009,science,492.9
+Qatar,QAT,2009,mathematics,368.1
+Qatar,QAT,2009,reading,371.7
+Qatar,QAT,2009,science,379.4
+Romania,ROU,2009,mathematics,427.1
+Romania,ROU,2009,reading,424.5
+Romania,ROU,2009,science,428.2
+Russian Federation,RUS,2009,mathematics,467.8
+Russian Federation,RUS,2009,reading,459.4
+Russian Federation,RUS,2009,science,478.3
+Serbia,SRB,2009,mathematics,442.4
+Serbia,SRB,2009,reading,442.0
+Serbia,SRB,2009,science,442.8
+Singapore,SGP,2009,mathematics,562.0
+Singapore,SGP,2009,reading,525.9
+Singapore,SGP,2009,science,541.7
+Slovak Republic,SVK,2009,mathematics,496.7
+Slovak Republic,SVK,2009,reading,477.4
+Slovak Republic,SVK,2009,science,490.3
+Slovenia,SVN,2009,mathematics,501.5
+Slovenia,SVN,2009,reading,483.1
+Slovenia,SVN,2009,science,511.8
+Spain,ESP,2009,mathematics,483.5
+Spain,ESP,2009,reading,481.0
+Spain,ESP,2009,science,488.3
+Sweden,SWE,2009,mathematics,494.2
+Sweden,SWE,2009,reading,497.4
+Sweden,SWE,2009,science,495.1
+Switzerland,CHE,2009,mathematics,534.0
+Switzerland,CHE,2009,reading,500.5
+Switzerland,CHE,2009,science,516.6
+Thailand,THA,2009,mathematics,418.6
+Thailand,THA,2009,reading,421.4
+Thailand,THA,2009,science,425.3
+Trinidad and Tobago,TTO,2009,mathematics,414.0
+Trinidad and Tobago,TTO,2009,reading,416.5
+Trinidad and Tobago,TTO,2009,science,410.2
+Tunisia,TUN,2009,mathematics,371.5
+Tunisia,TUN,2009,reading,403.6
+Tunisia,TUN,2009,science,400.7
+Turkiye,TUR,2009,mathematics,445.5
+Turkiye,TUR,2009,reading,464.2
+Turkiye,TUR,2009,science,453.9
+United Arab Emirates,ARE,2009,reading,431.4
+United Arab Emirates,ARE,2009,science,437.8
+United Kingdom,GBR,2009,mathematics,492.4
+United Kingdom,GBR,2009,reading,494.2
+United Kingdom,GBR,2009,science,513.7
+United States,USA,2009,mathematics,487.4
+United States,USA,2009,reading,499.8
+United States,USA,2009,science,502.0
+Uruguay,URY,2009,mathematics,426.7
+Uruguay,URY,2009,reading,425.8
+Uruguay,URY,2009,science,427.2
+Albania,ALB,2012,mathematics,394.3
+Albania,ALB,2012,reading,394.0
+Albania,ALB,2012,science,397.4
+Argentina,ARG,2012,mathematics,388.4
+Argentina,ARG,2012,reading,396.0
+Argentina,ARG,2012,science,405.6
+Australia,AUS,2012,mathematics,504.2
+Australia,AUS,2012,reading,511.8
+Australia,AUS,2012,science,521.5
+Austria,AUT,2012,mathematics,505.5
+Austria,AUT,2012,reading,489.6
+Austria,AUT,2012,science,505.8
+Belgium,BEL,2012,mathematics,514.5
+Belgium,BEL,2012,reading,508.6
+Belgium,BEL,2012,science,504.9
+Brazil,BRA,2012,mathematics,391.5
+Brazil,BRA,2012,reading,410.1
+Brazil,BRA,2012,science,404.7
+Bulgaria,BGR,2012,mathematics,438.7
+Bulgaria,BGR,2012,reading,436.1
+Bulgaria,BGR,2012,science,446.5
+Canada,CAN,2012,mathematics,518.1
+Canada,CAN,2012,reading,523.1
+Canada,CAN,2012,science,525.5
+Chile,CHL,2012,mathematics,422.6
+Chile,CHL,2012,reading,441.4
+Chile,CHL,2012,science,444.9
+China,CHN,2012,mathematics,612.7
+China,CHN,2012,reading,569.6
+China,CHN,2012,science,580.1
+Colombia,COL,2012,mathematics,376.5
+Colombia,COL,2012,reading,403.4
+Colombia,COL,2012,science,398.7
+Costa Rica,CRI,2012,mathematics,407.0
+Costa Rica,CRI,2012,reading,440.5
+Costa Rica,CRI,2012,science,429.4
+Croatia,HRV,2012,mathematics,471.1
+Croatia,HRV,2012,reading,484.6
+Croatia,HRV,2012,science,491.4
+Cyprus,CYP,2012,reading,449.0
+Cyprus,CYP,2012,science,437.7
+Czechia,CZE,2012,mathematics,499.0
+Czechia,CZE,2012,reading,492.9
+Czechia,CZE,2012,science,508.3
+Denmark,DNK,2012,mathematics,500.0
+Denmark,DNK,2012,reading,496.1
+Denmark,DNK,2012,science,498.5
+Estonia,EST,2012,mathematics,520.5
+Estonia,EST,2012,reading,516.3
+Estonia,EST,2012,science,541.4
+Finland,FIN,2012,mathematics,518.8
+Finland,FIN,2012,reading,524.0
+Finland,FIN,2012,science,545.4
+France,FRA,2012,mathematics,495.0
+France,FRA,2012,reading,505.5
+France,FRA,2012,science,499.0
+Germany,DEU,2012,mathematics,513.5
+Germany,DEU,2012,reading,507.7
+Germany,DEU,2012,science,524.1
+Greece,GRC,2012,mathematics,453.0
+Greece,GRC,2012,reading,477.2
+Greece,GRC,2012,science,466.7
+"Hong Kong SAR, China",HKG,2012,mathematics,561.2
+"Hong Kong SAR, China",HKG,2012,reading,544.6
+"Hong Kong SAR, China",HKG,2012,science,554.9
+Hungary,HUN,2012,mathematics,477.0
+Hungary,HUN,2012,reading,488.5
+Hungary,HUN,2012,science,494.3
+Iceland,ISL,2012,mathematics,492.8
+Iceland,ISL,2012,reading,482.5
+Iceland,ISL,2012,science,478.2
+Indonesia,IDN,2012,mathematics,375.1
+Indonesia,IDN,2012,reading,396.1
+Indonesia,IDN,2012,science,381.9
+Ireland,IRL,2012,mathematics,501.5
+Ireland,IRL,2012,reading,523.2
+Ireland,IRL,2012,science,522.0
+Israel,ISR,2012,mathematics,466.5
+Israel,ISR,2012,reading,485.8
+Israel,ISR,2012,science,470.1
+Italy,ITA,2012,mathematics,485.3
+Italy,ITA,2012,reading,489.8
+Italy,ITA,2012,science,493.5
+Japan,JPN,2012,mathematics,536.4
+Japan,JPN,2012,reading,538.1
+Japan,JPN,2012,science,546.7
+Jordan,JOR,2012,mathematics,385.6
+Jordan,JOR,2012,reading,399.0
+Jordan,JOR,2012,science,409.4
+Kazakhstan,KAZ,2012,mathematics,431.8
+Kazakhstan,KAZ,2012,reading,392.7
+Kazakhstan,KAZ,2012,science,424.7
+"Korea, Rep.",KOR,2012,mathematics,553.8
+"Korea, Rep.",KOR,2012,reading,535.8
+"Korea, Rep.",KOR,2012,science,537.8
+Latvia,LVA,2012,mathematics,490.6
+Latvia,LVA,2012,reading,488.7
+Latvia,LVA,2012,science,502.2
+Liechtenstein,LIE,2012,mathematics,535.0
+Liechtenstein,LIE,2012,reading,515.5
+Liechtenstein,LIE,2012,science,524.7
+Lithuania,LTU,2012,mathematics,478.8
+Lithuania,LTU,2012,reading,477.3
+Lithuania,LTU,2012,science,495.7
+Luxembourg,LUX,2012,mathematics,489.8
+Luxembourg,LUX,2012,reading,487.8
+Luxembourg,LUX,2012,science,491.2
+"Macao SAR, China",MAC,2012,mathematics,538.1
+"Macao SAR, China",MAC,2012,reading,508.9
+"Macao SAR, China",MAC,2012,science,520.6
+Malaysia,MYS,2012,mathematics,420.5
+Malaysia,MYS,2012,reading,398.2
+Malaysia,MYS,2012,science,419.5
+Mexico,MEX,2012,mathematics,413.3
+Mexico,MEX,2012,reading,423.6
+Mexico,MEX,2012,science,414.9
+Montenegro,MNE,2012,mathematics,409.6
+Montenegro,MNE,2012,reading,422.1
+Montenegro,MNE,2012,science,410.1
+Netherlands,NLD,2012,mathematics,523.0
+Netherlands,NLD,2012,reading,511.2
+Netherlands,NLD,2012,science,522.1
+New Zealand,NZL,2012,mathematics,499.7
+New Zealand,NZL,2012,reading,512.2
+New Zealand,NZL,2012,science,515.6
+Norway,NOR,2012,mathematics,489.4
+Norway,NOR,2012,reading,503.9
+Norway,NOR,2012,science,494.5
+Peru,PER,2012,mathematics,368.1
+Peru,PER,2012,reading,384.2
+Peru,PER,2012,science,373.1
+Poland,POL,2012,mathematics,517.5
+Poland,POL,2012,reading,518.2
+Poland,POL,2012,science,525.8
+Portugal,PRT,2012,mathematics,487.1
+Portugal,PRT,2012,reading,487.8
+Portugal,PRT,2012,science,489.3
+Qatar,QAT,2012,mathematics,376.4
+Qatar,QAT,2012,reading,387.5
+Qatar,QAT,2012,science,383.6
+Romania,ROU,2012,mathematics,444.6
+Romania,ROU,2012,reading,437.6
+Romania,ROU,2012,science,438.8
+Russian Federation,RUS,2012,mathematics,482.2
+Russian Federation,RUS,2012,reading,475.1
+Russian Federation,RUS,2012,science,486.3
+Serbia,SRB,2012,mathematics,448.9
+Serbia,SRB,2012,reading,446.1
+Serbia,SRB,2012,science,444.8
+Singapore,SGP,2012,mathematics,573.5
+Singapore,SGP,2012,reading,542.2
+Singapore,SGP,2012,science,551.5
+Slovak Republic,SVK,2012,mathematics,481.6
+Slovak Republic,SVK,2012,reading,462.8
+Slovak Republic,SVK,2012,science,471.2
+Slovenia,SVN,2012,mathematics,501.1
+Slovenia,SVN,2012,reading,481.3
+Slovenia,SVN,2012,science,514.1
+Spain,ESP,2012,mathematics,484.3
+Spain,ESP,2012,reading,487.9
+Spain,ESP,2012,science,496.4
+Sweden,SWE,2012,mathematics,478.3
+Sweden,SWE,2012,reading,483.3
+Sweden,SWE,2012,science,484.8
+Switzerland,CHE,2012,mathematics,530.9
+Switzerland,CHE,2012,reading,509.0
+Switzerland,CHE,2012,science,515.3
+Thailand,THA,2012,mathematics,426.7
+Thailand,THA,2012,reading,441.2
+Thailand,THA,2012,science,444.0
+Tunisia,TUN,2012,mathematics,387.8
+Tunisia,TUN,2012,reading,404.1
+Tunisia,TUN,2012,science,398.0
+Turkiye,TUR,2012,mathematics,448.0
+Turkiye,TUR,2012,reading,475.5
+Turkiye,TUR,2012,science,463.4
+United Arab Emirates,ARE,2012,reading,441.7
+United Arab Emirates,ARE,2012,science,448.4
+United Kingdom,GBR,2012,mathematics,493.9
+United Kingdom,GBR,2012,reading,499.3
+United Kingdom,GBR,2012,science,514.1
+United States,USA,2012,mathematics,481.4
+United States,USA,2012,reading,497.6
+United States,USA,2012,science,497.4
+Uruguay,URY,2012,mathematics,409.3
+Uruguay,URY,2012,reading,411.3
+Uruguay,URY,2012,science,415.8
+Viet Nam,VNM,2012,mathematics,511.3
+Viet Nam,VNM,2012,reading,508.2
+Viet Nam,VNM,2012,science,528.4
+Albania,ALB,2015,mathematics,413.2
+Albania,ALB,2015,reading,405.3
+Albania,ALB,2015,science,427.2
+Algeria,DZA,2015,mathematics,359.6
+Algeria,DZA,2015,reading,349.9
+Algeria,DZA,2015,science,375.7
+Argentina,ARG,2015,mathematics,409.0
+Argentina,ARG,2015,reading,425.3
+Argentina,ARG,2015,science,432.2
+Australia,AUS,2015,mathematics,493.9
+Australia,AUS,2015,reading,502.9
+Australia,AUS,2015,science,510.0
+Austria,AUT,2015,mathematics,496.7
+Austria,AUT,2015,reading,484.9
+Austria,AUT,2015,science,495.0
+Belgium,BEL,2015,mathematics,507.0
+Belgium,BEL,2015,reading,498.5
+Belgium,BEL,2015,science,502.0
+Brazil,BRA,2015,mathematics,377.1
+Brazil,BRA,2015,reading,407.3
+Brazil,BRA,2015,science,400.7
+Bulgaria,BGR,2015,mathematics,441.2
+Bulgaria,BGR,2015,reading,431.7
+Bulgaria,BGR,2015,science,445.8
+Canada,CAN,2015,mathematics,515.6
+Canada,CAN,2015,reading,526.7
+Canada,CAN,2015,science,527.7
+Chile,CHL,2015,mathematics,422.7
+Chile,CHL,2015,reading,458.6
+Chile,CHL,2015,science,447.0
+China,CHN,2015,mathematics,531.3
+China,CHN,2015,reading,493.9
+China,CHN,2015,science,517.8
+Colombia,COL,2015,mathematics,389.6
+Colombia,COL,2015,reading,424.9
+Colombia,COL,2015,science,415.7
+Costa Rica,CRI,2015,mathematics,400.3
+Costa Rica,CRI,2015,reading,427.5
+Costa Rica,CRI,2015,science,419.6
+Croatia,HRV,2015,mathematics,464.0
+Croatia,HRV,2015,reading,486.9
+Croatia,HRV,2015,science,475.4
+Cyprus,CYP,2015,mathematics,437.1
+Cyprus,CYP,2015,reading,442.8
+Cyprus,CYP,2015,science,432.6
+Czechia,CZE,2015,mathematics,492.3
+Czechia,CZE,2015,reading,487.3
+Czechia,CZE,2015,science,492.8
+Denmark,DNK,2015,mathematics,511.1
+Denmark,DNK,2015,reading,499.8
+Denmark,DNK,2015,science,501.9
+Dominican Republic,DOM,2015,mathematics,327.7
+Dominican Republic,DOM,2015,reading,357.7
+Dominican Republic,DOM,2015,science,331.6
+Estonia,EST,2015,mathematics,519.5
+Estonia,EST,2015,reading,519.1
+Estonia,EST,2015,science,534.2
+Finland,FIN,2015,mathematics,511.1
+Finland,FIN,2015,reading,526.4
+Finland,FIN,2015,science,530.7
+France,FRA,2015,mathematics,492.9
+France,FRA,2015,reading,499.3
+France,FRA,2015,science,495.0
+Georgia,GEO,2015,mathematics,403.8
+Georgia,GEO,2015,reading,401.3
+Georgia,GEO,2015,science,411.1
+Germany,DEU,2015,mathematics,506.0
+Germany,DEU,2015,reading,509.1
+Germany,DEU,2015,science,509.1
+Greece,GRC,2015,mathematics,453.6
+Greece,GRC,2015,reading,467.0
+Greece,GRC,2015,science,454.8
+"Hong Kong SAR, China",HKG,2015,mathematics,547.9
+"Hong Kong SAR, China",HKG,2015,reading,526.7
+"Hong Kong SAR, China",HKG,2015,science,523.3
+Hungary,HUN,2015,mathematics,476.8
+Hungary,HUN,2015,reading,469.5
+Hungary,HUN,2015,science,476.7
+Iceland,ISL,2015,mathematics,488.0
+Iceland,ISL,2015,reading,481.5
+Iceland,ISL,2015,science,473.2
+Indonesia,IDN,2015,mathematics,386.1
+Indonesia,IDN,2015,reading,397.3
+Indonesia,IDN,2015,science,403.1
+Ireland,IRL,2015,mathematics,503.7
+Ireland,IRL,2015,reading,520.8
+Ireland,IRL,2015,science,502.6
+Israel,ISR,2015,mathematics,469.7
+Israel,ISR,2015,reading,479.0
+Israel,ISR,2015,science,466.6
+Italy,ITA,2015,mathematics,489.7
+Italy,ITA,2015,reading,484.8
+Italy,ITA,2015,science,480.5
+Japan,JPN,2015,mathematics,532.4
+Japan,JPN,2015,reading,516.0
+Japan,JPN,2015,science,538.4
+Jordan,JOR,2015,mathematics,380.3
+Jordan,JOR,2015,reading,408.1
+Jordan,JOR,2015,science,408.7
+Kazakhstan,KAZ,2015,mathematics,459.8
+Kazakhstan,KAZ,2015,reading,427.1
+Kazakhstan,KAZ,2015,science,456.5
+"Korea, Rep.",KOR,2015,mathematics,524.1
+"Korea, Rep.",KOR,2015,reading,517.4
+"Korea, Rep.",KOR,2015,science,515.8
+Kosovo,XKX,2015,mathematics,361.5
+Kosovo,XKX,2015,reading,347.1
+Kosovo,XKX,2015,science,378.4
+Latvia,LVA,2015,mathematics,482.3
+Latvia,LVA,2015,reading,487.8
+Latvia,LVA,2015,science,490.2
+Lebanon,LBN,2015,mathematics,396.2
+Lebanon,LBN,2015,reading,346.5
+Lebanon,LBN,2015,science,386.5
+Lithuania,LTU,2015,mathematics,478.4
+Lithuania,LTU,2015,reading,472.4
+Lithuania,LTU,2015,science,475.4
+Luxembourg,LUX,2015,mathematics,485.8
+Luxembourg,LUX,2015,reading,481.4
+Luxembourg,LUX,2015,science,482.8
+"Macao SAR, China",MAC,2015,mathematics,543.8
+"Macao SAR, China",MAC,2015,reading,508.7
+"Macao SAR, China",MAC,2015,science,528.5
+Malaysia,MYS,2015,mathematics,446.1
+Malaysia,MYS,2015,reading,430.6
+Malaysia,MYS,2015,science,442.9
+Malta,MLT,2015,mathematics,478.6
+Malta,MLT,2015,reading,446.7
+Malta,MLT,2015,science,464.8
+Mexico,MEX,2015,mathematics,408.0
+Mexico,MEX,2015,reading,423.3
+Mexico,MEX,2015,science,415.7
+Moldova,MDA,2015,mathematics,419.7
+Moldova,MDA,2015,reading,416.2
+Moldova,MDA,2015,science,428.0
+Montenegro,MNE,2015,mathematics,417.9
+Montenegro,MNE,2015,reading,426.9
+Montenegro,MNE,2015,science,411.3
+Netherlands,NLD,2015,mathematics,512.3
+Netherlands,NLD,2015,reading,503.0
+Netherlands,NLD,2015,science,508.6
+New Zealand,NZL,2015,mathematics,495.2
+New Zealand,NZL,2015,reading,509.3
+New Zealand,NZL,2015,science,513.3
+North Macedonia,MKD,2015,mathematics,371.3
+North Macedonia,MKD,2015,reading,351.7
+North Macedonia,MKD,2015,science,383.7
+Norway,NOR,2015,mathematics,501.7
+Norway,NOR,2015,reading,513.2
+Norway,NOR,2015,science,498.5
+Peru,PER,2015,mathematics,386.6
+Peru,PER,2015,reading,397.5
+Peru,PER,2015,science,396.7
+Poland,POL,2015,mathematics,504.5
+Poland,POL,2015,reading,505.7
+Poland,POL,2015,science,501.4
+Portugal,PRT,2015,mathematics,491.6
+Portugal,PRT,2015,reading,498.1
+Portugal,PRT,2015,science,501.1
+Qatar,QAT,2015,mathematics,402.4
+Qatar,QAT,2015,reading,401.9
+Qatar,QAT,2015,science,417.6
+Romania,ROU,2015,mathematics,444.0
+Romania,ROU,2015,reading,433.6
+Romania,ROU,2015,science,434.9
+Russian Federation,RUS,2015,mathematics,494.1
+Russian Federation,RUS,2015,reading,494.6
+Russian Federation,RUS,2015,science,486.6
+Singapore,SGP,2015,mathematics,564.2
+Singapore,SGP,2015,reading,535.1
+Singapore,SGP,2015,science,555.6
+Slovak Republic,SVK,2015,mathematics,475.2
+Slovak Republic,SVK,2015,reading,452.5
+Slovak Republic,SVK,2015,science,460.8
+Slovenia,SVN,2015,mathematics,509.9
+Slovenia,SVN,2015,reading,505.2
+Slovenia,SVN,2015,science,512.9
+Spain,ESP,2015,mathematics,485.8
+Spain,ESP,2015,reading,495.6
+Spain,ESP,2015,science,492.8
+Sweden,SWE,2015,mathematics,493.9
+Sweden,SWE,2015,reading,500.2
+Sweden,SWE,2015,science,493.4
+Switzerland,CHE,2015,mathematics,521.3
+Switzerland,CHE,2015,reading,492.2
+Switzerland,CHE,2015,science,505.5
+Thailand,THA,2015,mathematics,415.5
+Thailand,THA,2015,reading,409.1
+Thailand,THA,2015,science,421.3
+Trinidad and Tobago,TTO,2015,mathematics,417.2
+Trinidad and Tobago,TTO,2015,reading,427.3
+Trinidad and Tobago,TTO,2015,science,424.6
+Tunisia,TUN,2015,mathematics,366.8
+Tunisia,TUN,2015,reading,361.1
+Tunisia,TUN,2015,science,386.4
+Turkiye,TUR,2015,mathematics,420.5
+Turkiye,TUR,2015,reading,428.3
+Turkiye,TUR,2015,science,425.5
+United Arab Emirates,ARE,2015,mathematics,427.5
+United Arab Emirates,ARE,2015,reading,433.5
+United Arab Emirates,ARE,2015,science,436.7
+United Kingdom,GBR,2015,mathematics,492.5
+United Kingdom,GBR,2015,reading,498.0
+United Kingdom,GBR,2015,science,509.2
+United States,USA,2015,mathematics,469.6
+United States,USA,2015,reading,496.9
+United States,USA,2015,science,496.2
+Uruguay,URY,2015,mathematics,418.0
+Uruguay,URY,2015,reading,436.6
+Uruguay,URY,2015,science,435.4
+Viet Nam,VNM,2015,mathematics,494.5
+Viet Nam,VNM,2015,reading,486.8
+Viet Nam,VNM,2015,science,524.6
+Albania,ALB,2018,mathematics,437.2
+Albania,ALB,2018,reading,405.4
+Albania,ALB,2018,science,416.7
+Argentina,ARG,2018,mathematics,379.5
+Argentina,ARG,2018,reading,401.5
+Argentina,ARG,2018,science,404.1
+Australia,AUS,2018,mathematics,491.4
+Australia,AUS,2018,reading,502.6
+Australia,AUS,2018,science,503.0
+Austria,AUT,2018,mathematics,498.9
+Austria,AUT,2018,reading,484.4
+Austria,AUT,2018,science,489.8
+Belarus,BLR,2018,mathematics,471.9
+Belarus,BLR,2018,reading,473.8
+Belarus,BLR,2018,science,471.3
+Belgium,BEL,2018,mathematics,508.1
+Belgium,BEL,2018,reading,492.9
+Belgium,BEL,2018,science,498.8
+Bosnia and Herzegovina,BIH,2018,mathematics,406.4
+Bosnia and Herzegovina,BIH,2018,reading,403.0
+Bosnia and Herzegovina,BIH,2018,science,398.5
+Brazil,BRA,2018,mathematics,383.6
+Brazil,BRA,2018,reading,412.9
+Brazil,BRA,2018,science,403.6
+Brunei Darussalam,BRN,2018,mathematics,430.1
+Brunei Darussalam,BRN,2018,reading,408.1
+Brunei Darussalam,BRN,2018,science,431.0
+Bulgaria,BGR,2018,mathematics,436.0
+Bulgaria,BGR,2018,reading,419.8
+Bulgaria,BGR,2018,science,424.1
+Canada,CAN,2018,mathematics,512.0
+Canada,CAN,2018,reading,520.1
+Canada,CAN,2018,science,518.0
+Chile,CHL,2018,mathematics,417.4
+Chile,CHL,2018,reading,452.3
+Chile,CHL,2018,science,443.6
+China,CHN,2018,mathematics,591.4
+China,CHN,2018,reading,555.2
+China,CHN,2018,science,590.5
+Colombia,COL,2018,mathematics,390.9
+Colombia,COL,2018,reading,412.3
+Colombia,COL,2018,science,413.3
+Costa Rica,CRI,2018,mathematics,402.3
+Costa Rica,CRI,2018,reading,426.5
+Costa Rica,CRI,2018,science,415.6
+Croatia,HRV,2018,mathematics,464.2
+Croatia,HRV,2018,reading,479.0
+Croatia,HRV,2018,science,472.4
+Cyprus,CYP,2018,mathematics,450.7
+Cyprus,CYP,2018,reading,424.4
+Cyprus,CYP,2018,science,439.0
+Czechia,CZE,2018,mathematics,499.5
+Czechia,CZE,2018,reading,490.2
+Czechia,CZE,2018,science,496.8
+Denmark,DNK,2018,mathematics,509.4
+Denmark,DNK,2018,reading,501.1
+Denmark,DNK,2018,science,492.6
+Dominican Republic,DOM,2018,mathematics,325.1
+Dominican Republic,DOM,2018,reading,341.6
+Dominican Republic,DOM,2018,science,335.6
+Estonia,EST,2018,mathematics,523.4
+Estonia,EST,2018,reading,523.0
+Estonia,EST,2018,science,530.1
+Finland,FIN,2018,mathematics,507.3
+Finland,FIN,2018,reading,520.1
+Finland,FIN,2018,science,521.9
+France,FRA,2018,mathematics,495.4
+France,FRA,2018,reading,492.6
+France,FRA,2018,science,493.0
+Georgia,GEO,2018,mathematics,397.6
+Georgia,GEO,2018,reading,379.8
+Georgia,GEO,2018,science,382.7
+Germany,DEU,2018,mathematics,500.0
+Germany,DEU,2018,reading,498.3
+Germany,DEU,2018,science,503.0
+Greece,GRC,2018,mathematics,451.4
+Greece,GRC,2018,reading,457.4
+Greece,GRC,2018,science,451.6
+"Hong Kong SAR, China",HKG,2018,mathematics,551.2
+"Hong Kong SAR, China",HKG,2018,reading,524.3
+"Hong Kong SAR, China",HKG,2018,science,516.7
+Hungary,HUN,2018,mathematics,481.1
+Hungary,HUN,2018,reading,476.0
+Hungary,HUN,2018,science,480.9
+Iceland,ISL,2018,mathematics,495.2
+Iceland,ISL,2018,reading,474.0
+Iceland,ISL,2018,science,475.0
+Indonesia,IDN,2018,mathematics,378.7
+Indonesia,IDN,2018,reading,371.0
+Indonesia,IDN,2018,science,396.1
+Ireland,IRL,2018,mathematics,499.6
+Ireland,IRL,2018,reading,518.1
+Ireland,IRL,2018,science,496.1
+Israel,ISR,2018,mathematics,463.0
+Israel,ISR,2018,reading,470.4
+Israel,ISR,2018,science,462.2
+Italy,ITA,2018,mathematics,486.6
+Italy,ITA,2018,reading,476.3
+Italy,ITA,2018,science,468.0
+Japan,JPN,2018,mathematics,527.0
+Japan,JPN,2018,reading,503.9
+Japan,JPN,2018,science,529.1
+Jordan,JOR,2018,mathematics,399.8
+Jordan,JOR,2018,reading,419.1
+Jordan,JOR,2018,science,429.3
+Kazakhstan,KAZ,2018,mathematics,423.1
+Kazakhstan,KAZ,2018,reading,386.9
+Kazakhstan,KAZ,2018,science,397.1
+"Korea, Rep.",KOR,2018,mathematics,525.9
+"Korea, Rep.",KOR,2018,reading,514.1
+"Korea, Rep.",KOR,2018,science,519.0
+Kosovo,XKX,2018,mathematics,365.9
+Kosovo,XKX,2018,reading,353.1
+Kosovo,XKX,2018,science,364.9
+Latvia,LVA,2018,mathematics,496.1
+Latvia,LVA,2018,reading,478.7
+Latvia,LVA,2018,science,487.3
+Lebanon,LBN,2018,mathematics,393.5
+Lebanon,LBN,2018,reading,353.4
+Lebanon,LBN,2018,science,383.7
+Lithuania,LTU,2018,mathematics,481.2
+Lithuania,LTU,2018,reading,475.9
+Lithuania,LTU,2018,science,482.1
+Luxembourg,LUX,2018,mathematics,483.4
+Luxembourg,LUX,2018,reading,470.0
+Luxembourg,LUX,2018,science,476.8
+"Macao SAR, China",MAC,2018,mathematics,557.7
+"Macao SAR, China",MAC,2018,reading,525.1
+"Macao SAR, China",MAC,2018,science,543.6
+Malaysia,MYS,2018,mathematics,440.2
+Malaysia,MYS,2018,reading,415.0
+Malaysia,MYS,2018,science,437.6
+Malta,MLT,2018,mathematics,471.7
+Malta,MLT,2018,reading,448.2
+Malta,MLT,2018,science,456.6
+Mexico,MEX,2018,mathematics,408.8
+Mexico,MEX,2018,reading,420.5
+Mexico,MEX,2018,science,419.2
+Moldova,MDA,2018,mathematics,420.6
+Moldova,MDA,2018,reading,424.0
+Moldova,MDA,2018,science,428.5
+Montenegro,MNE,2018,mathematics,429.6
+Montenegro,MNE,2018,reading,421.1
+Montenegro,MNE,2018,science,415.2
+Morocco,MAR,2018,mathematics,367.7
+Morocco,MAR,2018,reading,359.4
+Morocco,MAR,2018,science,376.6
+Netherlands,NLD,2018,mathematics,519.2
+Netherlands,NLD,2018,reading,484.8
+Netherlands,NLD,2018,science,503.4
+New Zealand,NZL,2018,mathematics,494.5
+New Zealand,NZL,2018,reading,505.7
+New Zealand,NZL,2018,science,508.5
+North Macedonia,MKD,2018,mathematics,394.4
+North Macedonia,MKD,2018,reading,392.7
+North Macedonia,MKD,2018,science,413.0
+Norway,NOR,2018,mathematics,501.0
+Norway,NOR,2018,reading,499.5
+Norway,NOR,2018,science,490.4
+OECD members,OED,2018,mathematics,489.3
+OECD members,OED,2018,reading,487.1
+OECD members,OED,2018,science,488.7
+Panama,PAN,2018,mathematics,352.8
+Panama,PAN,2018,reading,377.0
+Panama,PAN,2018,science,364.6
+Peru,PER,2018,mathematics,399.8
+Peru,PER,2018,reading,400.5
+Peru,PER,2018,science,404.2
+Philippines,PHL,2018,mathematics,352.6
+Philippines,PHL,2018,reading,339.7
+Philippines,PHL,2018,science,356.9
+Poland,POL,2018,mathematics,515.6
+Poland,POL,2018,reading,511.9
+Poland,POL,2018,science,511.0
+Portugal,PRT,2018,mathematics,492.5
+Portugal,PRT,2018,reading,491.8
+Portugal,PRT,2018,science,491.7
+Qatar,QAT,2018,mathematics,414.2
+Qatar,QAT,2018,reading,407.1
+Qatar,QAT,2018,science,419.1
+Romania,ROU,2018,mathematics,429.9
+Romania,ROU,2018,reading,427.7
+Romania,ROU,2018,science,425.8
+Russian Federation,RUS,2018,mathematics,487.8
+Russian Federation,RUS,2018,reading,478.5
+Russian Federation,RUS,2018,science,477.7
+Saudi Arabia,SAU,2018,mathematics,373.2
+Saudi Arabia,SAU,2018,reading,399.2
+Saudi Arabia,SAU,2018,science,386.2
+Serbia,SRB,2018,mathematics,448.3
+Serbia,SRB,2018,reading,439.5
+Serbia,SRB,2018,science,439.9
+Singapore,SGP,2018,mathematics,569.0
+Singapore,SGP,2018,reading,549.5
+Singapore,SGP,2018,science,550.9
+Slovak Republic,SVK,2018,mathematics,486.2
+Slovak Republic,SVK,2018,reading,458.0
+Slovak Republic,SVK,2018,science,464.0
+Slovenia,SVN,2018,mathematics,508.9
+Slovenia,SVN,2018,reading,495.3
+Slovenia,SVN,2018,science,507.0
+Spain,ESP,2018,mathematics,481.4
+Spain,ESP,2018,science,483.3
+Sweden,SWE,2018,mathematics,502.4
+Sweden,SWE,2018,reading,505.8
+Sweden,SWE,2018,science,499.4
+Switzerland,CHE,2018,mathematics,515.3
+Switzerland,CHE,2018,reading,483.9
+Switzerland,CHE,2018,science,495.3
+Thailand,THA,2018,mathematics,418.6
+Thailand,THA,2018,reading,392.9
+Thailand,THA,2018,science,425.8
+Turkiye,TUR,2018,mathematics,453.5
+Turkiye,TUR,2018,reading,465.6
+Turkiye,TUR,2018,science,468.3
+Ukraine,UKR,2018,mathematics,453.1
+Ukraine,UKR,2018,reading,466.0
+Ukraine,UKR,2018,science,469.0
+United Arab Emirates,ARE,2018,mathematics,434.9
+United Arab Emirates,ARE,2018,reading,431.8
+United Arab Emirates,ARE,2018,science,433.6
+United Kingdom,GBR,2018,mathematics,501.8
+United Kingdom,GBR,2018,reading,503.9
+United Kingdom,GBR,2018,science,504.7
+United States,USA,2018,mathematics,478.2
+United States,USA,2018,reading,505.4
+United States,USA,2018,science,502.4
+Uruguay,URY,2018,mathematics,417.7
+Uruguay,URY,2018,reading,427.1
+Uruguay,URY,2018,science,425.8
+Viet Nam,VNM,2018,mathematics,495.7
+Viet Nam,VNM,2018,reading,504.5
+Viet Nam,VNM,2018,science,543.4

@@ -34,10 +34,12 @@
     "unemployment": "Työttömyysaste, 15–74-vuotiaat",
     "inflation": "Kuluttajahintojen inflaatio (HICP), vuosimuutos",
     "gdp_per_capita": "BKT asukasta kohden PPS (EU27 = 100)",
-    "at_risk_of_poverty": "Köyhyysriski (60 % mediaanitulosta)"
+    "at_risk_of_poverty": "Köyhyysriski (60 % mediaanitulosta)",
+    "pisa_math": "PISA-matematiikan keskiarvo (15-vuotiaat)"
   },
   "notes": {
-    "gdp_per_capita": "Eurostat kertoo, että tämä sarja on pääasiassa tarkoitettu maiden vertailuun keskenään, ei maan omaan menneisyyteen verrattuna."
+    "gdp_per_capita": "Eurostat kertoo, että tämä sarja on pääasiassa tarkoitettu maiden vertailuun keskenään, ei maan omaan menneisyyteen verrattuna.",
+    "pisa_math": "PISA järjestetään kolmen vuoden välein. Tässä näkyvät vuodet 2003–2018. Vuoden 2022 kierros ei ole vielä mukana. Vertailuun on OECD-keskiarvo; EU27-keskiarvoa PISA ei tarjoa."
   },
   "countries": {
     "FI": "Suomi",
@@ -69,6 +71,7 @@
     "RO": "Romania",
     "SI": "Slovenia",
     "SK": "Slovakia",
+    "OECD": "OECD-keskiarvo",
     "EU27_2020": "EU27-keskiarvo"
   }
 }

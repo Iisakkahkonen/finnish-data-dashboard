@@ -1,0 +1,60 @@
+"""Load PISA mean scores from the bundled CSV.
+
+Source: OECD PISA results, as mirrored by the World Bank EdStats data (CC BY 4.0).
+The file is committed in data-pipeline/raw/ so the build does not depend on an
+outside download. It covers 2000 to 2018 only; the 2022 round is not included yet.
+"""
+
+from __future__ import annotations
+
+import csv
+from pathlib import Path
+
+from eurostat import _to_finite_float
+
+RAW_FILE = Path(__file__).resolve().parent / "raw" / "pisa-scores.csv"
+
+# PISA used ISO 3166 alpha-3 codes. Map them to the Eurostat-style codes the
+# rest of the pipeline uses. Countries not listed here are left out.
+ISO3_TO_GEO = {
+    "AUT": "AT", "BEL": "BE", "BGR": "BG", "HRV": "HR", "CYP": "CY",
+    "CZE": "CZ", "DNK": "DK", "EST": "EE", "FIN": "FI", "FRA": "FR",
+    "DEU": "DE", "GRC": "EL", "HUN": "HU", "ISL": "IS", "IRL": "IE",
+    "ITA": "IT", "LVA": "LV", "LTU": "LT", "LUX": "LU", "MLT": "MT",
+    "NLD": "NL", "NOR": "NO", "POL": "PL", "PRT": "PT", "ROU": "RO",
+    "SVK": "SK", "SVN": "SI", "ESP": "ES", "SWE": "SE",
+}
+
+# The OECD average appears in the file as "OECD members" with this code.
+OECD_CODE = "OED"
+OECD_GEO = "OECD"
+
+# Mathematics was a major domain only from 2003 on. Earlier scores are not
+# comparable with the later rounds.
+FIRST_COMPARABLE_YEAR = 2003
+
+
+def load_pisa_rows(subject: str = "mathematics") -> list[dict]:
+    """Return rows of {'geo', 'time', 'value'} in the same shape as parse_jsonstat output."""
+    rows = []
+    with RAW_FILE.open(encoding="utf-8", newline="") as handle:
+        for record in csv.DictReader(handle):
+            if record["subject"] != subject:
+                continue
+            year = int(record["year"])
+            if year < FIRST_COMPARABLE_YEAR:
+                continue
+
+            code = record["country_code"]
+            if code == OECD_CODE:
+                geo = OECD_GEO
+            elif code in ISO3_TO_GEO:
+                geo = ISO3_TO_GEO[code]
+            else:
+                continue
+
+            value = _to_finite_float(record["mean_score"])
+            if value is None:
+                continue
+            rows.append({"geo": geo, "time": str(year), "value": value})
+    return rows
