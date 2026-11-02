@@ -136,7 +136,12 @@ function slotFor(geo: string): number {
 function colorFor(geo: string): string {
   if (geo === FOCUS) return FOCUS_COLOR;
   if (geo === AGGREGATE) return AGGREGATE_COLOR;
-  return PALETTE[slotFor(geo) % PALETTE.length];
+  const slot = slotFor(geo);
+  if (slot < PALETTE.length) return PALETTE[slot];
+  // Beyond the base palette, spread hues evenly (golden angle) and alternate lightness,
+  // so neighbouring lines never share a hue family.
+  const hue = Math.round((slot * 137.508) % 360);
+  return `hsl(${hue}, 70%, ${slot % 2 === 0 ? 42 : 58}%)`;
 }
 
 function dashFor(geo: string): number[] {
@@ -972,11 +977,34 @@ function renderRank(indicator: string, selectedGeos: string[]): void {
   for (const g of geos) for (const y of shown) worst = Math.max(worst, rankOf(g, y) ?? 1);
   worst = Math.max(worst, 27);
 
+  // Country names at the right end of each line, so lines can be read without the legend.
+  const endLabels: Plugin<"line"> = {
+    id: "endLabels",
+    afterDatasetsDraw(c: Chart<"line">) {
+      const ctx = c.ctx;
+      ctx.save();
+      ctx.font = "600 12px system-ui, -apple-system, sans-serif";
+      ctx.textBaseline = "middle";
+      geos.forEach((geo, di) => {
+        let last = -1;
+        shown.forEach((y, i) => {
+          if (rankOf(geo, y) !== null) last = i;
+        });
+        if (last < 0) return;
+        const point = c.getDatasetMeta(di).data[last];
+        ctx.fillStyle = colorFor(geo);
+        ctx.fillText(t(`countries.${geo}`), point.x + 8, point.y);
+      });
+      ctx.restore();
+    },
+  };
+
   el("chart-wrap").hidden = false;
-  el("chart-wrap").style.height = "460px";
+  el("chart-wrap").style.height = geos.length > 8 ? "620px" : "460px";
   destroyChart();
   chart = new Chart(el<HTMLCanvasElement>("chart"), {
     type: "line",
+    plugins: [endLabels],
     data: {
       labels: shown.map(String),
       datasets: geos.map((geo) => ({
@@ -993,6 +1021,7 @@ function renderRank(indicator: string, selectedGeos: string[]): void {
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      layout: { padding: { right: window.innerWidth < 480 ? 72 : 96 } },
       interaction: { mode: "index", intersect: false },
       plugins: {
         legend: { position: "bottom" },
