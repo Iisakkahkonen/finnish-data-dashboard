@@ -3,7 +3,16 @@
 A bilingual dashboard comparing Finland with its Nordic and Baltic neighbours, the rest of the EU and the EU27 average on key economic, social and education indicators.
 
 **Live site:** https://iisakkahkonen.github.io/finnish-data-dashboard/
+**How it was built with AI:** [CASE_STUDY.md](CASE_STUDY.md)
 **Suomeksi:** [README.fi.md](README.fi.md)
+
+## What the data shows
+
+- **Finland's PISA lead has nearly gone.** Finland's mathematics score fell from 548 in 2006 to 484 in 2022. Its lead over the OECD average shrank from about 50 points to 12. Reading and science show the same pattern.
+- **Fewer young adults hold a degree.** The share of 25–34-year-olds with a tertiary degree fell from 43.8% in 2020 to 38.2% in 2025, below the EU's target of 45% by 2030.
+- **Public debt has risen fast.** General government debt grew from 65% of GDP in 2019 to 88% in 2025, well above the EU's 60% reference value.
+
+Figures as of November 2026. The site refreshes weekly, so the latest values may differ.
 
 ## What it shows
 

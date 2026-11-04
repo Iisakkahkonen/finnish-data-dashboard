@@ -3,7 +3,16 @@
 Kaksikielinen kojelauta, joka vertaa Suomea Pohjoismaihin, Baltian maihin, muihin EU-maihin ja EU27-keskiarvoon keskeisillä talouden, hyvinvoinnin ja koulutuksen mittareilla.
 
 **Julkinen sivu:** https://iisakkahkonen.github.io/finnish-data-dashboard/
+**Miten sivu rakennettiin tekoälyn avulla (englanniksi):** [CASE_STUDY.md](CASE_STUDY.md)
 **In English:** [README.md](README.md)
+
+## Mitä luvut kertovat
+
+- **Suomen PISA-etumatka on lähes kadonnut.** Suomen matematiikan tulos laski 548 pisteestä vuonna 2006 484 pisteeseen vuonna 2022. Etumatka OECD-keskiarvoon kutistui noin 50 pisteestä 12 pisteeseen. Lukutaidossa ja luonnontieteissä suunta on sama.
+- **Yhä harvempi nuori aikuinen on korkeakoulutettu.** Korkea-asteen tutkinnon suorittaneiden osuus 25–34-vuotiaista laski 43,8 prosentista vuonna 2020 38,2 prosenttiin vuonna 2025. Se jää EU:n tavoitteesta, jonka mukaan osuuden pitäisi olla vähintään 45 % vuoteen 2030 mennessä.
+- **Julkinen velka on kasvanut nopeasti.** Julkisyhteisöjen velka nousi 65 prosentista BKT:sta vuonna 2019 88 prosenttiin vuonna 2025, selvästi yli EU:n 60 prosentin viitearvon.
+
+Luvut marraskuulta 2026. Sivu päivittyy viikoittain, joten uusimmat arvot voivat poiketa näistä.
 
 ## Mitä sivu näyttää
 
