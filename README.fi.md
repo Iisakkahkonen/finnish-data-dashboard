@@ -7,7 +7,7 @@ Kaksikielinen kojelauta, joka vertaa Suomea Pohjoismaihin, Baltian maihin, muihi
 
 ## Mitä sivu näyttää
 
-- **11 indikaattoria:** työttömyysaste (15–74-vuotiaat), kuluttajahintojen inflaatio (YKHI/HICP), BKT asukasta kohden ostovoimakorjattuna (EU27 = 100), köyhyysriskiaste (60 % maan mediaanitulosta), ekvivalentti mediaanitulo ostovoimastandardeina ja euroina, elinajanodote syntyessä, tulojen Gini-kerroin sekä 15-vuotiaiden PISA-tulokset matematiikassa (vuodesta 2003), lukutaidossa (vuodesta 2000) ja luonnontieteissä (vuodesta 2006) vuoteen 2022 asti.
+- **13 indikaattoria:** työttömyysaste (15–74-vuotiaat), kuluttajahintojen inflaatio (YKHI/HICP), BKT asukasta kohden ostovoimakorjattuna (EU27 = 100), julkinen velka (% BKT:sta), köyhyysriskiaste (60 % maan mediaanitulosta), ekvivalentti mediaanitulo ostovoimastandardeina ja euroina, elinajanodote syntyessä, tulojen Gini-kerroin, korkeakoulutettujen osuus 25–34-vuotiaista sekä 15-vuotiaiden PISA-tulokset matematiikassa (vuodesta 2003), lukutaidossa (vuodesta 2000) ja luonnontieteissä (vuodesta 2006) vuoteen 2022 asti.
 - **Maat:** kaikki EU27-maat, Norja ja Islanti sekä EU27-keskiarvo. Maita voi valita vapaasti tai käyttää valmista valintaa, kuten "Pohjoismaat" tai "Baltia". Kun PISA-indikaattori on valittuna, mukaan voi ottaa myös 60 muuta PISAan osallistuvaa maata (esimerkiksi Japani, Singapore ja Kanada) sekä OECD-keskiarvon.
 - **Kuusi näkymää:**
   - **Kuvio:** viivakuvio ajan yli. Alku- ja loppuvuoden voi valita, ja maiden nimet näkyvät viivojen päässä.
@@ -30,6 +30,8 @@ Useimmat luvut ovat [Eurostatilta](https://ec.europa.eu/eurostat):
 | Inflaatio, vuosimuutos | `prc_hicp_aind` | Haetaan Eurostatin rajapinnasta jokaisella julkaisulla |
 | BKT asukasta kohden PPS | `tec00114` | Haetaan Eurostatin rajapinnasta jokaisella julkaisulla |
 | Köyhyysriskiaste | `ilc_li02` | Haetaan Eurostatin rajapinnasta jokaisella julkaisulla |
+| Julkinen velka | `gov_10dd_edpt1` | Haetaan Eurostatin rajapinnasta jokaisella julkaisulla |
+| Korkeakoulutettujen osuus, 25–34-vuotiaat | `edat_lfse_03` | Haetaan Eurostatin rajapinnasta jokaisella julkaisulla |
 | Ekvivalentti mediaanitulo (PPS ja euroa) | `ilc_di03` | Viety CSV-tiedostoksi kansioon `data-pipeline/raw/` |
 | Gini-kerroin | `ilc_di12` | Viety CSV-tiedostoksi kansioon `data-pipeline/raw/` |
 | Elinajanodote syntyessä | `demo_mlexpec` | Viety CSV-tiedostoksi kansioon `data-pipeline/raw/` |
@@ -40,13 +42,15 @@ PISA-tulokset ovat OECD:n PISA-tutkimuksesta, ja ne ovat CSV-tiedostoina kansios
 - `pisa-2022-and-oecd-averages.csv`: vuoden 2022 maakohtaiset keskiarvot ja OECD-keskiarvot, kirjattu käsin OECD:n PISA-raporteista. Lukutaidon vuosien 2003–2009 ja luonnontieteiden vuosien 2006–2009 OECD-keskiarvoja ei ole raporttien taulukoissa käyttökelpoisessa muodossa, joten ne on laskettu aineiston OECD-maista. Kun niitä voi verrata viralliseen lukuun, ero on enintään noin 3 pistettä.
 - Luxemburgilla ei ole arvoa vuodelta 2022, koska sitä ei ole puretuissa vuoden 2022 taulukoissa.
 
-Sivu rakennetaan uudelleen joka maanantai ja jokaisen `main`-haaraan tehdyn muutoksen jälkeen. Jokainen julkaisu hakee neljän rajapintaindikaattorin uusimmat arvot.
+Sivu rakennetaan uudelleen joka maanantai ja jokaisen `main`-haaraan tehdyn muutoksen jälkeen. Jokainen julkaisu hakee kuuden rajapintaindikaattorin uusimmat arvot.
 
 ## Miten lukuja tulkitaan
 
 - **Sijoitus** lasketaan vain EU:n 27 jäsenmaan kesken. Norja, Islanti ja Euroopan ulkopuoliset PISA-maat näkyvät vertailun vuoksi, mutta niitä ei sijoiteta.
 - **Inflaatiossa** maat sijoitetaan sen mukaan, kuinka lähellä ne ovat Euroopan keskuspankin kahden prosentin tavoitetta.
 - **Gini-kertoimessa** sijoitus 1 on maa, jossa tulot jakautuvat tasaisimmin.
+- **Julkisessa velassa** pienin velka sijoittuu ensimmäiseksi. Se on yksinkertaistus, ja sivun selitys kertoo miksi.
+- **Korkeakoulutettujen osuudessa** on sarjakatkos vuonna 2021 useissa maissa, myös Suomessa, koska työvoimatutkimuksen menetelmä muuttui.
 - **BKT asukasta kohden** on Eurostatin mukaan tarkoitettu maiden väliseen vertailuun, ei yhden maan kehityksen seuraamiseen. Sivu näyttää tästä huomautuksen.
 - **Puuttuvia arvoja** ei täytetä. Jos maalla ei ole arvoa valitulle vuodelle, tilarivi kertoo sen.
 - **PISAssa** ei ole EU27-keskiarvoa, joten vertailukohtana on OECD-keskiarvo. Muutaman pisteen erot mahtuvat yleensä virhemarginaaliin.

@@ -48,6 +48,9 @@ def build() -> dict:
         if not rows:
             raise RuntimeError(f"No rows returned for {indicator.key}; check dataset codes")
 
+        if indicator.source == "eurostat" and not any(r["geo"] == "EU27_2020" for r in rows):
+            print(f"  warning: no EU27_2020 average for {indicator.key}", flush=True)
+
         source_label = PISA_SOURCE if indicator.source == "pisa" else SOURCE
         records += to_records(rows, indicator.key, source_label, updated)
         eu_rows = [r for r in rows if r["geo"] in EU27_SET]

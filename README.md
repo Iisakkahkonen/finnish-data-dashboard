@@ -7,7 +7,7 @@ A bilingual dashboard comparing Finland with its Nordic and Baltic neighbours, t
 
 ## What it shows
 
-- **11 indicators:** unemployment rate (15–74), HICP inflation, GDP per capita in PPS (EU27 = 100), the at-risk-of-poverty rate (60% of the national median), median equivalised net income in PPS and in euro, life expectancy at birth, the Gini coefficient of equivalised income, and PISA scores for 15-year-olds in mathematics (from 2003), reading (from 2000) and science (from 2006), up to 2022.
+- **13 indicators:** unemployment rate (15–74), HICP inflation, GDP per capita in PPS (EU27 = 100), general government gross debt (% of GDP), the at-risk-of-poverty rate (60% of the national median), median equivalised net income in PPS and in euro, life expectancy at birth, the Gini coefficient of equivalised income, tertiary educational attainment among 25–34-year-olds, and PISA scores for 15-year-olds in mathematics (from 2003), reading (from 2000) and science (from 2006), up to 2022.
 - **Countries:** all EU27 members, Norway and Iceland, and the EU27 average. Pick any combination, or use a preset such as "Nordics" or "Baltics". When a PISA indicator is selected, 60 more countries that take part in PISA (Japan, Singapore, Canada and others) and the OECD average become available.
 - **Six views:**
   - **Chart:** a line chart over time, with a start and end year you can set and country names at the end of each line.
@@ -30,6 +30,8 @@ Most figures come from [Eurostat](https://ec.europa.eu/eurostat):
 | HICP inflation, annual rate | `prc_hicp_aind` | Fetched from the Eurostat API on every build |
 | GDP per capita in PPS | `tec00114` | Fetched from the Eurostat API on every build |
 | At-risk-of-poverty rate | `ilc_li02` | Fetched from the Eurostat API on every build |
+| General government gross debt | `gov_10dd_edpt1` | Fetched from the Eurostat API on every build |
+| Tertiary educational attainment, 25–34 | `edat_lfse_03` | Fetched from the Eurostat API on every build |
 | Median equivalised net income (PPS and EUR) | `ilc_di03` | Exported CSV in `data-pipeline/raw/` |
 | Gini coefficient | `ilc_di12` | Exported CSV in `data-pipeline/raw/` |
 | Life expectancy at birth | `demo_mlexpec` | Exported CSV in `data-pipeline/raw/` |
@@ -40,13 +42,15 @@ PISA scores come from the OECD PISA results and are stored as CSV in `data-pipel
 - `pisa-2022-and-oecd-averages.csv`: the 2022 country means and the OECD averages, typed from the OECD PISA reports. The OECD averages for reading in 2003–2009 and science in 2006–2009 are not in the reports' tables in a usable form, so they are calculated from the OECD member countries in the data. Where they can be checked against an official figure, they are within about 3 points.
 - Luxembourg has no 2022 value because it is not in the extracted 2022 tables.
 
-The site is rebuilt every Monday and on every push to `main`. Each build pulls the latest values for the four API indicators.
+The site is rebuilt every Monday and on every push to `main`. Each build pulls the latest values for the six API indicators.
 
 ## How to read it
 
 - **Rank** is calculated among the 27 EU members only. Norway, Iceland and the non-European PISA countries are shown for comparison but are not ranked.
 - **Inflation** is ranked by distance from 2%, the ECB's target, so the country closest to 2% ranks first.
 - **Gini** is ranked so that the most equal country is first.
+- **Government debt** is ranked with the lowest debt first. That is a simplification, and the explanation on the page says why.
+- **Tertiary attainment** has a break in the series in 2021 for several countries, including Finland, because the Labour Force Survey changed its method.
 - **GDP per capita** is meant for comparing countries with each other, not for tracking one country over time (Eurostat's advice). The dashboard shows a note with it.
 - **Missing values** are skipped, not filled in. Where a country has no value for the chosen year, the status line names it.
 - **PISA** has no EU27 average, so the OECD average is the benchmark. Differences of a few points are usually within the margin of error.

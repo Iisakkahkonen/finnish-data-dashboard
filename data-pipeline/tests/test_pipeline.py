@@ -145,3 +145,33 @@ def test_pisa_subjects_start_where_their_scale_starts():
     assert min(int(r["time"]) for r in load_pisa_rows("mathematics")) == 2003
     assert min(int(r["time"]) for r in load_pisa_rows("science")) == 2006
 
+
+
+def test_debt_and_tertiary_indicators_use_confirmed_codes():
+    # Codes and filters confirmed against the Eurostat API on 2026-11-04.
+    from indicators import INDICATORS
+
+    by_key = {i.key: i for i in INDICATORS}
+    debt = by_key["government_debt"]
+    assert debt.dataset == "gov_10dd_edpt1"
+    assert debt.filters == {"unit": "PC_GDP", "sector": "S13", "na_item": "GD"}
+    assert debt.higher_is_better is False and debt.source == "eurostat"
+
+    tertiary = by_key["tertiary_attainment"]
+    assert tertiary.dataset == "edat_lfse_03"
+    assert tertiary.filters == {"sex": "T", "age": "Y25-34", "isced11": "ED5-8", "unit": "PC"}
+    assert tertiary.higher_is_better is True and tertiary.source == "eurostat"
+
+
+def test_every_indicator_has_text_in_both_languages():
+    import json
+
+    from indicators import INDICATORS
+
+    i18n = Path(__file__).resolve().parents[2] / "web" / "src" / "i18n"
+    for name in ("en.json", "fi.json"):
+        text = json.loads((i18n / name).read_text(encoding="utf-8"))
+        for indicator in INDICATORS:
+            assert indicator.key in text["indicators"], (name, indicator.key)
+            assert indicator.key in text["explain"], (name, indicator.key)
+            assert indicator.key in text["gapUnits"], (name, indicator.key)

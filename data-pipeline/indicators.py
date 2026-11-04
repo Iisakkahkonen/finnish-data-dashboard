@@ -58,7 +58,7 @@ INDICATORS = [
         target=2.0,  # central bank target; closest to 2% ranks first
         unit_note="% change on previous year",
     ),
-        Indicator(
+    Indicator(
         key="gdp_per_capita",
         label_en="GDP per capita in PPS (EU27 = 100)",
         label_fi="BKT asukasta kohden PPS (EU27 = 100)",
@@ -66,6 +66,15 @@ INDICATORS = [
         filters={"indic_ppp": "VI_PPS_EU27_2020_HAB", "ppp_cat18": "GDP"},
         higher_is_better=True,
         unit_note="volume index, EU27 = 100",
+    ),
+    Indicator(
+        key="government_debt",
+        label_en="General government gross debt (% of GDP)",
+        label_fi="Julkinen velka (% BKT:sta)",
+        dataset="gov_10dd_edpt1",
+        filters={"unit": "PC_GDP", "sector": "S13", "na_item": "GD"},
+        higher_is_better=False,  # a simplification; the explanation says so
+        unit_note="consolidated gross debt (Maastricht definition), % of GDP",
     ),
     Indicator(
         key="at_risk_of_poverty",
@@ -105,6 +114,15 @@ INDICATORS = [
         higher_is_better=True,
         unit_note="mean score on the PISA scale; 2003 to 2022",
         source="pisa",
+    ),
+    Indicator(
+        key="tertiary_attainment",
+        label_en="Tertiary educational attainment, ages 25–34 (%)",
+        label_fi="Korkeakoulutettujen osuus, 25–34-vuotiaat (%)",
+        dataset="edat_lfse_03",
+        filters={"sex": "T", "age": "Y25-34", "isced11": "ED5-8", "unit": "PC"},
+        higher_is_better=True,
+        unit_note="% of people aged 25-34 with a tertiary degree (ISCED 5-8)",
     ),
     Indicator(
         key="life_expectancy",

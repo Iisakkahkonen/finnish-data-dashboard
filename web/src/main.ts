@@ -27,17 +27,25 @@ const INDICATOR_KEYS = [
   "unemployment",
   "inflation",
   "gdp_per_capita",
+  "government_debt",
   "at_risk_of_poverty",
   "pisa_math",
   "pisa_reading",
   "pisa_science",
+  "tertiary_attainment",
   "life_expectancy",
   "gini",
   "median_income_pps",
   "median_income_eur",
 ];
 // Indicators whose values are percentages, so they get a % sign when shown.
-const PERCENT_INDICATORS = ["unemployment", "inflation", "at_risk_of_poverty"];
+const PERCENT_INDICATORS = [
+  "unemployment",
+  "inflation",
+  "at_risk_of_poverty",
+  "government_debt",
+  "tertiary_attainment",
+];
 
 // Okabe-Ito colorblind-safe palette. Finland is always blue; the EU average is grey and dashed.
 const FOCUS_COLOR = "#0072B2";
