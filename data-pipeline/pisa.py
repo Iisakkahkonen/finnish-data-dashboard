@@ -4,8 +4,16 @@ Source: OECD PISA results, as mirrored by the World Bank EdStats data (CC BY 4.0
 The files are committed in data-pipeline/raw/ so the build does not depend on an
 outside download:
 - pisa-scores.csv: 2000 to 2018, from the DataHub mirror above.
-- pisa-2022-and-oecd-averages.csv: the 2022 mathematics means and the OECD average
-  for 2003 to 2022, transcribed from the OECD PISA report tables (PISA 2003 to 2022).
+- pisa-2022-and-oecd-averages.csv: the 2022 country means for all three subjects,
+  transcribed from the OECD PISA 2022 report, plus OECD averages:
+  - mathematics 2003 to 2015 and 2022, and reading and science 2012, 2015 and 2022, are the
+    official averages from the OECD PISA reports;
+  - reading 2003, 2006 and 2009, and science 2006 and 2009, are calculated from the
+    OECD member countries in pisa-scores.csv (29 or 30 countries; the count is in
+    the country_name column). They are within about 3 points of the official
+    average where that can be checked.
+  The 2018 OECD averages come from pisa-scores.csv ("OECD members"). There is no
+  OECD average for reading in 2000.
   Luxembourg is missing because it does not appear in the extracted 2022 tables.
 """
 
