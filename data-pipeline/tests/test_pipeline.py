@@ -187,3 +187,13 @@ def test_every_indicator_has_text_in_both_languages():
             assert indicator.key in text["indicators"], (name, indicator.key)
             assert indicator.key in text["explain"], (name, indicator.key)
             assert indicator.key in text["gapUnits"], (name, indicator.key)
+
+
+def test_poverty_rate_uses_the_median_threshold():
+    # ilc_li02 also holds the share below 60% of the MEAN income. Without
+    # statinfo pinned, both series came back mixed (FI 2024: 12.6 vs 18.2).
+    from indicators import INDICATORS
+
+    poverty = {i.key: i for i in INDICATORS}["at_risk_of_poverty"]
+    assert poverty.filters["statinfo"] == "MED_EI"
+    assert poverty.filters["rskpovth"] == "B_60"

@@ -82,7 +82,7 @@ INDICATORS = [
         label_en="At-risk-of-poverty rate (60% of median)",
         label_fi="Köyhyysriski (60 % mediaanitulosta)",
         dataset="ilc_li02",
-        filters={"unit": "PC", "sex": "T", "age": "TOTAL", "rskpovth": "B_60"},
+        filters={"unit": "PC", "sex": "T", "age": "TOTAL", "rskpovth": "B_60", "statinfo": "MED_EI"},
         higher_is_better=False,
         unit_note="% of population",
     ),
