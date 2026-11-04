@@ -32,9 +32,9 @@ Most figures come from [Eurostat](https://ec.europa.eu/eurostat):
 | At-risk-of-poverty rate | `ilc_li02` | Fetched from the Eurostat API on every build |
 | General government gross debt | `gov_10dd_edpt1` | Fetched from the Eurostat API on every build |
 | Tertiary educational attainment, 25–34 | `edat_lfse_03` | Fetched from the Eurostat API on every build |
-| Median equivalised net income (PPS and EUR) | `ilc_di03` | Exported CSV in `data-pipeline/raw/` |
-| Gini coefficient | `ilc_di12` | Exported CSV in `data-pipeline/raw/` |
-| Life expectancy at birth | `demo_mlexpec` | Exported CSV in `data-pipeline/raw/` |
+| Median equivalised net income (PPS and EUR) | `ilc_di03` | Fetched from the Eurostat API on every build |
+| Gini coefficient | `ilc_di12` | Fetched from the Eurostat API on every build |
+| Life expectancy at birth | `demo_mlexpec` | Fetched from the Eurostat API on every build |
 
 PISA scores come from the OECD PISA results and are stored as CSV in `data-pipeline/raw/`:
 
@@ -42,7 +42,7 @@ PISA scores come from the OECD PISA results and are stored as CSV in `data-pipel
 - `pisa-2022-and-oecd-averages.csv`: the 2022 country means and the OECD averages, typed from the OECD PISA reports. The OECD averages for reading in 2003–2009 and science in 2006–2009 are not in the reports' tables in a usable form, so they are calculated from the OECD member countries in the data. Where they can be checked against an official figure, they are within about 3 points.
 - Luxembourg has no 2022 value because it is not in the extracted 2022 tables.
 
-The site is rebuilt every Monday and on every push to `main`. Each build pulls the latest values for the six API indicators.
+The site is rebuilt every Monday and on every push to `main`. Each build pulls the latest values for every Eurostat indicator. Only the PISA scores are bundled files.
 
 ## How to read it
 
@@ -87,8 +87,8 @@ Open the address that Vite prints, usually `http://localhost:5173`.
 ## Project layout
 
 ```
-data-pipeline/       Python: Eurostat fetch, CSV and PISA loaders, rankings, tests
-data-pipeline/raw/   Bundled source CSVs (PISA and the Eurostat exports)
+data-pipeline/       Python: Eurostat fetch, PISA loader, rankings, tests
+data-pipeline/raw/   Bundled PISA CSVs
 data/                Generated indicators.json
 web/                 Vite + TypeScript site, Chart.js, English and Finnish text
 web/e2e/             Playwright browser test and fixture data

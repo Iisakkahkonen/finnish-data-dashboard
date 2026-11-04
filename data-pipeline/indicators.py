@@ -1,8 +1,9 @@
 """Indicator definitions for the dashboard.
 
 Each entry maps a human-readable indicator to its source: a Eurostat dataset
-and the filters that select one series, or a bundled CSV in data-pipeline/raw/.
-Dataset codes and filters were checked in the Eurostat Data Browser.
+and the filters that select exactly one series (every dimension except geo and
+time is pinned), or the bundled PISA CSVs in data-pipeline/raw/.
+Dataset codes and filters were checked against the Eurostat API.
 """
 
 from dataclasses import dataclass, field
@@ -18,7 +19,7 @@ class Indicator:
     higher_is_better: bool = True  # used for rank charts
     target: float | None = None  # if set, rank by distance from this value instead
     unit_note: str = ""
-    source: str = "eurostat"  # "eurostat" or "pisa" (bundled CSV, see pisa.py)
+    source: str = "eurostat"  # "eurostat" (API) or "pisa" (bundled CSV, see pisa.py)
 
 
 # Finland, peers, and the EU aggregate. Eurostat geo codes.
@@ -128,40 +129,36 @@ INDICATORS = [
         key="life_expectancy",
         label_en="Life expectancy at birth (years)",
         label_fi="Elinajanodote syntyessä (vuotta)",
-        dataset="",
-        filters={"file": "life-expectancy.csv"},
+        dataset="demo_mlexpec",
+        filters={"unit": "YR", "sex": "T", "age": "Y_LT1"},
         higher_is_better=True,
         unit_note="years, total population, annual",
-        source="csv",
     ),
     Indicator(
         key="gini",
         label_en="Gini coefficient of equivalised income (0–100)",
         label_fi="Gini-kerroin, ekvivalentti tulo (0–100)",
-        dataset="",
-        filters={"file": "gini.csv"},
+        dataset="ilc_di12",
+        filters={"age": "TOTAL", "statinfo": "GINI_HND"},
         higher_is_better=False,
         unit_note="scale 0 to 100; higher means more unequal income",
-        source="csv",
     ),
     Indicator(
         key="median_income_pps",
         label_en="Median equivalised net income (PPS)",
         label_fi="Mediaanitulo, ekvivalentti (PPS)",
-        dataset="",
-        filters={"file": "median-income-pps.csv"},
+        dataset="ilc_di03",
+        filters={"age": "TOTAL", "sex": "T", "statinfo": "MED_EI", "unit": "PPS"},
         higher_is_better=True,
         unit_note="PPS per person per year, total population",
-        source="csv",
     ),
     Indicator(
         key="median_income_eur",
         label_en="Median equivalised net income (EUR)",
         label_fi="Mediaanitulo, ekvivalentti (euroa)",
-        dataset="",
-        filters={"file": "median-income-eur.csv"},
+        dataset="ilc_di03",
+        filters={"age": "TOTAL", "sex": "T", "statinfo": "MED_EI", "unit": "EUR"},
         higher_is_better=True,
         unit_note="euro per person per year, total population",
-        source="csv",
     ),
 ]

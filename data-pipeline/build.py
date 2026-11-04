@@ -18,7 +18,6 @@ if __package__ in (None, ""):
 
 from analysis import rank_by_year, to_records  # noqa: E402
 from eurostat import fetch_indicator_rows  # noqa: E402
-from rawcsv import load_raw_csv  # noqa: E402
 from pisa import load_pisa_rows  # noqa: E402
 from indicators import EU27, GEOS, INDICATORS  # noqa: E402
 
@@ -37,9 +36,6 @@ def build() -> dict:
         if indicator.source == "pisa":
             print(f"Reading {indicator.key} from bundled CSV...", flush=True)
             rows = load_pisa_rows(indicator.filters.get("subject", "mathematics"))
-        elif indicator.source == "csv":
-            print(f"Reading {indicator.key} from bundled CSV...", flush=True)
-            rows = load_raw_csv(indicator.filters["file"])
         else:
             print(f"Fetching {indicator.key} ({indicator.dataset})...", flush=True)
             rows = fetch_indicator_rows(indicator.dataset, indicator.filters, GEOS)
@@ -48,6 +44,12 @@ def build() -> dict:
         if not rows:
             raise RuntimeError(f"No rows returned for {indicator.key}; check dataset codes")
 
+        pairs = [(r["geo"], r["time"]) for r in rows]
+        if len(pairs) != len(set(pairs)):
+            raise RuntimeError(
+                f"{indicator.key}: more than one value per country and year; "
+                "a dimension is not pinned in the filters"
+            )
         if indicator.source == "eurostat" and not any(r["geo"] == "EU27_2020" for r in rows):
             print(f"  warning: no EU27_2020 average for {indicator.key}", flush=True)
 

@@ -112,19 +112,31 @@ def test_pisa_subjects_load_separately():
     assert {r["geo"] for r in reading} == {r["geo"] for r in load_pisa_rows("mathematics")}
 
 
-def test_bundled_eurostat_csvs_load():
-    from rawcsv import load_raw_csv
+def test_former_csv_indicators_fetch_from_eurostat():
+    # Codes and filters confirmed against the Eurostat API on 2026-11-04; for
+    # Finland they reproduce the values of the CSV exports they replace.
+    from indicators import INDICATORS
 
-    life = load_raw_csv("life-expectancy.csv")
-    fi_2024 = [r["value"] for r in life if r["geo"] == "FI" and r["time"] == "2024"]
-    assert len(fi_2024) == 1 and 80 < fi_2024[0] < 85
-    assert min(int(r["time"]) for r in life) == 1960
+    by_key = {i.key: i for i in INDICATORS}
+    expected = {
+        "life_expectancy": ("demo_mlexpec", {"unit": "YR", "sex": "T", "age": "Y_LT1"}),
+        "gini": ("ilc_di12", {"age": "TOTAL", "statinfo": "GINI_HND"}),
+        "median_income_pps": ("ilc_di03", {"age": "TOTAL", "sex": "T", "statinfo": "MED_EI", "unit": "PPS"}),
+        "median_income_eur": ("ilc_di03", {"age": "TOTAL", "sex": "T", "statinfo": "MED_EI", "unit": "EUR"}),
+    }
+    for key, (dataset, filters) in expected.items():
+        indicator = by_key[key]
+        assert indicator.source == "eurostat", key
+        assert indicator.dataset == dataset and indicator.filters == filters, key
 
-    gini = load_raw_csv("gini.csv")
-    assert all(0 <= r["value"] <= 100 for r in gini)
 
-    income = load_raw_csv("median-income-pps.csv")
-    assert all(r["value"] > 0 for r in income)
+def test_only_pisa_uses_bundled_files():
+    from indicators import INDICATORS
+
+    assert {i.source for i in INDICATORS} == {"eurostat", "pisa"}
+    for indicator in INDICATORS:
+        if indicator.source == "eurostat":
+            assert indicator.dataset, indicator.key
 
 
 def test_rank_by_distance_from_target():

@@ -32,9 +32,9 @@ Useimmat luvut ovat [Eurostatilta](https://ec.europa.eu/eurostat):
 | Köyhyysriskiaste | `ilc_li02` | Haetaan Eurostatin rajapinnasta jokaisella julkaisulla |
 | Julkinen velka | `gov_10dd_edpt1` | Haetaan Eurostatin rajapinnasta jokaisella julkaisulla |
 | Korkeakoulutettujen osuus, 25–34-vuotiaat | `edat_lfse_03` | Haetaan Eurostatin rajapinnasta jokaisella julkaisulla |
-| Ekvivalentti mediaanitulo (PPS ja euroa) | `ilc_di03` | Viety CSV-tiedostoksi kansioon `data-pipeline/raw/` |
-| Gini-kerroin | `ilc_di12` | Viety CSV-tiedostoksi kansioon `data-pipeline/raw/` |
-| Elinajanodote syntyessä | `demo_mlexpec` | Viety CSV-tiedostoksi kansioon `data-pipeline/raw/` |
+| Ekvivalentti mediaanitulo (PPS ja euroa) | `ilc_di03` | Haetaan Eurostatin rajapinnasta jokaisella julkaisulla |
+| Gini-kerroin | `ilc_di12` | Haetaan Eurostatin rajapinnasta jokaisella julkaisulla |
+| Elinajanodote syntyessä | `demo_mlexpec` | Haetaan Eurostatin rajapinnasta jokaisella julkaisulla |
 
 PISA-tulokset ovat OECD:n PISA-tutkimuksesta, ja ne ovat CSV-tiedostoina kansiossa `data-pipeline/raw/`:
 
@@ -42,7 +42,7 @@ PISA-tulokset ovat OECD:n PISA-tutkimuksesta, ja ne ovat CSV-tiedostoina kansios
 - `pisa-2022-and-oecd-averages.csv`: vuoden 2022 maakohtaiset keskiarvot ja OECD-keskiarvot, kirjattu käsin OECD:n PISA-raporteista. Lukutaidon vuosien 2003–2009 ja luonnontieteiden vuosien 2006–2009 OECD-keskiarvoja ei ole raporttien taulukoissa käyttökelpoisessa muodossa, joten ne on laskettu aineiston OECD-maista. Kun niitä voi verrata viralliseen lukuun, ero on enintään noin 3 pistettä.
 - Luxemburgilla ei ole arvoa vuodelta 2022, koska sitä ei ole puretuissa vuoden 2022 taulukoissa.
 
-Sivu rakennetaan uudelleen joka maanantai ja jokaisen `main`-haaraan tehdyn muutoksen jälkeen. Jokainen julkaisu hakee kuuden rajapintaindikaattorin uusimmat arvot.
+Sivu rakennetaan uudelleen joka maanantai ja jokaisen `main`-haaraan tehdyn muutoksen jälkeen. Jokainen julkaisu hakee kaikkien Eurostat-indikaattorien uusimmat arvot. Vain PISA-tulokset ovat mukana tiedostoina.
 
 ## Miten lukuja tulkitaan
 
@@ -87,8 +87,8 @@ Avaa osoite, jonka Vite tulostaa, yleensä `http://localhost:5173`.
 ## Projektin rakenne
 
 ```
-data-pipeline/       Python: Eurostat-haku, CSV- ja PISA-lukijat, sijoitukset, testit
-data-pipeline/raw/   Mukana tulevat lähde-CSV:t (PISA ja Eurostatista viedyt tiedostot)
+data-pipeline/       Python: Eurostat-haku, PISA-lukija, sijoitukset, testit
+data-pipeline/raw/   Mukana tulevat PISA-CSV:t
 data/                Luotu indicators.json
 web/                 Vite + TypeScript -sivusto, Chart.js, suomen- ja englanninkieliset tekstit
 web/e2e/             Playwright-selaintesti ja testiaineisto
